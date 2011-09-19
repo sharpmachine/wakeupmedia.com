@@ -8,10 +8,14 @@ html, body { height: 100%; }
 
 
 /*.......................................................the LESS colors*/
-
+@wum-darkgrey: #353630;
+@wum-blue: #73AFB2;
 
 /*.......................................................the LESS font families*/
-
+.josefin
+{
+	font-family: 'Josefin Sans', sans-serif;
+}
 
 /*.......................................................the misc LESS mixins & variables*/
 
@@ -19,17 +23,26 @@ html, body { height: 100%; }
 /*.......................................................the usual*/
 body
 {
-	
+	background: url(../images/background.jpg) no-repeat #89A8AB top center;
 }
 
 .container
 {
-	
+	padding: 35px;
+	background-color: #fff;
 }
 
 h1
 {
 	
+}
+
+h1.entry-title
+{
+	.josefin;
+	text-align: center;
+	font-size: 4em;
+	text-transform: uppercase;
 }
 
 h2
@@ -80,44 +93,65 @@ a
 header
 {
 	margin-bottom: 6em;
+	margin: 0 auto;
+	text-align: center;
+	
+	#header
+	{
+		width: 985px;
+		margin: 0 auto;
+		
+		h2#site-description
+		{
+			display: none;
+		}
+		
+		img.home-logo
+		{
+			margin-top: 45px;
+		}
+	}
 }
 
 /*.......................................................the navigation*/
 nav
 {
-	background: #ddd;
+	background: @wum-darkgrey;
 	display: block;
 	float: left;
-	margin: 0 auto;
-	width: 940px;
+	width: 100%;
+	margin-top: 25px;
+	height: 50px;
+	.josefin;
+	font-weight: 400;
 	
 	.menu-header, div.menu
 	{
-		font-size: 13px;
-		margin-left: 12px;
-		width: 928px;
+		margin: 0 auto;
 		
 		ul
 		{
 			list-style: none;
 			margin: 0;
 			padding-left: 0;
+			text-align: center;
 		}
 		
 		li
 		{
-			float: left;
 			position: relative;
+			display: inline;
 		}
 	}
 	
 	a
 	{
-		color: #666;
-		display: block;
-		line-height: 38px;
+		color: #fff;
+		line-height: 50px;
 		padding: 0 10px;
 		text-decoration: none;
+		font-size: 2em;
+		text-transform: uppercase;
 	}
 	
 	ul ul
@@ -156,8 +190,7 @@ nav
 	
 	li:hover > a, ul ul :hover > a
 	{
-		background: #333;
-		color: #fff;
+		color: @wum-blue;
 	}
 	
 	ul li:hover > ul
@@ -170,7 +203,7 @@ nav
 	ul li.current-menu-item > a,
 	ul li.current-menu-parent > a 
 	{
-		color: #000;
+		color: @wum-blue;
 	}
 }
 
@@ -179,7 +212,7 @@ nav
 * html nav ul li.current-menu-item a,
 * html nav ul li.current-menu-parent a,
 * html nav ul li a:hover {
-	color: #000;
+	color: @wum-blue;
 }
 
 /*.......................................................the sidebar*/

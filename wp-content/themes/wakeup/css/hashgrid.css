@@ -4,7 +4,7 @@
 #grid{
 
     /* Dimensions - same width as your grid + 20px margin on both left & right */
-    width: 990px; /* this grid is using a containter with a width of 950px*/
+    width: 955px; /* this grid is using a containter with a width of 950px*/
 
     /* Grid (left-aligned)
     position: absolute;
@@ -16,7 +16,7 @@
     position: absolute;
     top: 0;
     left: 50%;
-    margin-left: -495px;
+    margin-left: -477px;
 
 }
 
@@ -28,10 +28,10 @@
  */
 #grid div.vert{
 
-    width: 29px;
+    width: 17px;
     border: solid darkturquoise;
     border-width: 0 1px;
-    margin-right: 9px; /* 10px gutters - subract a pixel for border*/
+    margin-right: 20px; /* 10px gutters - subract a pixel for border*/
 
 }
 

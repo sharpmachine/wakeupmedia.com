@@ -5,48 +5,68 @@ html, body { height: 100%; }
   position: absolute;
   left: -9000px;
 }
-header { margin-bottom: 6em; }
+.josefin { font-family: 'Josefin Sans', sans-serif; }
+body { background: url(../images/background.jpg) no-repeat #89a8ab top center; }
+.container {
+  padding: 35px;
+  background-color: #ffffff;
+}
+h1.entry-title {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  font-size: 4em;
+  text-transform: uppercase;
+}
+header {
+  margin-bottom: 6em;
+  margin: 0 auto;
+  text-align: center;
+}
+header #header {
+  width: 985px;
+  margin: 0 auto;
+}
+header #header h2#site-description { display: none; }
+header #header img.home-logo { margin-top: 45px; }
 nav {
-  background: #dddddd;
+  background: #353630;
   display: block;
   float: left;
-  margin: 0 auto;
-  width: 940px;
+  width: 100%;
+  margin-top: 25px;
+  height: 50px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
 }
-nav .menu-header {
-  font-size: 13px;
-  margin-left: 12px;
-  width: 928px;
-}
+nav .menu-header { margin: 0 auto; }
 nav .menu-header ul {
   list-style: none;
   margin: 0;
   padding-left: 0;
+  text-align: center;
 }
 nav .menu-header li {
-  float: left;
   position: relative;
+  display: inline;
 }
-nav div.menu {
-  font-size: 13px;
-  margin-left: 12px;
-  width: 928px;
-}
+nav div.menu { margin: 0 auto; }
 nav div.menu ul {
   list-style: none;
   margin: 0;
   padding-left: 0;
+  text-align: center;
 }
 nav div.menu li {
-  float: left;
   position: relative;
+  display: inline;
 }
 nav a {
-  color: #666666;
-  display: block;
-  line-height: 38px;
+  color: #ffffff;
+  line-height: 50px;
   padding: 0 10px;
   text-decoration: none;
+  font-size: 2em;
+  text-transform: uppercase;
 }
 nav ul ul {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
@@ -72,24 +92,18 @@ nav ul ul a {
   width: 160px;
   height: auto;
 }
-nav li:hover > a {
-  background: #333333;
-  color: #ffffff;
-}
-nav ul ul:hover > a {
-  background: #333333;
-  color: #ffffff;
-}
+nav li:hover > a { color: #73afb2; }
+nav ul ul:hover > a { color: #73afb2; }
 nav ul li:hover > ul { display: block; }
-nav ul li.current_page_item > a { color: #000000; }
-nav ul li.current-menu-ancestor > a { color: #000000; }
-nav ul li.current-menu-item > a { color: #000000; }
-nav ul li.current-menu-parent > a { color: #000000; }
-* html nav ul li.current_page_item a { color: #000000; }
-* html nav ul li.current-menu-ancestor a { color: #000000; }
-* html nav ul li.current-menu-item a { color: #000000; }
-* html nav ul li.current-menu-parent a { color: #000000; }
-* html nav ul li a:hover { color: #000000; }
+nav ul li.current_page_item > a { color: #73afb2; }
+nav ul li.current-menu-ancestor > a { color: #73afb2; }
+nav ul li.current-menu-item > a { color: #73afb2; }
+nav ul li.current-menu-parent > a { color: #73afb2; }
+* html nav ul li.current_page_item a { color: #73afb2; }
+* html nav ul li.current-menu-ancestor a { color: #73afb2; }
+* html nav ul li.current-menu-item a { color: #73afb2; }
+* html nav ul li.current-menu-parent a { color: #73afb2; }
+* html nav ul li a:hover { color: #73afb2; }
 footer { clear: both; }
 .wp-paginate {
   padding: 0;
