@@ -1,0 +1,27 @@
+.postbox#acf_options .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.postbox#acf_options h3 span.description {
+	font-size: 11px;
+	color: #666;
+	font-weight: normal;
+	font-style: normal;
+	padding-left: 4px;
+}
+
+.postbox#acf_options ul.checkbox_list {
+	display: block;
+	float: left;
+	width: 300px;
+}
+
+.postbox#acf_options ul.checkbox_list li {
+	display: block;
+}
+
+ul.checkbox_list li input {
+	margin: 2px 5px 0 0;
+	vertical-align: top;
+} 

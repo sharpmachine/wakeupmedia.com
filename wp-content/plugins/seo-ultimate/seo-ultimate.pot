@@ -1,0 +1,2352 @@
+# Copyright (C) 2010 SEO Ultimate
+# This file is distributed under the same license as the SEO Ultimate package.
+msgid ""
+msgstr ""
+"Project-Id-Version: SEO Ultimate 6.9.2\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/seo-ultimate\n"
+"POT-Creation-Date: 2011-08-20 18:36:26+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2010-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: seo-ultimate.php:90
+msgid ""
+"SEO Ultimate requires WordPress %s or above. Please upgrade to the latest "
+"version of WordPress to enable SEO Ultimate on your blog, or deactivate SEO "
+"Ultimate to remove this notice."
+msgstr ""
+
+#: modules/class.su-module.php:375
+msgid ""
+"(Note: This translated documentation was designed for an older version of "
+"SEO Ultimate and may be outdated.)"
+msgstr ""
+
+#: modules/class.su-module.php:658
+msgid ""
+"All the modules on this page have been disabled. You can re-enable them "
+"using the <a href=\"%s\">Module Manager</a>."
+msgstr ""
+
+#: modules/class.su-module.php:1017
+msgctxt "Dropdown Title"
+msgid "%s &mdash; %s"
+msgstr ""
+
+#: modules/class.su-module.php:1045
+msgid "%1$s | %2$s %3$s by %4$s"
+msgstr ""
+
+#: modules/class.su-module.php:1124
+msgid "Your site currently doesn&#8217;t have any public items of this type."
+msgstr ""
+
+#: modules/class.su-module.php:1208
+msgid "&laquo;"
+msgstr ""
+
+#: modules/class.su-module.php:1209
+msgid "&raquo;"
+msgstr ""
+
+#: modules/class.su-module.php:1216
+msgid "Displaying %s&#8211;%s of %s"
+msgstr ""
+
+#: modules/class.su-module.php:1229 modules/404s/fofs-log.php:113
+msgid "Actions"
+msgstr ""
+
+#: modules/class.su-module.php:1230
+msgid "ID"
+msgstr ""
+
+#: modules/class.su-module.php:1264
+msgid "View"
+msgstr ""
+
+#: modules/class.su-module.php:1266
+msgid "Edit"
+msgstr ""
+
+#: modules/class.su-module.php:1430
+msgid "Settings updated."
+msgstr ""
+
+#: modules/class.su-module.php:1451
+msgid "Save Changes"
+msgstr ""
+
+#: modules/class.su-module.php:1962
+msgid ""
+"Are you sure you want to replace the textbox contents with this default "
+"value?"
+msgstr ""
+
+#: modules/class.su-module.php:1978 modules/settings/settings-data.php:23
+msgid "Reset"
+msgstr ""
+
+#: modules/class.su-module.php:2588 modules/meta/meta-keywords.php:34
+#: modules/meta/meta-descriptions.php:25 plugin/class.seo-ultimate.php:1680
+msgid "Blog Homepage"
+msgstr ""
+
+#: modules/class.su-module.php:2592 plugin/class.seo-ultimate.php:1754
+msgid "Author"
+msgstr ""
+
+#: modules/class.su-module.php:2612
+msgid "Type a URL or start typing the name of the item you want to link to"
+msgstr ""
+
+#: modules/class.su-module.php:2624
+msgid "Remove this destination"
+msgstr ""
+
+#: modules/class.su-module.php:2624
+msgid "X"
+msgstr ""
+
+#: modules/class.su-importmodule.php:49
+msgid "Import Post Fields"
+msgstr ""
+
+#: modules/class.su-importmodule.php:50
+msgid ""
+"Post fields store the SEO data for your posts/pages (i.e. your custom title "
+"tags, meta descriptions, and meta keywords). If you provided custom titles/"
+"descriptions/keywords to %s, this importer can move that data over to SEO "
+"Ultimate."
+msgstr ""
+
+#: modules/class.su-importmodule.php:53
+msgid "Conflict Resolution Mode"
+msgstr ""
+
+#: modules/class.su-importmodule.php:54
+msgid ""
+"What should the import tool do if it tries to move over a post&#8217;s %s "
+"data, but different data already exists in the corresponding SEO Ultimate "
+"fields?"
+msgstr ""
+
+#: modules/class.su-importmodule.php:56
+msgid "Skip that post and leave all data as-is (default)."
+msgstr ""
+
+#: modules/class.su-importmodule.php:57
+msgid "Delete the SEO Ultimate data and replace it with the %s data."
+msgstr ""
+
+#: modules/class.su-importmodule.php:58
+msgid "Keep the SEO Ultimate data and delete the %s data."
+msgstr ""
+
+#: modules/class.su-importmodule.php:61
+msgid "Deletion Preference"
+msgstr ""
+
+#: modules/class.su-importmodule.php:62
+msgid ""
+"When the migration tool successfully copies a post&#8217;s %1$s data over to "
+"SEO Ultimate, what should it do with the old %1$s data?"
+msgstr ""
+
+#: modules/class.su-importmodule.php:64
+msgid "Delete the %s data."
+msgstr ""
+
+#: modules/class.su-importmodule.php:65
+msgid "Leave behind the duplicate %s data (default)."
+msgstr ""
+
+#: modules/class.su-importmodule.php:72
+msgid "Import Now"
+msgstr ""
+
+#: modules/class.su-importmodule.php:75
+msgid ""
+"The import cannot be undone. It is your responsibility to <a href=\"%s\" "
+"target=\"_blank\">backup your database</a> before proceeding!"
+msgstr ""
+
+#: modules/class.su-importmodule.php:84
+msgid "Import complete."
+msgstr ""
+
+#: modules/class.su-importmodule.php:90
+msgid "Return to import page"
+msgstr ""
+
+#: modules/class.su-importmodule.php:93
+msgid "Return to settings page"
+msgstr ""
+
+#: modules/class.su-importmodule.php:96
+msgid "Return to SEO page"
+msgstr ""
+
+#: modules/class.su-importmodule.php:116
+msgid "Deactivated %s."
+msgstr ""
+
+#: modules/class.su-importmodule.php:174
+msgid "Imported a total of %d fields for one post/page/revision."
+msgid_plural "Imported a total of %1$d fields for %2$d posts/pages/revisions."
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules/class.su-importmodule.php:180
+msgid "Skipped one post with disabled %2$s data."
+msgid_plural "Skipped %1$d posts with disabled %2$s data."
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules/class.su-importmodule.php:186
+msgid ""
+"Overwrote one SEO Ultimate field with %2$s data, as instructed by the "
+"settings you chose."
+msgid_plural ""
+"Overwrote %1$d SEO Ultimate fields with %2$s data, as instructed by the "
+"settings you chose."
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules/class.su-importmodule.php:192
+msgid "Deleted one %2$s field, as instructed by the settings you chose."
+msgid_plural ""
+"Deleted %1$d %2$s fields, as instructed by the settings you chose."
+msgstr[0] ""
+msgstr[1] ""
+
+#: modules/rich-snippets/rich-snippets.php:12
+msgid "Rich Snippet Creator"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:17
+msgid ""
+"Reviews\n"
+"Review"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:28
+msgid "Data Format"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:29
+msgid "Categories/Tags That Indicate Reviews"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:37
+msgid "Microformats (recommended)"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:43
+msgid "HTML5 Microdata"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:49
+msgid "RDFa"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:62
+#: modules/rich-snippets/rich-snippets.php:224
+msgid "Review"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:70
+msgid "Item Reviewed"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:78
+msgid "Star Rating"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:83
+msgid "Review Author"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:89
+msgid "Date Reviewed"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:223
+#: modules/rich-snippets/rich-snippets.php:232
+msgid "None"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:225
+msgid "Rich Snippet Type:"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:229
+msgid "Name of Reviewed Item:"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:233
+msgid "0.5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:234
+msgid "1 star"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:235
+msgid "1.5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:236
+msgid "2 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:237
+msgid "2.5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:238
+msgid "3 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:239
+msgid "3.5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:240
+msgid "4 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:241
+msgid "4.5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:242
+msgid "5 stars"
+msgstr ""
+
+#: modules/rich-snippets/rich-snippets.php:243
+msgid "Star Rating for Reviewed Item:"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:12
+msgid "Internal Relevance Researcher"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:13
+msgid "Int. Rel. Researcher"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:21
+msgid "Step 1: Enter Keywords"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:23
+msgid "(Type one keyword per line)"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:25
+msgid "Step 2: Set Options and Submit"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:27
+msgid "Put keywords in quotes"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:28
+#: modules/competition-queries/competition-queries.php:63
+msgid "Show 100 results per page"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:30
+#: modules/competition-queries/competition-queries.php:65
+msgid "Use Google&#8217;s minimal mode"
+msgstr ""
+
+#: modules/site-keyword-queries/site-keyword-queries.php:33
+#: modules/competition-queries/competition-queries.php:71
+msgid "Submit"
+msgstr ""
+
+#: modules/widgets/widgets.php:12
+msgid "SEO Ultimate Widgets"
+msgstr ""
+
+#: modules/widgets/widgets.php:36
+msgid ""
+"On category archives, displays a list of child categories and/or posts in "
+"the category. Displays a list of top-level categories everywhere else. "
+"Powered by the SEO Ultimate plugin."
+msgstr ""
+
+#: modules/widgets/widgets.php:37
+msgid "Siloed Categories"
+msgstr ""
+
+#: modules/widgets/widgets.php:51
+msgid "Tags"
+msgstr ""
+
+#: modules/widgets/widgets.php:130
+msgid "Title:"
+msgstr ""
+
+#: modules/widgets/widgets.php:134
+msgid "Show post counts"
+msgstr ""
+
+#: modules/widgets/widgets.php:136
+msgid "Use term descriptions in title attributes"
+msgstr ""
+
+#: modules/widgets/widgets.php:138
+msgid "Taxonomy:"
+msgstr ""
+
+#: modules/widgets/widgets.php:163
+msgid ""
+"Add this widget to display Deeplink Juggernaut&#8217;s Footer Links in a "
+"widget area of your choosing rather than the default wp_footer section. "
+"Powered by the SEO Ultimate plugin."
+msgstr ""
+
+#: modules/widgets/widgets.php:164 modules/autolinks/footer-autolinks.php:17
+msgid "Footer Links"
+msgstr ""
+
+#: modules/widgets/widgets.php:217
+msgid "Title: <em>(optional)</em>"
+msgstr ""
+
+#: modules/widgets/widgets.php:221
+msgid "Display as a list"
+msgstr ""
+
+#: modules/widgets/widgets.php:224
+msgid "Use my <a href=\"%s\" target=\"_blank\">footer link HTML formats</a>"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:20
+msgid "Link Mask Generator"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:27
+msgid "Alias Directory"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:29
+msgid "Nofollow aliased links"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:29
+msgid "Link Attributes"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:49
+msgid "Link Masks:"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:52
+msgid "URL"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:52
+msgid "Mask URL"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:83
+msgid ""
+"You can stop search engines from following a link by typing in a mask for "
+"its URL."
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:160
+msgid "Added by Link Alias Generator (LAG) module"
+msgstr ""
+
+#: modules/internal-link-aliases/internal-link-aliases.php:171
+msgid "End LAG"
+msgstr ""
+
+#: modules/titles/titles.php:12
+msgid "Title Tag Rewriter"
+msgstr ""
+
+#: modules/titles/titles.php:33 modules/meta/meta-descriptions.php:24
+msgid "Default Formats"
+msgstr ""
+
+#: modules/titles/titles.php:34 modules/404s/fofs-settings.php:17
+msgid "Settings"
+msgstr ""
+
+#: modules/titles/titles.php:40
+msgid "Title Tag"
+msgstr ""
+
+#: modules/titles/titles.php:53
+msgid ""
+"Convert lowercase category/tag names to title case when used in title tags."
+msgstr ""
+
+#: modules/titles/titles.php:53
+msgid "Title Tag Variables"
+msgstr ""
+
+#: modules/titles/titles.php:55
+msgid ""
+"Use output buffering &mdash; no configuration required, but slower (default)"
+msgstr ""
+
+#: modules/titles/titles.php:56
+msgid ""
+"Use filtering &mdash; faster, but configuration required (see the &#8220;"
+"Settings Help&#8221; dropdown for details)"
+msgstr ""
+
+#: modules/titles/titles.php:57
+msgid "Rewrite Method"
+msgstr ""
+
+#: modules/titles/titles.php:65
+msgid "{blog}"
+msgstr ""
+
+#: modules/titles/titles.php:66
+msgid "{post} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:67
+msgid "{page} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:68
+msgid "{category} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:69
+msgid "{tag} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:70
+msgid "Archives for {month} {day}, {year} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:71
+msgid "Archives for {month} {year} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:72
+msgid "Archives for {year} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:73
+msgid "Posts by {author} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:74
+msgid "Search Results for {query} | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:75
+msgid "404 Not Found | {blog}"
+msgstr ""
+
+#: modules/titles/titles.php:76
+msgid "{title} - Page {num}"
+msgstr ""
+
+#: modules/titles/titles.php:85
+msgid "Blog Homepage Title"
+msgstr ""
+
+#: modules/titles/titles.php:86
+msgid "Post Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:87
+msgid "Page Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:88
+msgid "Category Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:89
+msgid "Tag Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:90
+msgid "Day Archive Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:91
+msgid "Month Archive Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:92
+msgid "Year Archive Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:93
+msgid "Author Archive Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:94
+msgid "Search Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:95
+msgid "404 Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:96
+msgid "Pagination Title Format"
+msgstr ""
+
+#: modules/titles/titles.php:328
+msgid "Title Tag:"
+msgstr ""
+
+#: modules/titles/titles.php:333
+msgid ""
+"<strong>Title Tag</strong> &mdash; The exact contents of the &lt;title&gt; "
+"tag. The title appears in visitors&#8217; title bars and in search engine "
+"result titles. If this box is left blank, then the <a href=\"admin.php?"
+"page=su-titles\" target=\"_blank\">default post/page titles</a> are used."
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:12
+msgid "Competition Researcher"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:13
+msgid "Comp. Researcher"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:17
+msgid ""
+"The Competition Researcher provides you with easy access to various search "
+"engine tools which you can use to research multiple search queries or URLs."
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:21
+msgid "Step 1: Choose Your Research Tool"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:25
+msgid "Keywords"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:25
+msgid "Normal Search"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:25
+msgid "Find out how many pages contain the words in each query"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:26
+msgid "Phrase Match"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:26
+msgid ""
+"Find out how many &#8220;actual&#8221; pages are competing for each query"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:27
+msgid "Allinanchor"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:27
+msgid "Find out which sites have the most links for each query"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:28
+msgid "Allintitle"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:28
+msgid ""
+"Find out which sites have the highest relevance in the title for each query"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:29
+msgid "Allintext"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:29
+msgid "Find out which sites have the most relevant content/text on their pages"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:30
+msgid "Allinurl"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:30
+msgid ""
+"Find out which sites have the most relevant naming conventions for each "
+"keyword"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:32
+msgid "URLs"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:32
+msgid "Site"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:32
+msgid "Find out how many pages are indexed for each domain"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:33
+#: modules/competition-queries/competition-queries.php:38
+msgid "Inbound Links"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:33
+msgid "Find out how many sites link to the domains"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:34
+#: modules/competition-queries/competition-queries.php:38
+msgid "Outbound Links"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:34
+msgid "Find out how many sites the domains link to"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:57
+msgid "Step 2: Enter the <span id=\"methodtype\">Keywords</span> To Research"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:59
+msgid "(Type in one per line)"
+msgstr ""
+
+#: modules/competition-queries/competition-queries.php:61
+msgid "Step 3: Set Options and Submit"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:12
+msgid "Nofollow Manager"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:53
+msgid "Add the nofollow attribute to..."
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:55
+msgid "Adjacent post links"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:56
+msgid "Category links (after posts)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:57
+msgid "Category links (in lists)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:58
+msgid "Comment anchor links"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:59
+msgid "Comment feed links"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:60
+msgid "Date-based archive links"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:61
+msgid "Pagination navigation links (all)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:62
+msgid "Pagination navigation links (on blog home only)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:63
+msgid "&#8220;Read more&#8221; links"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:64
+msgid "Registration link"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:65
+msgid "Login link"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:66
+msgid "Tag links (after posts)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:67
+msgid "Tag links (in lists and clouds)"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:76
+msgid "When displaying page lists, nofollow links to this page"
+msgstr ""
+
+#: modules/link-nofollow/link-nofollow.php:76
+msgid "Nofollow:"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:12
+msgid "Meta Keywords Editor"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:13 modules/meta/meta-keywords.php:40
+msgid "Meta Keywords"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:33 modules/noindex/noindex.php:43
+msgid "Default Values"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:56
+msgid "The %d most commonly-used words"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:69
+msgid "Sitewide Keywords"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:69
+msgid "(Separate with commas)"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:76
+msgid "Blog Homepage Meta Keywords"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:153
+msgid "Meta Keywords:<br /><em>(separate with commas)</em>"
+msgstr ""
+
+#: modules/meta/meta-keywords.php:158
+msgid ""
+"<strong>Keywords</strong> &mdash; The value of the meta keywords tag. The "
+"keywords list gives search engines a hint as to what this post/page is "
+"about. Be sure to separate keywords with commas, like so: <samp>one,two,"
+"three</samp>."
+msgstr ""
+
+#: modules/meta/webmaster-verify.php:12
+msgid "Webmaster Verification Assistant"
+msgstr ""
+
+#: modules/meta/webmaster-verify.php:13
+msgid "W.M. Verification"
+msgstr ""
+
+#: modules/meta/webmaster-verify.php:47
+msgid "Google Webmaster Tools"
+msgstr ""
+
+#: modules/meta/webmaster-verify.php:48
+msgid "Yahoo! Site Explorer"
+msgstr ""
+
+#: modules/meta/webmaster-verify.php:49
+msgid "Bing Webmaster Center"
+msgstr ""
+
+#: modules/meta/meta-robots.php:12
+msgid "Meta Robot Tags Editor"
+msgstr ""
+
+#: modules/meta/meta-robots.php:13
+msgid "Meta Robot Tags"
+msgstr ""
+
+#: modules/meta/meta-robots.php:22
+msgid "Global"
+msgstr ""
+
+#: modules/meta/meta-robots.php:28
+msgid "Spider Instructions"
+msgstr ""
+
+#: modules/meta/meta-robots.php:30
+msgid ""
+"Don&#8217t use this site&#8217s Open Directory description in search results."
+msgstr ""
+
+#: modules/meta/meta-robots.php:31
+msgid ""
+"Don&#8217t use this site&#8217s Yahoo! Directory description in search "
+"results."
+msgstr ""
+
+#: modules/meta/meta-robots.php:32
+msgid "Don&#8217t cache or archive this site."
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:12
+msgid "Meta Description Editor"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:13
+msgid "Meta Descriptions"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:31
+msgid "Meta Description"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:48
+msgid "Post Description Format"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:49
+msgid "Category Description Format"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:50
+msgid "Post Tag Description Format"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:57
+msgid "Blog Homepage Meta Description"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:59
+msgid "Use this blog&#8217s tagline as the default homepage description."
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:60
+msgid "Default Value"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:122
+msgid "Meta Description:"
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:125
+msgid "You&#8217;ve entered %s characters. Most search engines use up to 140."
+msgstr ""
+
+#: modules/meta/meta-descriptions.php:133
+msgid ""
+"<strong>Description</strong> &mdash; The value of the meta description tag. "
+"The description will often appear underneath the title in search engine "
+"results. Writing an accurate, attention-grabbing description for every post "
+"is important to ensuring a good search results clickthrough rate."
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:12
+msgid "Import from All in One SEO Pack"
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:13
+msgid "AIOSP Import"
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:15
+msgid "All in One SEO Pack"
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:16
+msgid "AIOSP"
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:17
+msgid "Import post data (custom title tags and meta tags)."
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:21
+msgid ""
+"Here you can move post fields from the All in One SEO Pack (AIOSP) plugin to "
+"SEO Ultimate. AIOSP&#8217;s data remains in your WordPress database after "
+"AIOSP is deactivated or even uninstalled. This means that as long as AIOSP "
+"was active on this blog sometime in the past, AIOSP does <em>not</em> need "
+"to be currently installed or activated for the import to take place."
+msgstr ""
+
+#: modules/import-aiosp/import-aiosp.php:23
+msgid ""
+"The import tool can only move over data from AIOSP version 1.6 or above. If "
+"you use an older version of AIOSP, you should update to the latest version "
+"first and run AIOSP&#8217;s upgrade process."
+msgstr ""
+
+#: modules/sds-blog/sds-blog.php:12
+msgid "Whitepapers"
+msgstr ""
+
+#: modules/sds-blog/sds-blog.php:13
+msgid "SEO Design Solutions Whitepapers"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (SEO Ultimate 6.9.2)  #-#-#-#-#
+#. Author of the plugin/theme
+#: modules/sds-blog/sds-blog.php:49
+msgid "SEO Design Solutions"
+msgstr ""
+
+#: modules/sds-blog/sds-blog.php:50
+msgid ""
+"The search engine optimization articles below are loaded from the website of "
+"SEO Design Solutions, the company behind the SEO Ultimate plugin. Click on "
+"an article&#8217;s title to read it."
+msgstr ""
+
+#: modules/modules/modules.php:12
+msgid "Module Manager"
+msgstr ""
+
+#: modules/modules/modules.php:13
+msgid "Modules"
+msgstr ""
+
+#: modules/modules/modules.php:41
+msgid ""
+"SEO Ultimate&#8217;s features are located in groups called &#8220;modules."
+"&#8221; By default, most of these modules are listed in the &#8220;"
+"SEO&#8221; menu on the left. Whenever you&#8217;re working with a module, "
+"you can view documentation by clicking the tabs in the upper-right-hand "
+"corner of your administration screen."
+msgstr ""
+
+#: modules/modules/modules.php:43
+msgid ""
+"The Module Manager lets you  disable or hide modules you don&#8217;t use. "
+"You can also silence modules from displaying bubble alerts on the menu."
+msgstr ""
+
+#: modules/modules/modules.php:47
+msgid "Modules updated."
+msgstr ""
+
+#: modules/modules/modules.php:52
+msgid "Status"
+msgstr ""
+
+#: modules/modules/modules.php:53
+msgid "Module"
+msgstr ""
+
+#: modules/modules/modules.php:66
+msgid "Enabled"
+msgstr ""
+
+#: modules/modules/modules.php:67
+msgid "Silenced"
+msgstr ""
+
+#: modules/modules/modules.php:68
+msgid "Hidden"
+msgstr ""
+
+#: modules/modules/modules.php:69
+msgid "Disabled"
+msgstr ""
+
+#: modules/slugs/slugs.php:12
+msgid "Slug Optimizer"
+msgstr ""
+
+#: modules/slugs/slugs.php:16
+msgid "Words to Remove"
+msgstr ""
+
+#: modules/404s/fofs.php:11
+msgid "404 Monitor"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:16
+msgid "404 Monitor Settings"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:37
+msgid "Continue monitoring for new 404 errors"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:37
+msgid "Monitoring Settings"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:39
+msgid "Only log these types of 404 errors:"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:40
+msgid "404s generated by search engine spiders"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:41
+msgid "404s with referring URLs"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:42
+msgid "Log Restrictions"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:43
+msgid "Maximum Log Entries"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:44
+msgid "URLs to Ignore"
+msgstr ""
+
+#: modules/404s/fofs-settings.php:44
+msgid "(Use * as wildcard)"
+msgstr ""
+
+#: modules/404s/fofs-log.php:16
+msgid "404 Monitor Log"
+msgstr ""
+
+#: modules/404s/fofs-log.php:17
+msgid "Log"
+msgstr ""
+
+#: modules/404s/fofs-log.php:114
+msgid "Hits"
+msgstr ""
+
+#: modules/404s/fofs-log.php:115
+msgid "URL with 404 Error"
+msgstr ""
+
+#: modules/404s/fofs-log.php:116
+msgid "Date of Most Recent Hit"
+msgstr ""
+
+#: modules/404s/fofs-log.php:117
+msgid "Referers"
+msgstr ""
+
+#: modules/404s/fofs-log.php:118 modules/404s/fofs-log.php:221
+msgid "User Agents"
+msgstr ""
+
+#: modules/404s/fofs-log.php:134
+msgid ""
+"New 404 errors will not be recorded because 404 logging is disabled on the "
+"Settings tab."
+msgstr ""
+
+#: modules/404s/fofs-log.php:141
+msgid "The log entry was successfully deleted."
+msgstr ""
+
+#: modules/404s/fofs-log.php:143
+msgid "This log entry has already been deleted."
+msgstr ""
+
+#: modules/404s/fofs-log.php:152
+msgid "The log was successfully cleared."
+msgstr ""
+
+#: modules/404s/fofs-log.php:156
+msgid "No 404 errors in the log."
+msgstr ""
+
+#: modules/404s/fofs-log.php:180
+msgid "Open URL in new window (will not be logged)"
+msgstr ""
+
+#: modules/404s/fofs-log.php:181
+msgid "Query Google for cached version of URL (opens in new window)"
+msgstr ""
+
+#: modules/404s/fofs-log.php:182
+msgid "Remove this URL from the log"
+msgstr ""
+
+#: modules/404s/fofs-log.php:185
+msgid "%s at %s"
+msgstr ""
+
+#: modules/404s/fofs-log.php:189
+msgid "View list of referring URLs"
+msgstr ""
+
+#: modules/404s/fofs-log.php:190
+msgid "View list of user agents"
+msgstr ""
+
+#: modules/404s/fofs-log.php:200
+msgid "Referring URLs"
+msgstr ""
+
+#: modules/404s/fofs-log.php:201 modules/404s/fofs-log.php:222
+msgid "Hide list"
+msgstr ""
+
+#: modules/404s/fofs-log.php:252
+msgid "Are you sure you want to delete all 404 log entries?"
+msgstr ""
+
+#: modules/404s/fofs-log.php:254
+msgid "Clear Log"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:12
+msgid "Linkbox Inserter"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:18
+msgid "Link to this post!"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:45
+msgid "At the end of posts"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:46
+msgid "At the end of pages"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:47
+msgid "When called by the su_linkbox hook"
+msgstr ""
+
+#: modules/linkbox/linkbox.php:48
+msgid "Display linkboxes..."
+msgstr ""
+
+#: modules/linkbox/linkbox.php:49
+msgid "Linkbox HTML"
+msgstr ""
+
+#: modules/more-links/more-links.php:12
+msgid "More Link Customizer"
+msgstr ""
+
+#: modules/more-links/more-links.php:30
+msgid "Default More Link Text"
+msgstr ""
+
+#: modules/more-links/more-links.php:51
+msgid "More Link Text:"
+msgstr ""
+
+#: modules/permalinks/permalinks.php:15
+msgid "Permalink Tweaker"
+msgstr ""
+
+#: modules/permalinks/permalinks.php:44
+msgid ""
+"To use the Permalinks Tweaker, you must disable default (query-string) "
+"permalinks in your <a href=\"options-permalink.php\">Permalink Settings</a>."
+msgstr ""
+
+#: modules/permalinks/permalinks.php:62
+msgid "%1$s (turn <code>%2$s</code> into <code>%3$s</code>)"
+msgstr ""
+
+#: modules/permalinks/permalinks.php:69
+msgid "Remove the URL bases of..."
+msgstr ""
+
+#: modules/misc/misc.php:11
+msgid "Miscellaneous"
+msgstr ""
+
+#: modules/misc/misc.php:14
+msgid ""
+"The Miscellaneous page contains modules that don&#8217;t have enough "
+"settings to warrant their own separate admin pages."
+msgstr ""
+
+#: modules/files/files.php:14
+msgid "File Editor"
+msgstr ""
+
+#: modules/files/files.php:53
+msgid ""
+"A .htaccess file exists, but it&#8217;s not writable. You can edit it here "
+"once the file permissions are corrected."
+msgstr ""
+
+#: modules/files/files.php:59
+msgid ""
+"WordPress won&#8217;t be able to display your robots.txt file because the "
+"default <a href=\"options-permalink.php\" target=\"_blank\">permalink "
+"structure</a> is in use."
+msgstr ""
+
+#: modules/files/files.php:66
+msgid "robots.txt [<a href=\"%s\" target=\"_blank\">Open</a>]"
+msgstr ""
+
+#: modules/files/files.php:70
+msgid "Enable this custom robots.txt file and disable the default file"
+msgstr ""
+
+#: modules/files/files.php:71
+msgid "Let other plugins add rules to my custom robots.txt file"
+msgstr ""
+
+#: modules/files/files.php:72
+msgid "robots.txt Settings"
+msgstr ""
+
+#: modules/files/files.php:75
+msgid ""
+"Please realize that incorrectly editing your robots.txt file could block "
+"search engines from your site."
+msgstr ""
+
+#: modules/files/files.php:79
+msgid ".htaccess"
+msgstr ""
+
+#: modules/files/files.php:82
+msgid ""
+"Also, incorrectly editing your .htaccess file could disable your entire "
+"website. Edit with caution!"
+msgstr ""
+
+#: modules/files/files.php:134
+msgid ""
+"Please note that your privacy settings won&#8217;t have any effect on your "
+"robots.txt file, since you&#8217;re using <a href=\"%s\">a custom one</a>."
+msgstr ""
+
+#: modules/canonical/canonical.php:12
+msgid "Canonicalizer"
+msgstr ""
+
+#: modules/canonical/canonical.php:39
+msgid ""
+"Generate <code>&lt;link rel=&quot;canonical&quot; /&gt;</code> meta tags."
+msgstr ""
+
+#: modules/canonical/canonical.php:40
+msgid "Send <code>rel=&quot;canonical&quot;</code> HTTP headers."
+msgstr ""
+
+#: modules/canonical/canonical.php:41
+msgid "Redirect requests for nonexistent pagination."
+msgstr ""
+
+#: modules/user-code/user-code.php:12
+msgid "Code Inserter"
+msgstr ""
+
+#: modules/user-code/user-code.php:27
+msgid "Everywhere"
+msgstr ""
+
+#: modules/user-code/user-code.php:34
+msgid "&lt;head&gt; Tag"
+msgstr ""
+
+#: modules/user-code/user-code.php:35
+msgid "Before Item Content"
+msgstr ""
+
+#: modules/user-code/user-code.php:36
+msgid "After Item Content"
+msgstr ""
+
+#: modules/user-code/user-code.php:37
+msgid "Footer"
+msgstr ""
+
+#: modules/user-code/user-code.php:51
+msgid "Code Inserter module"
+msgstr ""
+
+#: modules/settings/settings-data.php:16
+msgid "Settings Data Manager"
+msgstr ""
+
+#: modules/settings/settings-data.php:17
+msgid "Manage Settings Data"
+msgstr ""
+
+#: modules/settings/settings-data.php:21
+msgid "Import"
+msgstr ""
+
+#: modules/settings/settings-data.php:22
+msgid "Export"
+msgstr ""
+
+#: modules/settings/settings-data.php:82
+msgid "Settings successfully imported."
+msgstr ""
+
+#: modules/settings/settings-data.php:84
+msgid ""
+"The uploaded file is not in the proper format. Settings could not be "
+"imported."
+msgstr ""
+
+#: modules/settings/settings-data.php:86
+msgid "The settings file could not be uploaded successfully."
+msgstr ""
+
+#: modules/settings/settings-data.php:89
+msgid ""
+"Settings could not be imported because no settings file was selected. Please "
+"click the &#8220;Browse&#8221; button and select a file to import."
+msgstr ""
+
+#: modules/settings/settings-data.php:140
+msgid ""
+"The uploaded file is not in the proper format. Links could not be imported."
+msgstr ""
+
+#: modules/settings/settings-data.php:182
+msgid "Links successfully imported."
+msgstr ""
+
+#: modules/settings/settings-data.php:185
+msgid "The CSV file could not be uploaded successfully."
+msgstr ""
+
+#: modules/settings/settings-data.php:188
+msgid ""
+"Links could not be imported because no CSV file was selected. Please click "
+"the &#8220;Browse&#8221; button and select a file to import."
+msgstr ""
+
+#: modules/settings/settings-data.php:198
+msgid "Import SEO Ultimate Settings File"
+msgstr ""
+
+#: modules/settings/settings-data.php:200
+msgid ""
+"You can use this form to upload and import an SEO Ultimate settings file "
+"stored on your computer. (These files can be created using the Export tool.) "
+"Note that importing a file will overwrite your existing settings with those "
+"in the file."
+msgstr ""
+
+#: modules/settings/settings-data.php:204
+msgid ""
+"Are you sure you want to import this settings file? This will overwrite your "
+"current settings and cannot be undone."
+msgstr ""
+
+#: modules/settings/settings-data.php:205
+msgid "Import Settings File"
+msgstr ""
+
+#: modules/settings/settings-data.php:211
+msgid "Import Deeplink Juggernaut CSV File"
+msgstr ""
+
+#: modules/settings/settings-data.php:213
+msgid ""
+"You can use this form to upload and import a Deeplink Juggernaut CSV file "
+"stored on your computer. (These files can be created using the Export tool.) "
+"Note that importing a file will overwrite your existing links with those in "
+"the file."
+msgstr ""
+
+#: modules/settings/settings-data.php:217
+msgid ""
+"Are you sure you want to import this CSV file? This will overwrite your "
+"current Deeplink Juggernaut links and cannot be undone."
+msgstr ""
+
+#: modules/settings/settings-data.php:218
+msgid "Import CSV File"
+msgstr ""
+
+#: modules/settings/settings-data.php:233
+msgid "Import from Other Plugins"
+msgstr ""
+
+#: modules/settings/settings-data.php:235
+msgid ""
+"You can import settings and data from these plugins. Clicking a plugin&#8217;"
+"s name will take you to the importer page, where you can customize "
+"parameters and start the import."
+msgstr ""
+
+#: modules/settings/settings-data.php:255
+msgid "Export SEO Ultimate Settings File"
+msgstr ""
+
+#: modules/settings/settings-data.php:257
+msgid ""
+"You can use this export tool to download an SEO Ultimate settings file to "
+"your computer."
+msgstr ""
+
+#: modules/settings/settings-data.php:259
+msgid ""
+"A settings file includes the data of every checkbox and textbox of every "
+"installed module. It does NOT include site-specific data like logged 404s or "
+"post/page title/meta data (this data would be included in a standard "
+"database backup, however)."
+msgstr ""
+
+#: modules/settings/settings-data.php:262
+msgid "Download Settings File"
+msgstr ""
+
+#: modules/settings/settings-data.php:267
+msgid "Export Deeplink Juggernaut CSV File"
+msgstr ""
+
+#: modules/settings/settings-data.php:269
+msgid ""
+"You can use this export tool to download a CSV file (comma-separated values "
+"file) that contains your Deeplink Juggernaut links. Once you download this "
+"file to your computer, you can edit it using your favorite spreadsheet "
+"program. When you&#8217;re done editing, you can re-upload the file using "
+"the Import tool."
+msgstr ""
+
+#: modules/settings/settings-data.php:272
+msgid "Download CSV File"
+msgstr ""
+
+#: modules/settings/settings-data.php:279
+msgid "All settings have been erased and defaults have been restored."
+msgstr ""
+
+#: modules/settings/settings-data.php:281
+msgid ""
+"You can erase all your SEO Ultimate settings and restore them to &#8220;"
+"factory defaults&#8221; by clicking the button below."
+msgstr ""
+
+#: modules/settings/settings-data.php:284
+msgid ""
+"Are you sure you want to erase all module settings? This cannot be undone."
+msgstr ""
+
+#: modules/settings/settings-data.php:285
+msgid "Restore Default Settings"
+msgstr ""
+
+#: modules/settings/global-settings.php:18
+msgid "Global Settings"
+msgstr ""
+
+#: modules/settings/global-settings.php:40
+msgid "Enable nofollow&#8217;d attribution link"
+msgstr ""
+
+#: modules/settings/global-settings.php:41
+msgid "Enable attribution link CSS styling"
+msgstr ""
+
+#: modules/settings/global-settings.php:42
+msgid "Notify me about unnecessary active plugins"
+msgstr ""
+
+#: modules/settings/global-settings.php:43
+msgid "Insert comments around HTML code insertions"
+msgstr ""
+
+#: modules/settings/settings.php:12
+msgid "Plugin Settings"
+msgstr ""
+
+#: modules/settings/settings.php:13
+msgid "SEO Ultimate Plugin Settings"
+msgstr ""
+
+#. #-#-#-#-#  plugin.pot (SEO Ultimate 6.9.2)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: modules/settings/settings.php:14 plugin/class.seo-ultimate.php:775
+msgid "SEO Ultimate"
+msgstr ""
+
+#: modules/settings/uninstall.php:17
+msgid "Uninstaller"
+msgstr ""
+
+#: modules/settings/uninstall.php:18 plugin/class.seo-ultimate.php:1258
+msgid "Uninstall"
+msgstr ""
+
+#: modules/settings/uninstall.php:27
+msgid ""
+"Uninstalling SEO Ultimate will delete your settings and the plugin&#8217;s "
+"files."
+msgstr ""
+
+#: modules/settings/uninstall.php:30
+msgid ""
+"Are you sure you want to uninstall SEO Ultimate? This will permanently erase "
+"your SEO Ultimate settings and cannot be undone."
+msgstr ""
+
+#: modules/settings/uninstall.php:31
+msgid "Uninstall Now"
+msgstr ""
+
+#: modules/settings/uninstall.php:35 modules/settings/uninstall.php:42
+msgid "Uninstall SEO Ultimate"
+msgstr ""
+
+#: modules/settings/uninstall.php:46
+msgid "Deleted settings."
+msgstr ""
+
+#: modules/settings/uninstall.php:53
+msgid "An error occurred while deleting files."
+msgstr ""
+
+#: modules/settings/uninstall.php:55
+msgid "Deleted files."
+msgstr ""
+
+#: modules/settings/uninstall.php:56
+msgid "Uninstallation complete. Thanks for trying SEO Ultimate."
+msgstr ""
+
+#: modules/settings/install.php:18
+msgid "Upgrade/Downgrade/Reinstall"
+msgstr ""
+
+#: modules/settings/install.php:19
+msgid "Installer"
+msgstr ""
+
+#: modules/settings/install.php:23 modules/settings/install.php:48
+msgid "Upgrade"
+msgstr ""
+
+#: modules/settings/install.php:24 modules/settings/install.php:71
+msgid "Downgrade"
+msgstr ""
+
+#: modules/settings/install.php:25 modules/settings/install.php:86
+msgid "Reinstall"
+msgstr ""
+
+#: modules/settings/install.php:42
+msgid ""
+"From the list below, select the version to which you would like to upgrade. "
+"Then click the &#8220;Upgrade&#8221; button at the bottom of the screen."
+msgstr ""
+
+#: modules/settings/install.php:51
+msgid "You are already running the latest version."
+msgstr ""
+
+#: modules/settings/install.php:53
+msgid ""
+"There was an error retrieving the list of available versions. Please try "
+"again later. You can also upgrade to the latest version of SEO Ultimate "
+"using the WordPress plugin upgrader."
+msgstr ""
+
+#: modules/settings/install.php:62
+msgid ""
+"Downgrading is provided as a convenience only and is not officially "
+"supported. Although unlikely, you may lose data in the downgrading process. "
+"It is your responsibility to backup your database before proceeding."
+msgstr ""
+
+#: modules/settings/install.php:65
+msgid ""
+"From the list below, select the version to which you would like to "
+"downgrade. Then click the &#8220;Downgrade&#8221; button at the bottom of "
+"the screen."
+msgstr ""
+
+#: modules/settings/install.php:74
+msgid ""
+"Downgrading to versions earlier than %s is not supported because doing so "
+"will result in data loss."
+msgstr ""
+
+#: modules/settings/install.php:76
+msgid ""
+"There was an error retrieving the list of available versions. Please try "
+"again later."
+msgstr ""
+
+#: modules/settings/install.php:81
+msgid ""
+"To download and install a fresh copy of the SEO Ultimate version you are "
+"currently using, click the &#8220;Reinstall&#8221; button below."
+msgstr ""
+
+#: modules/settings/install.php:108
+msgid "Your Current Version"
+msgstr ""
+
+#: modules/settings/install.php:110
+msgid "Latest Version"
+msgstr ""
+
+#: modules/settings/install.php:130
+msgid ""
+"You do not have sufficient permissions to upgrade/downgrade plugins for this "
+"blog."
+msgstr ""
+
+#: modules/settings/install.php:140
+msgid "Downgrade to SEO Ultimate %s"
+msgstr ""
+
+#: modules/settings/install.php:143
+msgid "Reinstall SEO Ultimate %s"
+msgstr ""
+
+#: modules/settings/install.php:146
+msgid "Upgrade to SEO Ultimate %s"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:12
+msgid "Sharing Facilitator"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:25
+msgid "Bookmark and Share"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:39
+msgid "Which provider would you like to use for your sharing buttons?"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:41
+msgid "None; disable sharing buttons"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:42
+msgid "Use the ShareThis button"
+msgstr ""
+
+#: modules/sharing-buttons/sharing-buttons.php:43
+msgid "Use the AddThis button"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:14
+msgid "Settings Monitor (Beta)"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:15
+msgid "Settings Monitor"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:30
+msgid "Blog is visible to search engines"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:31
+msgid "WordPress will allow search engines to visit your site."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:33
+msgid "Blog is hidden from search engines"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:34
+msgid ""
+"WordPress is configured to block search engines. This will nullify your "
+"site&#8217;s SEO and should be resolved immediately."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:38
+msgid "Query-string permalinks enabled"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:39
+msgid ""
+"It is highly recommended that you use a non-default and non-numeric "
+"permalink structure."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:43
+msgid "Pathinfo permalinks enabled"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:44
+msgid ""
+"Pathinfo permalinks add a keyword-less &#8220;index.php&#8221; prefix. This "
+"is not ideal, but it may be beyond your control (since it&#8217;s likely "
+"caused by your site&#8217;s web hosting setup)."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:49
+msgid "Permalinks include the post slug"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:50
+msgid ""
+"Including a version of the post&#8217;s title helps provide keyword-rich "
+"URLs."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:52
+msgid "Permalinks do not include the post slug"
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:53
+msgid ""
+"It is highly recommended that you include the %postname% variable in the "
+"permalink structure."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:63
+msgid ""
+"Settings Monitor analyzes your blog&#8217;s settings and notifies you of any "
+"problems. If any issues are found, they will show up in red or yellow below."
+msgstr ""
+
+#: modules/wp-settings/wp-settings.php:75
+msgid "Go to setting &raquo;"
+msgstr ""
+
+#: modules/noindex/noindex.php:12
+msgid "Noindex Manager"
+msgstr ""
+
+#: modules/noindex/noindex.php:13 modules/noindex/noindex.php:49
+#: modules/noindex/noindex.php:67
+msgid "Noindex"
+msgstr ""
+
+#: modules/noindex/noindex.php:54 modules/noindex/noindex.php:78
+#: modules/autolinks/content-autolinks.php:367
+#: modules/autolinks/footer-autolinks.php:214
+msgid "Nofollow"
+msgstr ""
+
+#: modules/noindex/noindex.php:62 modules/noindex/noindex.php:73
+msgid "Use default"
+msgstr ""
+
+#: modules/noindex/noindex.php:63
+msgid "noindex"
+msgstr ""
+
+#: modules/noindex/noindex.php:64
+msgid "index"
+msgstr ""
+
+#: modules/noindex/noindex.php:74
+msgid "nofollow"
+msgstr ""
+
+#: modules/noindex/noindex.php:75
+msgid "follow"
+msgstr ""
+
+#: modules/noindex/noindex.php:89
+msgid ""
+"Note: The current <a href=\"options-privacy.php\">privacy settings</a> will "
+"block indexing of the entire site, regardless of which options are set below."
+msgstr ""
+
+#: modules/noindex/noindex.php:92
+msgid "Prevent indexing of..."
+msgstr ""
+
+#: modules/noindex/noindex.php:93
+msgid "Administration back-end pages"
+msgstr ""
+
+#: modules/noindex/noindex.php:94
+msgid "Author archives"
+msgstr ""
+
+#: modules/noindex/noindex.php:95
+msgid "Blog search pages"
+msgstr ""
+
+#: modules/noindex/noindex.php:96
+msgid "Category archives"
+msgstr ""
+
+#: modules/noindex/noindex.php:97
+msgid "Comment feeds"
+msgstr ""
+
+#: modules/noindex/noindex.php:98
+msgid "Comment subpages"
+msgstr ""
+
+#: modules/noindex/noindex.php:99
+msgid "Date-based archives"
+msgstr ""
+
+#: modules/noindex/noindex.php:100
+msgid "Subpages of the homepage"
+msgstr ""
+
+#: modules/noindex/noindex.php:101
+msgid "Tag archives"
+msgstr ""
+
+#: modules/noindex/noindex.php:102
+msgid "User login/registration pages"
+msgstr ""
+
+#: modules/noindex/noindex.php:165
+msgid "Noindex: Tell search engines not to index this webpage."
+msgstr ""
+
+#: modules/noindex/noindex.php:166
+msgid "Nofollow: Tell search engines not to spider links on this webpage."
+msgstr ""
+
+#: modules/noindex/noindex.php:167
+msgid "Meta Robots Tag:"
+msgstr ""
+
+#: modules/autolinks/autolinks.php:11
+msgid "Deeplink Juggernaut"
+msgstr ""
+
+#: modules/autolinks/autolinks.php:18
+msgid ""
+"Deeplink Juggernaut requires PHP 5.2 or above in SEO Ultimate 6.0 and later. "
+"(Note that WordPress itself will soon require PHP 5.2 as well, starting with "
+"WordPress 3.2.) If you aren&#8217;t sure how to upgrade PHP, please ask your "
+"webhost. In the meantime, you can return to an older version of Deeplink "
+"Juggernaut that supports your version of PHP by <a href=\"%s\">downgrading</"
+"a> to SEO Ultimate 5.9."
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:16
+msgid "Content Deeplink Juggernaut"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:17
+msgid "Content Links"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:259
+#: modules/autolinks/footer-autolinks.php:129
+msgid ""
+"The Content Links section of Deeplink Juggernaut lets you automatically link "
+"a certain word or phrase in your post/page content to a URL you specify."
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:313
+#: modules/autolinks/footer-autolinks.php:161
+msgid "Edit Existing Links"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:317
+#: modules/autolinks/footer-autolinks.php:165
+msgid "Add a New Link"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:328
+#: modules/autolinks/footer-autolinks.php:175
+msgid "Anchor Text"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:329
+#: modules/autolinks/footer-autolinks.php:176
+msgid "Destination"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:330
+#: modules/autolinks/footer-autolinks.php:177
+msgid "Title Attribute"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:332
+msgid "Site Cap"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:333
+#: modules/autolinks/footer-autolinks.php:178
+msgid "Options"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:335
+#: modules/autolinks/footer-autolinks.php:180
+msgid "Delete"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:369
+#: modules/autolinks/footer-autolinks.php:216
+msgid "New window"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:434
+msgid "Incoming Autolink Anchors:<br /><em>(one per line)</em>"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:437
+msgid "Don&#8217;t add autolinks to anchor texts found in this post."
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:437
+msgid "Autolink Exclusion:"
+msgstr ""
+
+#: modules/autolinks/content-autolinks.php:443
+msgid ""
+"<strong>Incoming Autolink Anchors</strong> &mdash; When you enter anchors "
+"into this box, Deeplink Juggernaut will search for that anchor in all your "
+"other posts and link it to this post. For example, if the post you&#8217;re "
+"editing is about &#8220;blue widgets,&#8221; you could type &#8220;blue "
+"widgets&#8221; into the &#8220;Incoming Autolink Anchors&#8221; box and "
+"Deeplink Juggernaut will automatically build internal links to this post "
+"with that anchor text (assuming other posts contain that text)."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:16
+msgid "Content Deeplink Juggernaut Settings"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:17
+msgid "Content Link Settings"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:40
+msgid "Add Autolinks to..."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:43
+msgid "Allow posts to link to themselves."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:44
+msgid ""
+"Allow posts to link to the URL by which the visitor is accessing the post."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:45
+msgid "Self-Linking"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:48
+msgid "Enable per-link customization of quantity limits."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:49
+msgid "Don&#8217;t add any more than %d autolinks per post/page/etc."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:50
+msgid ""
+"Don&#8217;t link the same anchor text any more than %d times per post/page/"
+"etc."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:51
+msgid ""
+"Don&#8217;t link the same anchor text any more than %d times across my "
+"entire site."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:52
+msgid ""
+"Don&#8217;t link to the same destination any more than %d times per post/"
+"page/etc."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:53
+msgid "Quantity Restrictions"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:55
+msgid ""
+"Don&#8217;t add autolinks to text within these HTML tags <em>(separate with "
+"commas)</em>:"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:55
+msgid "Tag Restrictions"
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:63
+msgid "%s can only link to internal destinations that share at least one..."
+msgstr ""
+
+#: modules/autolinks/content-autolinks-settings.php:76
+msgid "Siloing"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks.php:16
+msgid "Footer Deeplink Juggernaut"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks.php:173
+msgid "Link Location (optional)"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks.php:201
+msgid "Match child content"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks.php:203
+msgid "Negative match"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:16
+msgid "Footer Deeplink Juggernaut Settings"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:17
+msgid "Footer Link Settings"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:28
+msgid "HTML Formats"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:31
+msgid "Link Section Format"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:32
+msgid "Link Format"
+msgstr ""
+
+#: modules/autolinks/footer-autolinks-settings.php:34
+msgid "Link Separator"
+msgstr ""
+
+#: plugin/class.su-installer.php:9
+msgid "Package not available."
+msgstr ""
+
+#: plugin/class.su-installer.php:12
+msgid "Removing the current version of the plugin&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:13
+msgid "Could not remove the current version of the plugin."
+msgstr ""
+
+#: plugin/class.su-installer.php:17
+msgid "Downloading old version from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:18
+msgid "Unpacking the downgrade&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:19
+msgid "Installing the downgrade&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:20
+msgid "Plugin downgrade failed."
+msgstr ""
+
+#: plugin/class.su-installer.php:21
+msgid "Plugin downgraded successfully."
+msgstr ""
+
+#: plugin/class.su-installer.php:24
+msgid "Downloading from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:25
+msgid "Unpacking the reinstall&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:26
+msgid "Reinstalling the current version&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:27
+msgid "Plugin reinstallation failed."
+msgstr ""
+
+#: plugin/class.su-installer.php:28
+msgid "Plugin reinstalled successfully."
+msgstr ""
+
+#: plugin/class.su-installer.php:32
+msgid "Downloading upgrade from <span class=\"code\">%s</span>&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:33
+msgid "Unpacking the upgrade&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:34
+msgid "Installing the upgrade&#8230;"
+msgstr ""
+
+#: plugin/class.su-installer.php:35
+msgid "Plugin upgrade failed."
+msgstr ""
+
+#: plugin/class.su-installer.php:36
+msgid "Plugin upgraded successfully."
+msgstr ""
+
+#: plugin/su-functions.php:77 includes/jlfunctions/str.php:105
+msgid "%s and %s"
+msgstr ""
+
+#: plugin/su-functions.php:80 includes/jlfunctions/str.php:108
+msgid ", "
+msgstr ""
+
+#: plugin/su-functions.php:81 includes/jlfunctions/str.php:109
+msgid "%s, and %s"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:775
+msgid "SEO"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:964
+msgid ""
+"It looks like you made changes to the settings of this SEO Ultimate module. "
+"If you leave before saving, those changes will be lost."
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1058
+msgid "SEO Settings Help"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1060
+msgid "The SEO Settings box lets you customize these settings:"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1062
+msgid "(The SEO Settings box is part of the SEO Ultimate plugin.)"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1117
+msgid ""
+"SEO Ultimate includes the functionality of %1$s. You may want to deactivate %"
+"1$s to avoid plugin conflicts."
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1159
+msgid "new module"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1159
+msgid "new modules"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1160
+msgid "new feature"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1160
+msgid "new features"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1161
+msgid "bugfix"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1161
+msgid "bugfixes"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1162
+msgid "improvement"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1162
+msgid "improvements"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1163
+msgid "security fix"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1163
+msgid "security fixes"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1194
+msgid "%d %s"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1200
+msgid "Upgrade now to get %s. %s."
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1202
+msgid "View changelog"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1278
+msgid "Active Modules: "
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1339
+msgid ""
+"<strong>SEO Ultimate Notice:</strong> Your blog is configured to block "
+"search engine spiders. To resolve this, <a href=\"options-privacy.php\" "
+"target=\"_blank\">go to your Privacy settings</a> and set your blog visible "
+"to everyone."
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1461
+msgid "SEO Settings"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1679
+msgid "Home"
+msgstr ""
+
+#: plugin/class.seo-ultimate.php:1748
+msgid "Author Archives"
+msgstr ""
+
+#: includes/jlwp/functions.php:65
+msgid "Posts"
+msgstr ""
+
+#: includes/jlwp/functions.php:65
+msgid "Post"
+msgstr ""
+
+#: includes/jlwp/functions.php:66
+msgid "Pages"
+msgstr ""
+
+#: includes/jlwp/functions.php:66
+msgid "Page"
+msgstr ""
+
+#: includes/jlwp/functions.php:67
+msgid "Attachments"
+msgstr ""
+
+#: includes/jlwp/functions.php:67
+msgid "Attachment"
+msgstr ""
+
+#: includes/jlwp/functions.php:96
+msgctxt "post format"
+msgid "Format"
+msgstr ""
+
+#: includes/jlwp/functions.php:97
+msgid "Post Format Archives"
+msgstr ""
+
+#: includes/jlwp/functions.php:165
+msgid "backup your database"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.seodesignsolutions.com/wordpress-seo/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"This all-in-one SEO plugin gives you control over title tags, noindex/"
+"nofollow, meta tags, rich snippets, slugs, canonical tags, autolinks, 404 "
+"errors, rich snippets, and more."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://www.seodesignsolutions.com/"
+msgstr ""

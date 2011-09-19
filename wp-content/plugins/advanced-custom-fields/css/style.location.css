@@ -1,0 +1,99 @@
+.postbox#acf_location .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.postbox#acf_location .widefat {
+	border: 0 none;
+}
+
+.postbox#acf_location h3 span.description {
+	font-size: 11px;
+	color: #666;
+	font-weight: normal;
+	font-style: normal;
+	padding-left: 4px;
+}
+
+table.acf_input > tbody > tr > td > select[multiple="multiple"] {
+    height: auto !important;
+}
+
+td.param {
+	width: 40%;
+}
+td.operator {
+	width: 20%;
+}
+
+/*---------------------------------------------------------------------------------------------
+	Location Rules
+---------------------------------------------------------------------------------------------*/
+.location_rules {
+	
+}
+
+table#location_rules {
+
+}
+
+table#location_rules tr {
+
+}
+
+table#location_rules tr td {
+	padding: 4px;
+	border: 0 none;
+}
+
+table#location_rules tr td:first-child {
+	padding-left: 0;
+}
+
+table#location_rules tr td:last-child {
+	padding-right: 0;
+}
+
+table#location_rules tr td.buttons {
+	width: 40px;
+	vertical-align: middle;
+}
+
+table#location_rules a.remove {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(../images/button_remove.png) 0 0 no-repeat;
+	float: left;
+	margin-right: 4px;
+}
+
+table#location_rules a.remove:hover {
+	background-position: 0 100%;
+}
+
+table#location_rules a.remove.disabled {
+	opacity: 0.4;
+	background-position: 0 0 !important;
+	cursor: default;
+}
+
+table#location_rules a.add {
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(../images/button_add.png) 0 0 no-repeat;
+	float: left;
+}
+
+table#location_rules a.add:hover {
+	background-position: 0 100%;
+}
+
+.location_rules p select {
+	width: 50px;
+}
+
+table#location_rules tr td.value div {
+	display: none;
+}
