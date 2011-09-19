@@ -1,6 +1,10 @@
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
 html { overflow-y: scroll; }
 html, body { height: 100%; }
+.screen-reader-text {
+  position: absolute;
+  left: -9000px;
+}
 header { margin-bottom: 6em; }
 nav {
   background: #dddddd;
