@@ -23,16 +23,18 @@
 			
 			<div class="col-2 clear">
 				<h2>Contact Wake Up!</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id orci ullamcorper nec laoreet mi porttitor. Nulla fringilla, mi ut sollicitudin consequat, risus lorem sollicitudin orci, vitae varius arcu libero ut nibh. Donec elementum, metus at malesuada molestie, lectus urna aliquet est, vel dictum nunc tellus eget lorem.</p>
-				<a href="mailto:info@wakeupmedia.com">info@wakeupmedia.com</a>
-				<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
-				<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
-				<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
+				<div class="push-74">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id orci ullamcorper nec laoreet mi porttitor. Nulla fringilla, mi ut sollicitudin consequat, risus lorem sollicitudin orci, vitae varius arcu libero ut nibh. Donec elementum, metus at malesuada molestie, lectus urna aliquet est, vel dictum nunc tellus eget lorem.</p>
+					<a href="mailto:info@wakeupmedia.com">info@wakeupmedia.com</a>
+					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
+					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
+					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
+				</div>
 			</div>
 			
 			<div class="col-2 last">
 				<h2>A Little More Personal:</h2>
-				<div class="col-4">
+				<div class="col-4 pad-60">
 					<h3>Debra:</h3>
 					<a href="#">www.debradebra.com</a><br \>
 					<a href="mailto:debra@wakeupmedia.com">debra@wakeupmedia.com</a><br \>
@@ -40,7 +42,7 @@
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
 				</div>
-				<div class="col-4 last">
+				<div class="col-4 pad-60 last">
 					<h3>Bridgette:</h3>
 					<a href="#">www.debradebra.com</a><br \>
 					<a href="mailto:debra@wakeupmedia.com">debra@wakeupmedia.com</a><br \>
@@ -48,7 +50,6 @@
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
 				</div>
-				
 			</div>
 		
 

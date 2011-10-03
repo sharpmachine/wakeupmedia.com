@@ -216,8 +216,24 @@ footer #footer p {
   color: #727272;
   margin-bottom: 0.3em;
 }
+footer #footer h3 { font-style: italic; }
 footer #footer p { font-size: 0.857em; }
 footer #footer a { font-size: 0.857em; }
+footer #footer img.alignleft { margin-right: 14px; }
+footer #footer a {
+  display: block;
+  float: left;
+}
+footer #footer a img {
+  display: block;
+  float: left;
+  margin-left: 5px;
+}
+footer #footer .push-74 { margin-left: 74px; }
+footer #footer .pad-60 {
+  padding-left: 60px;
+  width: 157px;
+}
 footer #footer #site-info {
   clear: both;
   padding-top: 20px;
