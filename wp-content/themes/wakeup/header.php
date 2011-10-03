@@ -87,11 +87,11 @@
 		<div id="header">
 			<?php if(is_home()): ?>
 				<h1 class="debra">Debra</h1>
-				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="285" height="161" alt="Wake Up Media" class="home-logo"></a></h1>
+				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/home-logo.png" width="285" height="161" alt="Wake Up Media" class="logo"></a></h1>
 				<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
-				<h1 class="bridgette">Bridgette</h1>
+				<h1 class="bridgette">Bridgitte</h1>
 			<?php else: ?>
-				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="285" height="161" alt="Wake Up Media" class="home-logo"></a></h1>
+				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="111" height="72" alt="Wake Up Media" class="logo"></a></h1>
 			<?php endif; ?>
 		</div>
 	</header>

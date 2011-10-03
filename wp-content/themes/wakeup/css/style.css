@@ -63,7 +63,7 @@ header #header {
   margin: 0 auto;
 }
 header #header h2#site-description { display: none; }
-header #header img.home-logo { margin-top: 45px; }
+header #header img.logo { margin-top: 45px; }
 header #header h1.debra {
   width: 300px;
   float: left;
@@ -212,10 +212,6 @@ footer #footer h6 {
   color: #727272;
   margin-bottom: 0.3em;
 }
-footer #footer p {
-  color: #727272;
-  margin-bottom: 0.3em;
-}
 footer #footer h3 { font-style: italic; }
 footer #footer p { font-size: 0.857em; }
 footer #footer a { font-size: 0.857em; }
@@ -228,8 +224,11 @@ footer #footer a img {
   display: block;
   float: left;
   margin-left: 5px;
+  margin-top: 5px;
 }
+footer #footer a img.sm { margin-top: -5px; }
 footer #footer .push-74 { margin-left: 74px; }
+footer #footer .poosh-20 { margin-right: 20px; }
 footer #footer .pad-60 {
   padding-left: 60px;
   width: 157px;
@@ -237,6 +236,11 @@ footer #footer .pad-60 {
 footer #footer #site-info {
   clear: both;
   padding-top: 20px;
+  text-align: right;
+}
+footer #footer #site-info a {
+  display: inline;
+  float: none;
 }
 .wp-paginate {
   padding: 0;
