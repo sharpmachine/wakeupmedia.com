@@ -322,6 +322,34 @@ nav
 footer
 {
 	clear: both;
+	width: 100%;
+	background-color: #000;
+	height: 578px;
+	
+	#footer
+	{
+		width: 915px;
+		margin: 0 auto;
+		padding: 75px 35px;
+		color: #727272;
+		
+		h1, h2, h3, h4, h5, h6, p
+		{
+			color: #727272;
+			margin-bottom: 0.3em;
+		}
+		
+		p, a
+		{
+			font-size: 0.857em;
+		}
+		
+		#site-info
+		{
+			clear: both;
+			padding-top: 20px;
+		}
+	}
 }
 
 
@@ -714,12 +742,22 @@ a.question
 }
 
 /*.......................................................the misc*/
-.col-1
+.col-2, .col-4
 {
 	float: left;
-	width: 450px;
 	margin-right: 15px;
 }
+
+.col-2
+{
+	width: 450px;
+}
+
+.col-4
+{
+	width: 217px;
+}
+
 
 .last
 {

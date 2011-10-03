@@ -5,7 +5,7 @@
 
 			<?php // get_template_part( 'loop', 'index' ); ?>
 			
-			<article class="col-1">
+			<article class="col-2">
 				<iframe src="http://player.vimeo.com/video/29777584?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
 				<h5><a href="#">Debra’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
 				<h2 class="no-mb"><a href="#">Debra's Blog</a></h2>
@@ -23,7 +23,7 @@
 				<a href="" class="question">Have a question for Debra?</a>
 			</article>
 			
-			<article class="col-1 last">
+			<article class="col-2 last">
 				<iframe src="http://player.vimeo.com/video/29731100?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
 				<h5><a href="#">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
 				<h2 class="no-mb"><a href="#">Bridgette's  Blog</a></h2>

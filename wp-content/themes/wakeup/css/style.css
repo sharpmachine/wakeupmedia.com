@@ -176,7 +176,52 @@ nav ul li.current-menu-parent > a { color: #73afb2; }
 * html nav ul li.current-menu-item a { color: #73afb2; }
 * html nav ul li.current-menu-parent a { color: #73afb2; }
 * html nav ul li a:hover { color: #73afb2; }
-footer { clear: both; }
+footer {
+  clear: both;
+  width: 100%;
+  background-color: #000000;
+  height: 578px;
+}
+footer #footer {
+  width: 915px;
+  margin: 0 auto;
+  padding: 75px 35px;
+  color: #727272;
+}
+footer #footer h1 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer h2 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer h3 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer h4 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer h5 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer h6 {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer p {
+  color: #727272;
+  margin-bottom: 0.3em;
+}
+footer #footer p { font-size: 0.857em; }
+footer #footer a { font-size: 0.857em; }
+footer #footer #site-info {
+  clear: both;
+  padding-top: 20px;
+}
 .wp-paginate {
   padding: 0;
   margin: 0;
@@ -433,11 +478,12 @@ a.question {
   border-radius: 10px;
   box-shadow: 1px 1px 1px #666666;
 }
-.col-1 {
+.col-2, .col-4 {
   float: left;
-  width: 450px;
   margin-right: 15px;
 }
+.col-2 { width: 450px; }
+.col-4 { width: 217px; }
 .last { margin-right: 0; }
 .no-mb { margin-bottom: 0; }
 .feature-box {
