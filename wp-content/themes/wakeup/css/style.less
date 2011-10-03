@@ -10,20 +10,56 @@ html, body { height: 100%; }
 /*.......................................................the LESS colors*/
 @wum-darkgrey: #353630;
 @wum-blue: #73AFB2;
+@wum-links: #7cc2c6;
+@wum-body: #636363;
+@wum-headers: #000;
+@wum-box: #dfdfdf;
+@wum-pink: #f75fd3;
 
 /*.......................................................the LESS font families*/
 .josefin
 {
 	font-family: 'Josefin Sans', sans-serif;
+	letter-spacing: -2px;
+}
+
+.amaranth
+{
+	font-family: 'Amaranth', sans-serif;
 }
 
 /*.......................................................the misc LESS mixins & variables*/
 
+.gradient(@start:#d3f1f4 , @stop:#79989c) {
+   background: @stop;
+   background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
+   background: -webkit-linear-gradient(@start, @stop);
+   background: -moz-linear-gradient(center top, @start 0%, @stop 100%);
+   background: -moz-gradient(center top, @start 0%, @stop 100%);
+   background: -moz-gradient(center top, @start 0%, @stop 100%);
+   background:  gradient(center top, @start 0%, @stop 100%);
+}
+
+.rounded-corners(@radius:10px)
+{
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
 
 /*.......................................................the usual*/
+html
+{
+	.gradient;
+	font-style: italic;
+	font-weight: 400;
+}
 body
 {
-	background: url(../images/background.jpg) no-repeat #89A8AB top center;
+	background: url(../images/background.jpg) no-repeat top center;
+	color: @wum-body;
+	.amaranth;
+	/*font-size: 14px;*/
 }
 
 .container
@@ -32,27 +68,35 @@ body
 	background-color: #fff;
 }
 
+h1, h2, h3, h4, h5, h6
+{
+	font-style: normal;
+}
+
 h1
 {
-	
+	font-size: 4.571em;
+	.josefin;
+	text-transform: uppercase;
 }
 
 h1.entry-title
 {
 	.josefin;
 	text-align: center;
-	font-size: 4em;
+	font-size: 4.571em;
 	text-transform: uppercase;
 }
 
 h2
 {
-	
+	font-size: 2.571em;
+	font-weight: 400;
 }
 
 h3
 {
-	
+	font-size: 1.357em;
 }
 
 h4
@@ -72,6 +116,8 @@ h6
 
 a
 {
+	color: @wum-links;
+	text-decoration: none;
 	
 	:visited
 	{
@@ -89,10 +135,19 @@ a
 	}
 }
 
+strong
+{
+	font-weight: 700;
+}
+
+blockquote
+{
+	font-weight: 700;
+}
+
 /*.......................................................the header*/
 header
 {
-	margin-bottom: 6em;
 	margin: 0 auto;
 	text-align: center;
 	
@@ -109,8 +164,48 @@ header
 		img.home-logo
 		{
 			margin-top: 45px;
+			/*margin-bottom: 27px;*/
+		}
+		
+		h1.debra, h1.bridgette
+		{
+			width: 300px;
+			float: left;
+			margin-bottom: 0;
+			color: #fff;
+			margin-top: 208px;
+			font-size: 4em;
+		}
+		
+		h1.debra
+		{
+			text-align: left;
+			padding-left: 50px;
+		}
+		
+		h1.bridgette
+		{
+			text-align: right;
+			padding-right: 50px;
 		}
 	}
+}
+
+body.home #header
+{
+	background: url(../images/girls.png) no-repeat center bottom;
+	height: 343px;
+	
+	h1#site-title
+		{
+			width: 285px;
+			float: left;
+		}
+		
+	img.home-logo
+		{
+			margin-top: 60px;
+		}
 }
 
 /*.......................................................the navigation*/
@@ -124,6 +219,7 @@ nav
 	height: 50px;
 	.josefin;
 	font-weight: 400;
+	font-style: normal;
 	
 	.menu-header, div.menu
 	{
@@ -147,11 +243,12 @@ nav
 	a
 	{
 		color: #fff;
-		line-height: 50px;
+		line-height: 43px;
 		padding: 0 10px;
 		text-decoration: none;
 		font-size: 2em;
 		text-transform: uppercase;
+		text-shadow: 1px 1px 1px @wum-darkgrey;
 	}
 	
 	ul ul
@@ -503,4 +600,172 @@ h3#reply-title {
 	width: auto;
 }
 
+/*.......................................................the images*/
+img.size-auto,
+img.size-full,
+img.size-large,
+img.size-medium,
+.attachment img {
+	max-width: 100%; /* When images are too wide for containing element, force them to fit. */
+	height: auto; /* Override height to match resized width for correct aspect ratio. */
+}
+.alignleft,
+img.alignleft {
+	display: inline;
+	float: left;
+	margin-right: 17px;
+	margin-top: 4px;
+}
+.alignright,
+img.alignright {
+	display: inline;
+	float: right;
+	margin-left: 17px;
+	margin-top: 4px;
+}
+.aligncenter,
+img.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+img.alignleft,
+img.alignright,
+img.aligncenter {
+	margin-bottom: 12px;
+}
+.wp-caption {
+	background: #f1f1f1;
+	line-height: 18px;
+	margin-bottom: 20px;
+	max-width: 632px !important; /* prevent too-wide images from breaking layout */
+	padding: 4px;
+	text-align: center;
+}
+.wp-caption img {
+	margin: 5px 5px 0;
+}
+.wp-caption p.wp-caption-text {
+	color: #888;
+	font-size: 12px;
+	margin: 5px;
+}
+.wp-smiley {
+	margin: 0;
+}
+.gallery {
+	margin: 0 auto 18px;
+}
+.gallery .gallery-item {
+	float: left;
+	margin-top: 0;
+	text-align: center;
+	width: 33%;
+}
+.gallery-columns-2 .gallery-item {
+	width: 50%;
+}
+.gallery-columns-4 .gallery-item {
+	width: 25%;
+}
+.gallery img {
+	border: 2px solid #cfcfcf;
+}
+.gallery-columns-2 .attachment-medium {
+	max-width: 92%;
+	height: auto;
+}
+.gallery-columns-4 .attachment-thumbnail {
+	max-width: 84%;
+	height: auto;
+}
+.gallery .gallery-caption {
+	color: #888;
+	font-size: 12px;
+	margin: 0 0 12px;
+}
+.gallery dl {
+	margin: 0;
+}
+.gallery img {
+	border: 10px solid #f1f1f1;
+}
+.gallery br+br {
+	display: none;
+}
+#content .attachment img {/* single attachment images should be centered */
+	display: block;
+	margin: 0 auto;
+}
+
+/*.......................................................the button*/
+a.question
+{
+	background-color: @wum-pink;
+	color: #fff;
+	font-size: 2.2em;
+	padding: 10px 0;
+	text-align: center;
+	width: 100%;
+	display: block;
+	.rounded-corners;
+	box-shadow: 1px 1px  1px #666;
+}
+
 /*.......................................................the misc*/
+.col-1
+{
+	float: left;
+	width: 450px;
+	margin-right: 15px;
+}
+
+.last
+{
+	margin-right: 0;
+}
+
+.no-mb
+{
+	margin-bottom: 0;
+}
+
+.feature-box
+{
+	background-color: @wum-box;
+	padding: 20px 20px 10px 20px;
+	margin-bottom: 20px;
+	
+	p
+	{
+		font-size: 0.857em;
+		margin-bottom: 1px;
+		font-weight: 700;
+		font-style: normal;
+	}
+}
+
+.older-entries
+{
+	margin-bottom: 25px;
+	
+	h3, h4
+	{
+		font-weight: normal;
+		font-style: italic;
+		margin-bottom: 10px;
+	}
+	
+	h3
+	{
+		font-size: 2.2em;
+	}
+	
+	h4
+	{
+		font-size: 0.857em;
+		font-weight: 700;
+	}
+	
+}

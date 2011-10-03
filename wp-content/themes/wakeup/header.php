@@ -46,6 +46,7 @@
 	
 	<link rel="profile" href="http://gmpg.org/xfn/11" />
 	<link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,600,700' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Amaranth:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css" type="text/css" media="print">
     <!--<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/wp-style.css">-->
@@ -84,11 +85,14 @@
 				<?php wp_nav_menu( array( 'container_class' => 'menu-header', 'theme_location' => 'primary' ) ); ?>
 			</nav><!-- nav -->
 		<div id="header">
-			
-			
-			<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="285" height="161" alt="Wake Up Media" class="home-logo"></a></h1>
-			<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
-
+			<?php if(is_home()): ?>
+				<h1 class="debra">Debra</h1>
+				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="285" height="161" alt="Wake Up Media" class="home-logo"></a></h1>
+				<h2 id="site-description"><?php bloginfo( 'description' ); ?></h2>
+				<h1 class="bridgette">Bridgette</h1>
+			<?php else: ?>
+				<h1 id="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><img src="<?php bloginfo('template_directory'); ?>/images/logo.png" width="285" height="161" alt="Wake Up Media" class="home-logo"></a></h1>
+			<?php endif; ?>
 		</div>
 	</header>
 	<div class="container"> <!-- some layouts will require this to moved down just above the #main tag -->
