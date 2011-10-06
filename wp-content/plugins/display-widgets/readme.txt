@@ -4,7 +4,7 @@ Donate link: http://strategy11.com/donate/
 Tags: widget, widgets, admin, show, hide, page, Thesis, sidebar, content, wpmu, wordpress, plugin, post, posts, content, filter
 Requires at least: 2.8
 Tested up to: 3.1
-Stable tag: 1.19
+Stable tag: 1.20
 
 Simply hide widgets on specified pages. Adds checkboxes to each widget to either show or hide it on every site page.
 
@@ -19,6 +19,7 @@ http://strategy11.com/display-widgets/
 = Translations =
 * Dutch ([Alanya Hotels](http://www.alanyahotels.com/ "Alanya Hotels"))
 * German ([Caspar Hübinger](http://glueckpress.com "Caspar Hübinger"))
+* Hebrew ([Ariel](http://arielk.net "Ariel"))
 * Japanese ([BNG NET](http://staff.blog.bng.net/ "BNG NET"))
 * Russian ([Serhij](http://darmoid.ru "Serhij"))
 * Spanish ([Alicia García Holgado](http://grial.usal.es/pfcgrial "Alicia García Holgado"))
@@ -43,6 +44,10 @@ This is a known limitation. Widgets written in the pre-2.8 format don't work the
 1. The extra widget options added.
 
 == Changelog ==
+= 1.20 =
+* Added Hebrew translation ([Ariel](http://arielk.net "Ariel"))
+* Fix css typo to correctly show the pointer cursor to show/hide option under the headings
+
 = 1.19 =
 * Fixed option to insert IDs to work with posts
 

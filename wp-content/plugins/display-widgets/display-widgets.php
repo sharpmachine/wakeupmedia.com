@@ -5,7 +5,7 @@ Plugin URI: http://strategy11.com/display-widgets/
 Description: Adds checkboxes to each widget to show or hide on site pages.
 Author: Stephanie Wells
 Author URI: http://strategy11.com
-Version: 1.19
+Version: 1.20
 */
 
 load_plugin_textdomain( 'display-widgets', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
@@ -55,8 +55,7 @@ function show_dw_widget($instance){
     }else if($post_id){
         $show = isset($instance['page-'.$post_id]) ? ($instance['page-'.$post_id]) : false;
     }
-    
-    
+        
     if ($post_id and !$show and isset($instance['other_ids']) and !empty($instance['other_ids'])){
         $other_ids = explode(',', $instance['other_ids']);
         foreach($other_ids as $other_id){
@@ -65,6 +64,8 @@ function show_dw_widget($instance){
         }
     }
 
+    if(!isset($show))
+        $show = false;
     
     if (isset($instance['include']) && (($instance['include'] and $show == false) or ($instance['include'] == 0 and $show))){
         return false;
@@ -110,7 +111,7 @@ function dw_show_hide_widget_options($widget, $return, $instance){
     <p><input class="checkbox" type="checkbox" <?php checked($instance['login'], true) ?> id="<?php echo $widget->get_field_id('login'); ?>" name="<?php echo $widget->get_field_name('login'); ?>" value="1" />
     <label for="<?php echo $widget->get_field_id('login'); ?>"><?php _e('Show only for Logged-in users', 'display-widgets') ?></label></p>
     
-    <h4 onclick="dw_toggle(jQuery(this))" style="custor:pointer;"><?php _e('Miscellaneous', 'display-widgets') ?> +/-</h4>
+    <h4 onclick="dw_toggle(jQuery(this))" style="cursor:pointer;"><?php _e('Miscellaneous', 'display-widgets') ?> +/-</h4>
     <div class="dw_collapse">
     <?php foreach ($wp_page_types as $key => $label){ 
         $instance['page-'. $key] = isset($instance['page-'. $key]) ? $instance['page-'. $key] : false;
@@ -120,7 +121,7 @@ function dw_show_hide_widget_options($widget, $return, $instance){
     <?php } ?>
     </div>
     
-    <h4 onclick="dw_toggle(jQuery(this))" style="custor:pointer;"><?php _e('Pages', 'display-widgets') ?> +/-</h4>
+    <h4 onclick="dw_toggle(jQuery(this))" style="cursor:pointer;"><?php _e('Pages', 'display-widgets') ?> +/-</h4>
     <div class="dw_collapse">
     <?php foreach ($dw_pages as $page){ 
         $instance['page-'.$page->ID] = isset($instance['page-'.$page->ID]) ? $instance['page-'.$page->ID] : false;   
@@ -131,7 +132,7 @@ function dw_show_hide_widget_options($widget, $return, $instance){
     </div>
     
     <?php if(isset($dw_cposts) and !empty($dw_cposts)){ ?>
-    <h4 onclick="dw_toggle(jQuery(this))" style="custor:pointer;"><?php _e('Custom Post Types', 'display-widgets') ?> +/-</h4>
+    <h4 onclick="dw_toggle(jQuery(this))" style="cursor:pointer;"><?php _e('Custom Post Types', 'display-widgets') ?> +/-</h4>
     <div class="dw_collapse">
     <?php foreach ($dw_cposts as $post_key => $custom_post){ 
         $instance['type-'. $post_key] = isset($instance['type-'. $post_key]) ? $instance['type-'. $post_key] : false;
@@ -142,7 +143,7 @@ function dw_show_hide_widget_options($widget, $return, $instance){
     </div>
     <?php } ?>
     
-    <h4 onclick="dw_toggle(jQuery(this))" style="custor:pointer;"><?php _e('Categories', 'display-widgets') ?> +/-</h4>
+    <h4 onclick="dw_toggle(jQuery(this))" style="cursor:pointer;"><?php _e('Categories', 'display-widgets') ?> +/-</h4>
     <div class="dw_collapse">
     <?php foreach ($dw_cats as $cat){ 
         $instance['cat-'.$cat->cat_ID] = isset($instance['cat-'.$cat->cat_ID]) ? $instance['cat-'.$cat->cat_ID] : false;   
@@ -156,7 +157,7 @@ function dw_show_hide_widget_options($widget, $return, $instance){
     </div>
     
     <?php if(isset($dw_taxes) and !empty($dw_taxes)){ ?>
-    <h4 onclick="dw_toggle(jQuery(this))" style="custor:pointer;"><?php _e('Taxonomies', 'display-widgets') ?> +/-</h4>
+    <h4 onclick="dw_toggle(jQuery(this))" style="cursor:pointer;"><?php _e('Taxonomies', 'display-widgets') ?> +/-</h4>
     <div class="dw_collapse">
     <?php foreach ($dw_taxes as $tax){ 
         $instance['tax-'.$tax] = isset($instance['tax-'.$tax]) ? $instance['tax-'.$tax] : false;   

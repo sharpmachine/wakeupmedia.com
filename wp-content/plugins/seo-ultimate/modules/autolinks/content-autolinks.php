@@ -24,9 +24,9 @@ class SU_ContentAutolinks extends SU_Module {
 		add_filter('su_custom_update_postmeta-autolinks', array(&$this, 'save_post_autolinks'), 10, 4);
 		
 		if ($this->is_action('update'))
-			add_action('admin_footer', array(&$this, 'update_max_post_dates'));
-		
-		add_action('save_post', array(&$this, 'update_max_post_dates'));
+			add_action('admin_footer', array(&$this, 'outdate_max_post_dates'));
+		add_action('save_post', array(&$this, 'outdate_max_post_dates'));
+		$this->cron('update_max_post_dates', 'hourly');
 		
 		add_filter('su_get_setting-autolinks-linkfree_tags', array(&$this, 'filter_linkfree_tags'));
 	}
@@ -195,7 +195,19 @@ class SU_ContentAutolinks extends SU_Module {
 		return $linkfree_tags;
 	}
 	
+	function outdate_max_post_dates() {
+		$links = $this->get_setting('links', array());
+		$new_links = array();
+		foreach ($links as $link_data) {
+			$link_data['max_post_date_outdated'] = true;
+			$new_links[] = $link_data;
+		}
+		$this->update_setting('links', $new_links);
+	}
+	
 	function update_max_post_dates() {
+		
+		$processing_limit = 1;
 		
 		$sitewide_lpa_enabled = $this->get_setting('limit_sitewide_lpa', false);
 		$sitewide_lpa = intval($this->get_setting('limit_sitewide_lpa_value', false));
@@ -212,33 +224,40 @@ class SU_ContentAutolinks extends SU_Module {
 		$i=0;
 		foreach ($links as $link_data) {
 			
-			if ($this->get_setting('enable_link_limits', false) && isset($link_data['sitewide_lpa']) && $link_data['sitewide_lpa'] !== false)
-				$link_sitewide_lpa = intval($link_data['sitewide_lpa']);
-			elseif ($sitewide_lpa_enabled)
-				$link_sitewide_lpa = $sitewide_lpa;
-			else
-				$link_sitewide_lpa = false;
+			if ($link_data['max_post_date_outdated'] && $processing_limit > 0) {
+				$link_data['max_post_date_outdated'] = false;
 			
-			if ($link_sitewide_lpa !== false) {
-				$link_data['max_post_date'] = false;
+				if ($this->get_setting('enable_link_limits', false) && isset($link_data['sitewide_lpa']) && $link_data['sitewide_lpa'] !== false)
+					$link_sitewide_lpa = intval($link_data['sitewide_lpa']);
+				elseif ($sitewide_lpa_enabled)
+					$link_sitewide_lpa = $sitewide_lpa;
+				else
+					$link_sitewide_lpa = false;
 				
-				$posts_with_anchor = $wpdb->get_results( $wpdb->prepare(
-					  "SELECT ID, post_content, post_date_gmt FROM $wpdb->posts WHERE post_status = 'publish' AND LOWER(post_content) LIKE %s ORDER BY post_date_gmt ASC"
-					, '%' . like_escape(strtolower($link_data['anchor'])) . '%'
-				));
-				
-				$count = 0;
-				foreach ($posts_with_anchor as $post_with_anchor) {
+				if ($link_sitewide_lpa !== false) {
+					$link_data['max_post_date'] = false;
 					
-					$total_count = 0; //Not used
-					$link_count = array();
-					$this->_autolink_content($post_with_anchor->ID, $post_with_anchor->post_content, $links, $lpp, $total_count, $link_count, 1, array(), 'update_max_post_dates');
+					$posts_with_anchor = $wpdb->get_results( $wpdb->prepare(
+						  "SELECT ID, post_content, post_date_gmt FROM $wpdb->posts WHERE post_status = 'publish' AND LOWER(post_content) LIKE %s ORDER BY post_date_gmt ASC"
+						, '%' . like_escape(strtolower($link_data['anchor'])) . '%'
+					));
 					
-					$count += $link_count[$i];
-					if ($count >= $link_sitewide_lpa) {
-						$link_data['max_post_date'] = $post_with_anchor->post_date_gmt;
-						break;
+					$count = 0;
+					foreach ($posts_with_anchor as $post_with_anchor) {
+						
+						$total_count = 0; //Not used
+						$link_count = array();
+						$this->_autolink_content($post_with_anchor->ID, $post_with_anchor->post_content, $links, $lpp, $total_count, $link_count, 1, array(), 'update_max_post_dates');
+						
+						$count += $link_count[$i];
+						
+						if ($count >= $link_sitewide_lpa) {
+							$link_data['max_post_date'] = $post_with_anchor->post_date_gmt;
+							break;
+						}
 					}
+					
+					$processing_limit--;
 				}
 			}
 			
@@ -294,13 +313,15 @@ class SU_ContentAutolinks extends SU_Module {
 				$sitewide_lpa = sustr::preg_filter('0-9', strval($_POST["link_{$i}_sitewide_lpa"]));
 				$sitewide_lpa = ($sitewide_lpa === '') ? false : intval($sitewide_lpa);
 				
+				$max_post_date = sustr::preg_filter('0-9-: ', strval($_POST["link_{$i}_max_post_date"]));
+				
 				$target = empty($_POST["link_{$i}_target"]) ? 'self' : 'blank';
 				
 				$nofollow = isset($_POST["link_{$i}_nofollow"]) ? (intval($_POST["link_{$i}_nofollow"]) == 1) : false;
 				$delete = isset($_POST["link_{$i}_delete"]) ? (intval($_POST["link_{$i}_delete"]) == 1) : false;
 				
 				if (!$delete && (strlen($anchor) || $to_id))
-					$links[] = compact('anchor', 'to_type', 'to_id', 'title', 'sitewide_lpa', 'nofollow', 'target');
+					$links[] = compact('anchor', 'to_type', 'to_id', 'title', 'sitewide_lpa', 'nofollow', 'target', 'max_post_date');
 			}
 			$this->update_setting('links', $links);
 			
@@ -346,6 +367,7 @@ class SU_ContentAutolinks extends SU_Module {
 			if (!isset($link['to_type']))		$link['to_type'] = 'url';
 			if (!isset($link['title']))			$link['title'] = '';
 			if (!isset($link['sitewide_lpa']))	$link['sitewide_lpa'] = '';
+			if (!isset($link['max_post_date']))	$link['max_post_date'] = '';
 			if (!isset($link['nofollow']))		$link['nofollow'] = false;
 			if (!isset($link['target']))		$link['target'] = '';
 			
@@ -362,6 +384,8 @@ class SU_ContentAutolinks extends SU_Module {
 				$cells['link-options'] = '';
 			} else
 				$cells['link-options'] = $this->get_input_element('hidden', "link_{$i}_sitewide_lpa", $link['sitewide_lpa']);
+			
+			$cells['link-options'] .= $this->get_input_element('hidden', "link_{$i}_max_post_date", $link['max_post_date']);
 			
 			$cells['link-options'] .=
 					 $this->get_input_element('checkbox', "link_{$i}_nofollow", $link['nofollow'], str_replace(' ', '&nbsp;', __('Nofollow', 'seo-ultimate')))
