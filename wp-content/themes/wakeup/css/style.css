@@ -563,3 +563,27 @@ footer.bottom-links {
   margin-bottom: -35px;
 }
 footer.bottom-links a { line-height: 50px; }
+.black-bar {
+  height: 50px;
+  background-color: #000000;
+  text-align: center;
+  clear: both;
+}
+.black-bar h2 {
+  text-align: center;
+  color: #ffffff;
+}
+.black-bar h2.split {
+  width: 50%;
+  float: left;
+}
+.posts-col-2 {
+  width: 400px;
+  float: left;
+}
+.posts-col-2 .posts-col-4 {
+  width: 150px;
+  float: left;
+  margin: 5px 5px 0 0;
+  background-color: #dfdfdf;
+}
