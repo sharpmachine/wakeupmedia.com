@@ -20,7 +20,7 @@
 					<h4><a href="#">Blog Title</a></h4>
 					<h4><a href="#">Blog Title</a></h4>
 				</div>
-				<a href="" class="question">Have a question for Debra?</a>
+				<a href="<?php bloginfo('url'); ?>/1-on-1-with-debra#respond" class="question">Have a question for Debra?</a>
 			</article>
 			
 			<article class="col-2 last">
@@ -38,7 +38,7 @@
 					<h4><a href="#">Blog Title</a></h4>
 					<h4><a href="#">Blog Title</a></h4>
 				</div>
-				<a href="" class="question">Have a question for Brigitte?</a>
+				<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte#respond" class="question">Have a question for Brigitte?</a>
 			</article>
 			
 			</section><!-- #content -->

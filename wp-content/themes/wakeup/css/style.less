@@ -2,7 +2,7 @@ article, aside, figure, footer, header, hgroup,
 menu, nav, section { display: block; }
 
 html { overflow-y: scroll; } /* force scrollbar */
-html, body { height: 100%; }
+html { min-height: 100%; }
 
 .screen-reader-text {position: absolute;left: -9000px;} /* Text meant only for screen readers */
 
@@ -31,13 +31,12 @@ html, body { height: 100%; }
 /*.......................................................the misc LESS mixins & variables*/
 
 .gradient(@start:#d3f1f4 , @stop:#79989c) {
-   background: @stop;
-   background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@stop));
-   background: -webkit-linear-gradient(@start, @stop);
+
+   background: -webkit-gradient(linear, left 55, left bottom, from(@start), to(@stop));
+   /*background: -webkit-linear-gradient(@start, @stop);*/
    background: -moz-linear-gradient(center top, @start 0%, @stop 100%);
    background: -moz-gradient(center top, @start 0%, @stop 100%);
-   background: -moz-gradient(center top, @start 0%, @stop 100%);
-   background:  gradient(center top, @start 0%, @stop 100%);
+   /*background:  gradient(center top, @start 0%, @stop 100%);*/
 }
 
 .rounded-corners(@radius:10px)
@@ -58,6 +57,7 @@ body
 {
 	background: url(../images/background.jpg) no-repeat top center;
 	color: @wum-body;
+	/*min-height: 100%;*/
 	.amaranth;
 	/*font-size: 14px;*/
 }
@@ -145,11 +145,16 @@ blockquote
 	font-weight: 700;
 }
 
+.tar
+{
+	text-align: right;
+}
 /*.......................................................the header*/
 header
 {
 	margin: 0 auto;
 	text-align: center;
+	
 	
 	#header
 	{
@@ -857,4 +862,74 @@ a.question
 		font-weight: 700;
 	}
 	
+}
+
+.lbg-box
+{
+	width: 865px;
+	height: 200px;
+	padding: 25px;
+	margin-bottom: 50px;
+	background-color: #ddd;
+	position: relative;
+	
+	p
+	{
+		width: 400px;
+	}
+	
+	
+	p.tr
+	{
+		text-align: left;
+	}
+	
+	p.tr
+	{
+		
+	}
+	
+	p.bl
+	{
+		position: absolute;
+		bottom: 0;
+	}
+	
+	p.br
+	{
+		position: absolute;
+		bottom: 0;
+		right: 25px;
+		text-align: right;
+		float: right;
+	}
+}
+
+.about-wakeup-bg
+{
+	
+}
+
+.lbg-debra
+{
+	
+}
+
+.lbg-bridgitte
+{
+	
+}
+
+footer.bottom-links
+{
+	height: 50px;
+	width: 865px;
+	padding: 25px;
+	background-color: @wum-box;
+	margin-bottom: -35px;
+	
+	a
+	{
+		line-height: 50px;
+	}
 }

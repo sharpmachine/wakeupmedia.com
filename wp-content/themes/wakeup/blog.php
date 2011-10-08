@@ -60,6 +60,4 @@ get_header(); ?>
 			
 			</section><!-- #content -->
 		</div><!-- #content-container -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

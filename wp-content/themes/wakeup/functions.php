@@ -623,3 +623,9 @@ add_action('wp_dashboard_setup', 'help_add_dashboard_widgets' );
 // 	) );
 // }
 // add_action('admin_bar_menu', 'my_admin_bar_link');
+
+function comment_reform ($arg) {
+$arg['title_reply'] = __('Questions &amp; Comments');
+return $arg;
+}
+add_filter('comment_form_defaults','comment_reform');

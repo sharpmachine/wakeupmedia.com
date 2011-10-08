@@ -1,6 +1,6 @@
 article, aside, figure, footer, header, hgroup, menu, nav, section { display: block; }
 html { overflow-y: scroll; }
-html, body { height: 100%; }
+html { min-height: 100%; }
 .screen-reader-text {
   position: absolute;
   left: -9000px;
@@ -11,13 +11,9 @@ html, body { height: 100%; }
 }
 .amaranth { font-family: 'Amaranth', sans-serif; }
 html {
-  background: #79989c;
-  background: -webkit-gradient(linear, left top, left bottom, from(#d3f1f4), to(#79989c));
-  background: -webkit-linear-gradient(#d3f1f4, #79989c);
+  background: -webkit-gradient(linear, left 55, left bottom, from(#d3f1f4), to(#79989c));
   background: -moz-linear-gradient(center top, #d3f1f4 0%, #79989c 100%);
   background: -moz-gradient(center top, #d3f1f4 0%, #79989c 100%);
-  background: -moz-gradient(center top, #d3f1f4 0%, #79989c 100%);
-  background: gradient(center top, #d3f1f4 0%, #79989c 100%);
   font-style: italic;
   font-weight: 400;
 }
@@ -54,6 +50,7 @@ a {
   text-decoration: none;
 }
 strong, blockquote { font-weight: 700; }
+.tar { text-align: right; }
 header {
   margin: 0 auto;
   text-align: center;
@@ -533,3 +530,32 @@ a.question {
   font-size: 0.857em;
   font-weight: 700;
 }
+.lbg-box {
+  width: 865px;
+  height: 200px;
+  padding: 25px;
+  margin-bottom: 50px;
+  background-color: #dddddd;
+  position: relative;
+}
+.lbg-box p { width: 400px; }
+.lbg-box p.tr { text-align: left; }
+.lbg-box p.bl {
+  position: absolute;
+  bottom: 0;
+}
+.lbg-box p.br {
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+  text-align: right;
+  float: right;
+}
+footer.bottom-links {
+  height: 50px;
+  width: 865px;
+  padding: 25px;
+  background-color: #dfdfdf;
+  margin-bottom: -35px;
+}
+footer.bottom-links a { line-height: 50px; }
