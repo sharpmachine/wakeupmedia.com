@@ -235,7 +235,7 @@ add_filter( 'wp_page_menu_args', 'twentyten_page_menu_args' );
  * @return int
  */
 function twentyten_excerpt_length( $length ) {
-	return 20;
+	return 10;
 }
 add_filter( 'excerpt_length', 'twentyten_excerpt_length' );
 
@@ -246,7 +246,7 @@ add_filter( 'excerpt_length', 'twentyten_excerpt_length' );
  * @return string "Continue Reading" link
  */
 function twentyten_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'twentyten' ) . '</a>';
+	return ' <a class="read-more" href="'. get_permalink() . '">' . __( 'Read More...', 'twentyten' ) . '</a>';
 }
 
 /**
@@ -465,7 +465,7 @@ if ( ! function_exists( 'twentyten_posted_on' ) ) :
  * @since Twenty Ten 1.0
  */
 function twentyten_posted_on() {
-	printf( __( '<span class="%1$s">Posted on</span> %2$s <span class="meta-sep">by</span> %3$s', 'twentyten' ),
+	printf( __( '<span class="meta-sep">By</span> %3$s<span class="%1$s"> |</span> %2$s ', 'twentyten' ),
 		'meta-prep meta-prep-author',
 		sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><span class="entry-date">%3$s</span></a>',
 			get_permalink(),
@@ -629,3 +629,21 @@ $arg['title_reply'] = __('Questions &amp; Comments');
 return $arg;
 }
 add_filter('comment_form_defaults','comment_reform');
+
+function get_short_excerpt(){
+$excerpt = get_the_content();
+$excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+$excerpt = strip_shortcodes($excerpt);
+$excerpt = strip_tags($excerpt);
+$excerpt = substr($excerpt, 0, 85);
+$excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+$excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
+$excerpt = $excerpt.'... <a class="read-more" href="'.get_permalink().'">Read More...</a>';
+return $excerpt;
+}
+
+function get_short_title(){
+$tit = the_title('','',FALSE);
+echo substr($tit, 0, 12);
+if (strlen($tit) > 12) echo " ...";	
+}

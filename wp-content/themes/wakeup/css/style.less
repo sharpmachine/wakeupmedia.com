@@ -820,12 +820,6 @@ a.question
 	width: 217px;
 }
 
-
-.last
-{
-	margin-right: 0;
-}
-
 .no-mb
 {
 	margin-bottom: 0;
@@ -942,7 +936,9 @@ footer.bottom-links
 
 .black-bar
 {
-	height: 50px;
+	height: 75px;
+	width: 985px;
+	margin-left: -35px;
 	background-color: #000;
 	text-align: center;
 	clear: both;
@@ -951,6 +947,12 @@ footer.bottom-links
 	{
 		text-align: center;
 		color: #fff;
+		margin-bottom: 0;
+		line-height: 66px;
+		font-size: 37px;
+		.josefin;
+		text-transform: uppercase;
+		font-weight: normal;
 	}
 	
 	h2.split
@@ -962,14 +964,45 @@ footer.bottom-links
 
 .posts-col-2
 {
-	width: 400px;
+	width: 440px;
 	float: left;
+	margin-right: 35px;
 	
 	.posts-col-4
 	{
-		width: 150px;
+		width: 156px;
+		height: 162px;
+		padding: 30px;
 		float: left;
-		margin: 5px 5px 0 0;
+		font-size: 14px;
+		margin: 0 7px 7px 0;
 		background-color: @wum-box;
+		
+		h3.entry-title
+		{
+			font-size: 19px;
+			margin-bottom: 0;
+		}
+		
+		.posted-on
+		{
+			margin-bottom: 10px;
+		}
+		
+		a.read-more
+		{
+			display: block;
+			margin-top: 10px;
+		}
 	}
+	
+	.posts-col-4:nth-child(2n)
+	{
+		margin-right: 0;
+	}
+}
+
+.last
+{
+	margin-right: 0;
 }

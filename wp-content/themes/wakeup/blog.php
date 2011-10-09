@@ -9,8 +9,8 @@ get_header(); ?>
 
 			<?php get_template_part( 'loop', 'blog' ); ?>
 			<div class="black-bar">
-					<h2 class="split">Debra</h2>
-					<h2 class="split">Bridgitte</h2>
+					<h2 class="split">Debra's</h2>
+					<h2 class="split">Bridgitte's</h2>
 				</div>
 				
 			<div class="posts-col-2">
@@ -20,7 +20,7 @@ get_header(); ?>
 				$temp = $wp_query;
 				$wp_query= null;
 				$wp_query = new WP_Query();
-				$wp_query->query('author=1&showposts=4&paged='.$paged);
+				$wp_query->query('author=3&showposts=4&paged='.$paged);
 				while ($wp_query->have_posts()) : $wp_query->the_post();
 				$do_not_duplicate[] = $post->ID
 			?>
@@ -28,80 +28,42 @@ get_header(); ?>
 			<div class="posts-col-4">
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<h3 class="entry-title">
-					<a href="<?php the_permalink(); ?>"><?php the_title();  ?></a>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php get_short_title();  ?></a>
 				</h3>
-				<div><?php twentyten_posted_on(); ?></div>
-				<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array (100, 100) ); ?></a>
-			<?php the_excerpt(); ?>
-			
-				<div class="entry-utility">
-				<?php if ( count( get_the_category() ) ) : ?>
-					<span class="cat-links">
-						<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
-					</span>
-					<span class="meta-sep">|</span>
-				<?php endif; ?>
-				<?php
-					$tags_list = get_the_tag_list( '', ', ' );
-					if ( $tags_list ):
-				?>
-					<span class="tag-links">
-						<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
-					</span>
-					<span class="meta-sep">|</span>
-				<?php endif; ?>
-				<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
-				<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
-			</div><!-- .entry-utility -->
+				<div class="posted-on"><?php twentyten_posted_on(); ?></div>
+			<?php echo get_short_excerpt(); ?>
 			</div>
 				</div><!-- .posts-col-4 -->
 			<?php endwhile; ?>
 			</div><!-- .posts-col-2 -->
 			
-			<div class="black-bar">
-					<h2>Older Posts</h2>
-				</div>
+			<div class="posts-col-2 last">
 			
-			<?php query_posts('author=1&showposts=10'); ?>
+			<?php query_posts('author=2&showposts=4'); ?>
 			<?php while (have_posts()) : the_post();
 			if (in_array ($post->ID, $do_not_duplicate)) continue;
 			update_post_caches($post);
 			 ?>
+			 <div class="posts-col-4">
 			<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 				<h3 class="entry-title">
-					<a href="<?php the_permalink(); ?>"><?php the_title();  ?></a>
+					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php get_short_title();  ?></a>
 				</h3>
-				<div><?php twentyten_posted_on(); ?></div>
-				<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail( array (100, 100) ); ?></a>
-			<?php the_excerpt(); ?>
+				<div class="posted-on"><?php twentyten_posted_on(); ?></div>
+			<?php echo get_short_excerpt(); ?>
 			
-				<div class="entry-utility">
-				<?php if ( count( get_the_category() ) ) : ?>
-					<span class="cat-links">
-						<?php printf( __( '<span class="%1$s">Posted in</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-cat-links', get_the_category_list( ', ' ) ); ?>
-					</span>
-					<span class="meta-sep">|</span>
-				<?php endif; ?>
-				<?php
-					$tags_list = get_the_tag_list( '', ', ' );
-					if ( $tags_list ):
-				?>
-					<span class="tag-links">
-						<?php printf( __( '<span class="%1$s">Tagged</span> %2$s', 'twentyten' ), 'entry-utility-prep entry-utility-prep-tag-links', $tags_list ); ?>
-					</span>
-					<span class="meta-sep">|</span>
-				<?php endif; ?>
-				<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
-				<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="meta-sep">|</span> <span class="edit-link">', '</span>' ); ?>
-			</div><!-- .entry-utility -->
 			</div>
+			</div><!-- .posts-col-4 -->
 <?php endwhile; ?>
+</div><!-- .posts-col-2 -->
 			<?php $wp_query = null; $wp_query = $temp;?>
 					
 					
 					
 				
-				
+				<div class="black-bar">
+					<h2>Older Posts</h2>
+				</div>
 			
 				
 			</section><!-- #content -->

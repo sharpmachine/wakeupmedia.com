@@ -505,7 +505,6 @@ a.question {
 }
 .col-2 { width: 450px; }
 .col-4 { width: 217px; }
-.last { margin-right: 0; }
 .no-mb { margin-bottom: 0; }
 .feature-box {
   background-color: #dfdfdf;
@@ -564,7 +563,9 @@ footer.bottom-links {
 }
 footer.bottom-links a { line-height: 50px; }
 .black-bar {
-  height: 50px;
+  height: 75px;
+  width: 985px;
+  margin-left: -35px;
   background-color: #000000;
   text-align: center;
   clear: both;
@@ -572,18 +573,40 @@ footer.bottom-links a { line-height: 50px; }
 .black-bar h2 {
   text-align: center;
   color: #ffffff;
+  margin-bottom: 0;
+  line-height: 66px;
+  font-size: 37px;
+  font-family: 'Josefin Sans', sans-serif;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  font-weight: normal;
 }
 .black-bar h2.split {
   width: 50%;
   float: left;
 }
 .posts-col-2 {
-  width: 400px;
+  width: 440px;
   float: left;
+  margin-right: 35px;
 }
 .posts-col-2 .posts-col-4 {
-  width: 150px;
+  width: 156px;
+  height: 162px;
+  padding: 30px;
   float: left;
-  margin: 5px 5px 0 0;
+  font-size: 14px;
+  margin: 0 7px 7px 0;
   background-color: #dfdfdf;
 }
+.posts-col-2 .posts-col-4 h3.entry-title {
+  font-size: 19px;
+  margin-bottom: 0;
+}
+.posts-col-2 .posts-col-4 .posted-on { margin-bottom: 10px; }
+.posts-col-2 .posts-col-4 a.read-more {
+  display: block;
+  margin-top: 10px;
+}
+.posts-col-2 .posts-col-4:nth-child(2n) { margin-right: 0; }
+.last { margin-right: 0; }

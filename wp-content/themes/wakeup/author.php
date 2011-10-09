@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-		<div id="content-container" class="span-20">
+		<div id="content-container">
 			<section id="content" role="main">
 
 <?php
@@ -8,7 +8,7 @@
 		the_post();
 ?>
 
-				<h1 class="page-title author"><?php printf( __( 'Author Archives: %s', 'twentyten' ), "<span class='vcard'><a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a></span>" ); ?></h1>
+				<h1 class="page-title author"><?php printf( __( 'What %s is saying', 'twentyten' ), "<span class='vcard'><a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a></span>" ); ?></h1>
 
 <?php
 // If a user has filled out their description, show a bio on their entries.
@@ -31,5 +31,4 @@ if ( get_the_author_meta( 'description' ) ) : ?>
 			</section><!-- #content -->
 		</div><!-- #content-container -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
