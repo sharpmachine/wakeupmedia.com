@@ -2,7 +2,7 @@
 
 		<div id="content-container">
 			<section id="content" role="main">
-
+				<h2 class="entry-title">Blogging</h2>
 			<?php
 			/* Run the loop to output the post.
 			 * If you want to overload this in a child theme then include a file
