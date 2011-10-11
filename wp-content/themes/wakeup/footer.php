@@ -5,26 +5,26 @@
 		<div id="footer">
 			<h2>Wake Up More!</h2>
 			<div class="col-4">
-				<h3><img src="<?php bloginfo('template_directory'); ?>/images/justsayin.png" width="60" height="46" alt="Justsayin" class="alignleft">Just Sayin’</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id</p>
+				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/justsayin.png" width="60" height="46" alt="Justsayin" class="alignleft"></a>Just Sayin'</h3>
+				<p>Check out our Just Sayin’ videos were you’ll find a more candid side of us!</p>
 			</div>
 			<div class="col-4">
-				<h3><img src="<?php bloginfo('template_directory'); ?>/images/onthego.png" width="47" height="53" alt="Onthego" class="alignleft">On-the-Go</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id</p>
+				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/onthego.png" width="47" height="53" alt="Onthego" class="alignleft"></a>On-the-Go</h3>
+				<p>Our purses are big enough to fit a camera in so check out our videos from the streets!</p>
 			</div>
 			<div class="col-4">
-				<h3><img src="<?php bloginfo('template_directory'); ?>/images/blog.png" width="46" height="46" alt="Blog" class="alignleft">Life Boosters</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id</p>
+				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/blog.png" width="46" height="46" alt="Blog" class="alignleft"></a>Life Boosters</h3>
+				<p>Be encouraged by reading articles to lift you up and give you a new perspective!</p>
 			</div>
 			<div class="col-4 last">
-				<h3><img src="<?php bloginfo('template_directory'); ?>/images/happenings.png" width="44" height="52" alt="Happenings" class="alignleft">Happenings</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id</p>
+				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/happenings.png" width="44" height="52" alt="Happenings" class="alignleft"></a>Happenings</h3>
+				<p>Coming soon!</p>
 			</div>
 			
 			<div class="col-2 clear">
 				<h2>Contact Wake Up!</h2>
 				<div class="push-74">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id orci ullamcorper nec laoreet mi porttitor. Nulla fringilla, mi ut sollicitudin consequat, risus lorem sollicitudin orci, vitae varius arcu libero ut nibh. Donec elementum, metus at malesuada molestie, lectus urna aliquet est, vel dictum nunc tellus eget lorem.</p>
+					<p>Got some questions or comments? Feel free to contact wake up and share your heart. We love hearing from you so send us an email, post on our Facebook or find us on Twitter. Check out our YouTube channel for more videos!</p>
 					<a href="mailto:info@wakeupmedia.com" class="poosh-20">info@wakeupmedia.com</a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook" class="sm"></a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter" class="sm"></a>

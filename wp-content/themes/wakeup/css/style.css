@@ -287,9 +287,10 @@ footer #footer #site-info a {
 #comments .navigation { padding: 0 0 18px 0; }
 h3#comments-title, h3#reply-title {
   color: #000000;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 36px;
+  font-weight: 700;
   margin-bottom: 0;
+  font-style: italic;
 }
 h3#comments-title { padding: 24px 0; }
 .commentlist {
@@ -327,24 +328,10 @@ h3#comments-title { padding: 24px 0; }
   font-size: 12px;
   margin: 0 0 18px 0;
 }
-.comment-meta a:link {
-  color: #888888;
-  text-decoration: none;
-}
-.comment-meta a:visited {
-  color: #888888;
-  text-decoration: none;
-}
-.comment-meta a:active { color: #ff4b33; }
-.comment-meta a:hover { color: #ff4b33; }
 .reply {
   font-size: 12px;
   padding: 0 0 24px 0;
 }
-.reply a { color: #888888; }
-a.comment-edit-link { color: #888888; }
-.reply a:hover { color: #ff4b33; }
-a.comment-edit-link:hover { color: #ff4b33; }
 .commentlist .children {
   list-style: none;
   margin: 0;
@@ -535,7 +522,7 @@ a.question {
 }
 .lbg-box {
   width: 865px;
-  height: 200px;
+  height: 299px;
   padding: 25px;
   margin-bottom: 50px;
   background-color: #dddddd;
@@ -554,21 +541,31 @@ a.question {
   text-align: right;
   float: right;
 }
+.about-wakeup-bg { background: url(../images/about-wakeup.jpg) no-repeat; }
+.lbg-debra { background: url(../images/about-debra.jpg) no-repeat; }
+.lbg-bridgitte { background: url(../images/about-brigitte.jpg) no-repeat; }
 footer.bottom-links {
-  height: 50px;
+  height: 30px;
   width: 865px;
   padding: 25px;
   background-color: #dfdfdf;
   margin-bottom: -35px;
 }
-footer.bottom-links a { line-height: 50px; }
+footer.bottom-links a { line-height: 30px; }
 .black-bar {
   height: 75px;
   width: 985px;
   margin-left: -35px;
-  background-color: #000000;
   text-align: center;
   clear: both;
+  background: #000000;
+  background-image: -webkit-gradient(radial, center center, 299px, center center, contain, from(#000000), to(#999999));
+  background-image: -webkit-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -webkit-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -moz-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -ms-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -o-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
 }
 .black-bar h2 {
   text-align: center;
@@ -588,7 +585,7 @@ footer.bottom-links a { line-height: 50px; }
 .posts-col-2 {
   width: 440px;
   float: left;
-  margin-right: 35px;
+  margin: 0 35px 27px 0;
 }
 .posts-col-2 .posts-col-4 {
   width: 156px;
@@ -609,4 +606,21 @@ footer.bottom-links a { line-height: 50px; }
   margin-top: 10px;
 }
 .posts-col-2 .posts-col-4:nth-child(2n) { margin-right: 0; }
+.old-posts { margin-top: 30px; }
+.old-posts h3 {
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+}
+.old-posts h4 {
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+}
+.old-posts a {
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+}
+.old-posts h4 { margin-bottom: 0; }
 .last { margin-right: 0; }
