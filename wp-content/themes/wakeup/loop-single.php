@@ -15,13 +15,20 @@
 <?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
 
 				<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+					<div class="author-avatar">
+						<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 85 ) ); ?>
+					</div>
+					<div class="blog-content">
 					<h1 class="entry-title"><?php the_title(); ?></h1>
 
 					<div class="entry-meta">
-						<?php twentyten_posted_on(); ?>
+						Posted on <?php the_date(); ?> by  <?php the_author_posts_link(); ?>
 					</div><!-- .entry-meta -->
+					
+					
 
 					<div class="entry-content">
+						
 						<?php the_content(); ?>
 						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
 					</div><!-- .entry-content -->
@@ -29,7 +36,6 @@
 <?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
 					<div id="entry-author-info">
 						<div id="author-avatar">
-							<?php echo get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'twentyten_author_bio_avatar_size', 60 ) ); ?>
 						</div><!-- #author-avatar -->
 						<div id="author-description">
 							<h2><?php printf( esc_attr__( 'About %s', 'twentyten' ), get_the_author() ); ?></h2>
@@ -48,6 +54,8 @@
 						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-utility -->
 				</div><!-- #post-## -->
+				<div class="clear">&nbsp;</div>
+				</div><!-- .blog-content-->
 
 				<?php comments_template( '', true ); ?>
 

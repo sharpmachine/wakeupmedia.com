@@ -8,17 +8,25 @@
 			<article class="col-2">
 				<iframe src="http://player.vimeo.com/video/29777584?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
 				<h5><a href="#">Debra’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
-				<h2 class="no-mb"><a href="#">Debra's Blog</a></h2>
+				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/debra/">Debra's Blog</a></h2>
 				<div class="feature-box">
-					<h3>Latest Blog Entry Title</h3>
-					<p><img src="<?php bloginfo('template_directory'); ?>/images/debra-hs.jpg" width="85" height="82" alt="Debra Hs" class="alignleft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id orci ullamcorper nec laoreet mi porttitor. Nulla fringilla, mi ut sollicitudin consequat, risus lorem sollicitudin orci, vitae varius</p>
-					<a href="#">Read More...</a>
+					<?php $featured_query = new WP_Query('author=3&showposts=1');
+					while ($featured_query->have_posts()) : $featured_query->the_post();
+					$do_not_duplicate[] = $post->ID 
+					 ?>
+					<h3><?php the_title(); ?></h3>
+					<p><?php echo get_avatar( get_the_author_email(), '85', 'http://localhost/wakeupmedia.com/wp-content/themes/wakeup/images/debra-hs.jpg', 'headshots' ); ?><?php the_excerpt(); ?></p>
+					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
 					<h3><a href="#" title="See all past posts">Older Entries...</a></h3>
-					<h4><a href="#">Blog Title</a></h4>
-					<h4><a href="#">Blog Title</a></h4>
-					<h4><a href="#">Blog Title</a></h4>
+					<?php query_posts('author=3&showposts=4'); ?>
+					<?php while (have_posts()) : the_post();
+					if (in_array ($post->ID, $do_not_duplicate)) continue;
+					update_post_caches($post);
+					 ?>
+					<h4><a href="#"><?php the_title(); ?></a></h4>
+					<?php endwhile; ?>
 				</div>
 				<a href="<?php bloginfo('url'); ?>/1-on-1-with-debra#respond" class="question">Have a question for Debra?</a>
 			</article>
@@ -26,17 +34,25 @@
 			<article class="col-2 last">
 				<iframe src="http://player.vimeo.com/video/29731100?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
 				<h5><a href="#">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
-				<h2 class="no-mb"><a href="#">Bridgitte's  Blog</a></h2>
+				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Bridgitte's  Blog</a></h2>
 				<div class="feature-box">
-					<h3>Latest Blog Entry Title</h3>
-					<p><img src="<?php bloginfo('template_directory'); ?>/images/bridgette-hs.jpg" width="85" height="82" alt="Debra Hs" class="alignleft">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris pharetra ante id orci ullamcorper nec laoreet mi porttitor. Nulla fringilla, mi ut sollicitudin consequat, risus lorem sollicitudin orci, vitae varius</p>
-					<a href="#">Read More...</a>
+				<?php $featured_query = new WP_Query('author=2&showposts=1');
+					while ($featured_query->have_posts()) : $featured_query->the_post();
+					$do_not_duplicate[] = $post->ID 
+					 ?>
+					<h3><?php the_title(); ?></h3>
+					<p><?php echo get_avatar( get_the_author_email(), '85', 'http://localhost/wakeupmedia.com/wp-content/themes/wakeup/images/bridgette-hs.jpg', 'headshots' ); ?><?php the_excerpt(); ?></p>
+					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
 					<h3><a href="#" title="See all past posts">Older Entries...</a></h3>
-					<h4><a href="#">Blog Title</a></h4>
-					<h4><a href="#">Blog Title</a></h4>
-					<h4><a href="#">Blog Title</a></h4>
+					<?php query_posts('author=2&showposts=4'); ?>
+					<?php while (have_posts()) : the_post();
+					if (in_array ($post->ID, $do_not_duplicate)) continue;
+					update_post_caches($post);
+					 ?>
+					<h4><a href="#"><?php the_title(); ?></a></h4>
+					<?php endwhile; ?>
 				</div>
 				<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte#respond" class="question">Have a question for Brigitte?</a>
 			</article>

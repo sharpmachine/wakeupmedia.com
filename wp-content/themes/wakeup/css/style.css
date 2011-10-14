@@ -33,12 +33,14 @@ h1 {
   letter-spacing: -2px;
   text-transform: uppercase;
 }
-h1.entry-title {
+h1.entry-title, h2.entry-title {
   font-family: 'Josefin Sans', sans-serif;
   letter-spacing: -2px;
   text-align: center;
   font-size: 4.571em;
   text-transform: uppercase;
+  margin-bottom: 45px;
+  margin-top: -17px;
 }
 h2 {
   font-size: 2.571em;
@@ -283,6 +285,142 @@ footer #footer #site-info a {
   margin-right: 4px;
   padding: 3px 6px;
 }
+#contact-form {
+  background-color: #000000;
+  width: 513px;
+  height: 360px;
+  padding: 15px 40px 30px 40px;
+  margin: 0 auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+#contact-form input[type="text"] { margin: 1px 0 8px 0; }
+#contact-form input[type="password"] { margin: 1px 0 8px 0; }
+#contact-form input.text { margin: 1px 0 8px 0; }
+#contact-form input.title { margin: 1px 0 8px 0; }
+#contact-form textarea { margin: 1px 0 8px 0; }
+#contact-form select { margin: 1px 0 8px 0; }
+#contact-form h2 {
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+#contact-form p { margin-bottom: 0; }
+#contact-form p.contact {
+  font-style: italic;
+  text-align: center;
+  font-size: 16px;
+  padding: 0px 55px;
+  margin-bottom: 35px;
+}
+#contact-form #col-left {
+  width: 185px;
+  margin-right: 12px;
+  float: left;
+}
+#contact-form #col-right {
+  width: 316px;
+  float: left;
+}
+#contact-form label {
+  font-size: 16px;
+  font-weight: normal;
+}
+#contact-form textarea {
+  width: 317px;
+  height: 140px;
+  margin: 0px;
+}
+#contact-form input {
+  width: 185px;
+  height: 24px;
+}
+#contact-form input[type="submit"] {
+  float: right;
+  margin-right: -13px;
+  margin-top: 7px;
+  width: 66px;
+  height: 36px;
+  border: none;
+  background-color: #f75fd3;
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+div.wpcf7-response-output {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+div.wpcf7-validation-errors, div.wpcf7-mail-sent-ng, div.wpcf7-mail-sent-ok {
+  display: block;
+  width: 451px;
+  position: relative;
+  top: -41px;
+  left: 202px;
+  border: none !important;
+  margin-bottom: -21px !important;
+}
+div.wpcf7-mail-sent-ok { color: green; }
+div.wpcf7-validation-errors { color: yellow; }
+div.wpcf7-mail-sent-ng { color: red; }
+span.wpcf7-not-valid-tip {
+  position: absolute;
+  top: 0 !important;
+  left: 0 !important;
+  z-index: 100;
+  border: none !important;
+  background: transparent !important;
+  font-size: 10pt;
+  width: 280px;
+  padding: 2px;
+  color: red;
+}
+div.wpcf7 img.ajax-loader {
+  border: none;
+  vertical-align: middle;
+  position: relative;
+  top: 12px;
+  left: 240px;
+}
+.blogging-articles .post {
+  background-color: #dfdfdf;
+  padding: 30px;
+}
+.blogging-articles .post .author-avatar {
+  width: 85px;
+  float: left;
+  margin-right: 25px;
+}
+.blogging-articles .post .blog-content {
+  width: 745px;
+  float: left;
+}
+.blogging-articles .post .entry-content {
+  font-family: 'Droid Serif', Georgia, serif;
+  font-style: normal;
+  font-size: 16px;
+}
+.blogging-articles .post h1.entry-title {
+  font-size: 36px;
+  font-family: 'Amaranth', sans-serif;
+  text-align: left;
+  text-transform: none;
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+.blogging-articles .entry-meta {
+  font-size: 19px;
+  margin-bottom: 15px;
+}
+.blogging-articles .entry-utility { font-size: 19px; }
 #comments { clear: both; }
 #comments .navigation { padding: 0 0 18px 0; }
 h3#comments-title, h3#reply-title {
@@ -495,14 +633,27 @@ a.question {
 .no-mb { margin-bottom: 0; }
 .feature-box {
   background-color: #dfdfdf;
-  padding: 20px 20px 10px 20px;
+  padding: 12px 20px;
   margin-bottom: 20px;
+  min-height: 132px;
 }
+.feature-box h3 { margin-bottom: 12px; }
 .feature-box p {
   font-size: 0.857em;
   margin-bottom: 1px;
   font-weight: 700;
   font-style: normal;
+}
+.feature-box p img.avatar {
+  display: inline;
+  float: left;
+  margin-right: 17px;
+  margin-top: 4px;
+}
+.feature-box p a.read-more {
+  display: block;
+  width: 170px;
+  margin-top: 10px;
 }
 .older-entries { margin-bottom: 25px; }
 .older-entries h3 {
@@ -520,11 +671,12 @@ a.question {
   font-size: 0.857em;
   font-weight: 700;
 }
+.older-entries h4 a { font-size: 14px; }
 .lbg-box {
   width: 865px;
   height: 299px;
   padding: 25px;
-  margin-bottom: 50px;
+  margin-bottom: 11px;
   background-color: #dddddd;
   position: relative;
 }
@@ -541,6 +693,7 @@ a.question {
   text-align: right;
   float: right;
 }
+.lbg-box:nth-child(3) { margin-bottom: 0; }
 .about-wakeup-bg { background: url(../images/about-wakeup.jpg) no-repeat; }
 .lbg-debra { background: url(../images/about-debra.jpg) no-repeat; }
 .lbg-bridgitte { background: url(../images/about-brigitte.jpg) no-repeat; }

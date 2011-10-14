@@ -58,7 +58,7 @@
 			<div id="site-info">
 				&copy;<?php echo date ('Y'); ?><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home">
 					<?php bloginfo( 'name' ); ?>
-				</a>
+				</a> | <a href="<?php bloginfo('url'); ?>/privacy-policy">Privacy Policy</a> | <a href="<?php bloginfo('url'); ?>/terms-of-service-agreement">Terms of Service</a>
 			</div><!-- #site-info -->
 		</div>
 	</footer>

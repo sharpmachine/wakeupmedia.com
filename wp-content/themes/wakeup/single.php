@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 		<div id="content-container">
-			<section id="content" role="main">
+			<section id="content" role="main" class="blogging-articles">
 				<h2 class="entry-title">Blogging</h2>
 			<?php
 			/* Run the loop to output the post.
