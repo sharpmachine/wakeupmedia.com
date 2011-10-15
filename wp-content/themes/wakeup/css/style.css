@@ -421,6 +421,7 @@ div.wpcf7 img.ajax-loader {
   margin-bottom: 15px;
 }
 .blogging-articles .entry-utility { font-size: 19px; }
+.blogging-articles div.clear { height: 0; }
 #comments { clear: both; }
 #comments .navigation { padding: 0 0 18px 0; }
 h3#comments-title, h3#reply-title {
