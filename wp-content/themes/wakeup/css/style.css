@@ -376,7 +376,7 @@ div.wpcf7-validation-errors, div.wpcf7-mail-sent-ng, div.wpcf7-mail-sent-ok {
 }
 div.wpcf7-mail-sent-ok { color: green; }
 div.wpcf7-validation-errors { color: yellow; }
-div.wpcf7-mail-sent-ng { color: red; }
+div.wpcf7-mail-sent-ng { color: #f75fd3; }
 span.wpcf7-not-valid-tip {
   position: absolute;
   top: 0 !important;
