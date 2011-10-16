@@ -891,7 +891,7 @@ h3#reply-title {
 	width: auto;
 }
 
-body.page-id-161 #disqus_thread
+#disqus_thread
 {
 	h3
 	{
@@ -901,7 +901,17 @@ body.page-id-161 #disqus_thread
 	}
 }
 
-body.page-id-161 .dsq-reply
+body.page-id-161 #disqus_thread,
+body.page-id-153 #disqus_thread
+{
+	h3:after
+	{
+		content: " /questions"
+	}
+}
+
+body.page-id-161 .dsq-reply, 
+body.page-id-153 .dsq-reply
 {
 	h3:after
 		{
