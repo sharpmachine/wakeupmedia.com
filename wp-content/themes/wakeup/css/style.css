@@ -540,6 +540,11 @@ h3#reply-title { margin: 18px 0; }
   font-size: 14px;
   width: auto;
 }
+#disqus_thread h3 {
+  font-size: 36px;
+  font-weight: 700;
+  font-style: italic;
+}
 img.size-auto, img.size-full, img.size-large, img.size-medium {
   max-width: 100%;
   height: auto;
