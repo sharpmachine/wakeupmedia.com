@@ -304,12 +304,12 @@ footer #footer #site-info a {
   border-radius: 10px;
   color: #ffffff;
 }
-#contact-form input[type="text"] { margin: 1px 0 8.6px 0; }
-#contact-form input[type="password"] { margin: 1px 0 8.6px 0; }
-#contact-form input.text { margin: 1px 0 8.6px 0; }
-#contact-form input.title { margin: 1px 0 8.6px 0; }
-#contact-form textarea { margin: 1px 0 8.6px 0; }
-#contact-form select { margin: 1px 0 8.6px 0; }
+#contact-form input[type="text"] { margin: 1px 0 6.7px 0; }
+#contact-form input[type="password"] { margin: 1px 0 6.7px 0; }
+#contact-form input.text { margin: 1px 0 6.7px 0; }
+#contact-form input.title { margin: 1px 0 6.7px 0; }
+#contact-form textarea { margin: 1px 0 6.7px 0; }
+#contact-form select { margin: 1px 0 6.7px 0; }
 #contact-form h2 {
   font-style: italic;
   text-align: center;
@@ -339,12 +339,12 @@ footer #footer #site-info a {
 }
 #contact-form textarea {
   width: 305px;
-  height: 140px;
+  height: 127px;
   margin: 0px;
 }
 #contact-form input {
   width: 185px;
-  height: 24px;
+  height: 21px;
 }
 #contact-form input[type="submit"] {
   float: right;
