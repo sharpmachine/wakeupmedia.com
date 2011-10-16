@@ -10,12 +10,12 @@ get_header(); ?>
 			<?php get_template_part( 'loop', 'page' ); ?>
 			
 			<footer class="bottom-links tar">
-				<?php if (is_page('1-on-1-with-bridgitte')): ?>
+				<?php if (is_page('1-on-1-with-brigitte')): ?>
 					<a href="<?php bloginfo('url'); ?>/1-on-1-with-debra">Ask Debra a Question...</a>
 				<?php endif; ?>
 				
 				<?php if (is_page('1-on-1-with-debra')): ?>
-					<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte">Ask Bridgitte a Question...</a>
+					<a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte">Ask Brigitte a Question...</a>
 				<?php endif; ?>
 			</footer>
 

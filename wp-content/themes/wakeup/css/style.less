@@ -58,6 +58,18 @@ html { min-height: 100%; }
 	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
 }
 
+.contact-form-radial(@posx:top, @posy:center, @circle:325px, @contain:335px, @colorstart:#999999, @colorstartpercent:-100%, @colorstop:#000, @colorstoppercent:100%)
+{
+	background: @colorstop; /* fallback for non-supporting browsers */
+	background-image: -webkit-gradient(radial, @posx @posy, @circle, @posx @posy, contain, from(@colorstop), to(@colorstart)); /* old WebKit Syntax */
+	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
+	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
+	background-image: -moz-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
+	background-image: -ms-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* IE10+ */
+	background-image: -o-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* Opera (13?) */
+	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
+}
+
 /*.......................................................the usual*/
 html
 {
@@ -484,6 +496,7 @@ footer
 #contact-form
 {
 	background-color: #000;
+	.contact-form-radial;
 	width: 513px;
 	height: 360px;
 	padding: 15px 40px 30px 40px;
@@ -563,7 +576,8 @@ footer
 		height: 36px;
 		border:none;
 		background-color: @wum-pink;
-		color: #fff;
+		background: url(../images/send.png) no-repeat;
+		color: transparent;
 		text-transform: uppercase;
 		font-weight: bold;
 		.rounded-corners;

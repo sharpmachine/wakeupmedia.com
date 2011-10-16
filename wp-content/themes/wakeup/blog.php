@@ -10,7 +10,7 @@ get_header(); ?>
 			<?php get_template_part( 'loop', 'blog' ); ?>
 			<div class="black-bar">
 					<h2 class="split">Debra's</h2>
-					<h2 class="split">Bridgitte's</h2>
+					<h2 class="split">Brigitte's</h2>
 				</div>
 				
 			<div class="posts-col-2">

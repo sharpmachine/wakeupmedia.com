@@ -36,8 +36,8 @@
 			
 			<article class="col-2 last">
 				<iframe src="http://player.vimeo.com/video/29731100?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
-				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
-				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Bridgitte's  Blog</a></h2>
+				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
+				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Brigitte's  Blog</a></h2>
 				<div class="feature-box">
 				<?php $featured_query = new WP_Query('author=2&showposts=1');
 					while ($featured_query->have_posts()) : $featured_query->the_post();
@@ -57,7 +57,7 @@
 					<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<?php endwhile; ?>
 				</div>
-				<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte" class="question">Have a question for Brigitte?</a>
+				<a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte" class="question">Have a question for Brigitte?</a>
 			</article>
 			
 			</section><!-- #content -->

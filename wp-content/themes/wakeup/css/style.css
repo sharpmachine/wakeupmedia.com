@@ -287,6 +287,14 @@ footer #footer #site-info a {
 }
 #contact-form {
   background-color: #000000;
+  background: #000000;
+  background-image: -webkit-gradient(radial, top center, 325px, top center, contain, from(#000000), to(#999999));
+  background-image: -webkit-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -webkit-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -moz-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -ms-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -o-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
   width: 513px;
   height: 360px;
   padding: 15px 40px 30px 40px;
@@ -346,7 +354,8 @@ footer #footer #site-info a {
   height: 36px;
   border: none;
   background-color: #f75fd3;
-  color: #ffffff;
+  background: url(../images/send.png) no-repeat;
+  color: transparent;
   text-transform: uppercase;
   font-weight: bold;
   -webkit-border-radius: 10px;

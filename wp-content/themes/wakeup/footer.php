@@ -26,9 +26,9 @@
 				<div class="push-74">
 					<p>Have a question or comment? Feel free to contact Wake Up and share your heart. We love hearing from you so send us an email, post on our Facebook, follow us on Twitter, or check out our YouTube channel!</p>
 					<a href="mailto:info@wakeupmedia.com" class="poosh-20">info@wakeupmedia.com</a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook" class="sm"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter" class="sm"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube" class="sm"></a>
+					<a href="http://www.facebook.com/pages/Wake-Up-Media/57722878269"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook" class="sm"></a>
+					<a href="https://twitter.com/#!/wakeupmedia"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter" class="sm"></a>
+					<a href="http://www.youtube.com/user/wakeupmediatv"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube" class="sm"></a>
 				</div>
 			</div>
 			
@@ -38,17 +38,17 @@
 					<h3>Debra:</h3>
 					<a href="http://www.debradebra.com">www.debradebra.com</a><br \>
 					<a href="mailto:debra@wakeupmedia.com">debra@wakeupmedia.com</a><br \>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
+					<a href="http://www.facebook.com/profile.php?id=1042331062"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
+					<a href="https://twitter.com/#!/wakeupmedia"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
+					<a href="http://www.youtube.com/user/wakeupmediatv"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
 				</div>
 				<div class="col-4 pad-60 last">
-					<h3>Bridgitte:</h3>
+					<h3>Brigitte:</h3>
 					<a href="http://www.brigittestraub.com">www.brigittestraub.com</a><br \>
 					<a href="mailto:debra@wakeupmedia.com">brigitte@wakeupmedia.com</a><br \>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
-					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
+					<a href="http://www.facebook.com/profile.php?id=100001846006975"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook"></a>
+					<a href="https://twitter.com/#!/wakeupmedia"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter"></a>
+					<a href="http://www.youtube.com/user/wakeupmediatv"><img src="<?php bloginfo('template_directory'); ?>/images/youtube.png" width="74" height="32" alt="Youtube"></a>
 				</div>
 			</div>
 		
