@@ -545,7 +545,7 @@ h3#reply-title { margin: 18px 0; }
   font-weight: 700;
   font-style: italic;
 }
-#disqus_thread .dsq-reply h3:after { content: "or Question"; }
+#disqus_thread .dsq-reply h3:after { content: " or Question"; }
 img.size-auto, img.size-full, img.size-large, img.size-medium {
   max-width: 100%;
   height: auto;
