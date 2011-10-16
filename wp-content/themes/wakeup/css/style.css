@@ -612,6 +612,12 @@ img.alignleft, img.alignright, img.aligncenter { margin-bottom: 12px; }
   display: block;
   margin: 0 auto;
 }
+.question-button {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 1px #666666;
+}
 a.question {
   background-color: #f75fd3;
   color: #ffffff;
@@ -623,7 +629,7 @@ a.question {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px #666666;
+  box-shadow: inset -3px -3px 5px #f86d6d;
 }
 .col-2, .col-4 {
   float: left;
@@ -653,7 +659,7 @@ a.question {
 }
 .feature-box p a.read-more {
   display: block;
-  width: 170px;
+  width: 175px;
   margin-top: 10px;
 }
 .older-entries { margin-bottom: 25px; }

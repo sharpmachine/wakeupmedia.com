@@ -7,7 +7,7 @@
 			
 			<article class="col-2">
 				<iframe src="http://player.vimeo.com/video/29777584?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
-				<h5><a href="#">Debra’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
+				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-debra">Debra’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
 				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/debra/">Debra's Blog</a></h2>
 				<div class="feature-box">
 					<?php $featured_query = new WP_Query('author=3&showposts=1');
@@ -15,7 +15,7 @@
 					$do_not_duplicate[] = $post->ID 
 					 ?>
 					<h3><?php the_title(); ?></h3>
-					<p><?php echo get_avatar( get_the_author_email(), '85', 'http://localhost/wakeupmedia.com/wp-content/themes/wakeup/images/debra-hs.jpg', 'headshots' ); ?><?php the_excerpt(); ?></p>
+					<p><?php echo get_avatar( get_the_author_email(), '85', '', 'headshots' ); ?><?php the_excerpt(); ?></p>
 					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
@@ -25,15 +25,18 @@
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
 					 ?>
-					<h4><a href="#"><?php the_title(); ?></a></h4>
+					<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<?php endwhile; ?>
 				</div>
-				<a href="<?php bloginfo('url'); ?>/1-on-1-with-debra#respond" class="question">Have a question for Debra?</a>
+				
+				<div class="question-button">
+					<a href="<?php bloginfo('url'); ?>/1-on-1-with-debra" class="question">Have a question for Debra?</a>
+				</div>
 			</article>
 			
 			<article class="col-2 last">
 				<iframe src="http://player.vimeo.com/video/29731100?title=0&amp;byline=0&amp;portrait=0" width="450" height="253" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>
-				<h5><a href="#">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
+				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
 				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Bridgitte's  Blog</a></h2>
 				<div class="feature-box">
 				<?php $featured_query = new WP_Query('author=2&showposts=1');
@@ -41,7 +44,7 @@
 					$do_not_duplicate[] = $post->ID 
 					 ?>
 					<h3><?php the_title(); ?></h3>
-					<p><?php echo get_avatar( get_the_author_email(), '85', 'http://localhost/wakeupmedia.com/wp-content/themes/wakeup/images/bridgette-hs.jpg', 'headshots' ); ?><?php the_excerpt(); ?></p>
+					<p><?php echo get_avatar( get_the_author_email(), '85', '', 'headshots' ); ?><?php the_excerpt(); ?></p>
 					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
@@ -51,10 +54,10 @@
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
 					 ?>
-					<h4><a href="#"><?php the_title(); ?></a></h4>
+					<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<?php endwhile; ?>
 				</div>
-				<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte#respond" class="question">Have a question for Brigitte?</a>
+				<a href="<?php bloginfo('url'); ?>/1-on-1-with-bridgitte" class="question">Have a question for Brigitte?</a>
 			</article>
 			
 			</section><!-- #content -->

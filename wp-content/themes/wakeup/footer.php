@@ -24,7 +24,7 @@
 			<div class="col-2 clear">
 				<h2>Contact Wake Up!</h2>
 				<div class="push-74">
-					<p>Got some questions or comments? Feel free to contact wake up and share your heart. We love hearing from you so send us an email, post on our Facebook or find us on Twitter. Check out our YouTube channel for more videos!</p>
+					<p>Have a question or comment? Feel free to contact Wake Up and share your heart. We love hearing from you so send us an email, post on our Facebook, follow us on Twitter, or check out our YouTube channel!</p>
 					<a href="mailto:info@wakeupmedia.com" class="poosh-20">info@wakeupmedia.com</a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/facebook.png" width="17" height="29" alt="Facebook" class="sm"></a>
 					<a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/twitter.png" width="43" height="31" alt="Twitter" class="sm"></a>
