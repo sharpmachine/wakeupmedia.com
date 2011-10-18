@@ -33,10 +33,15 @@
 						<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'twentyten' ), 'after' => '</div>' ) ); ?>
 					</div><!-- .entry-content -->
 
-<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
+
+
+					<div class="entry-utility">
+						<?php twentyten_posted_in(); ?>
+						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
+					</div><!-- .entry-utility -->
+					
+					<?php if ( get_the_author_meta( 'description' ) ) : // If a user has filled out their description, show a bio on their entries  ?>
 					<div id="entry-author-info">
-						<div id="author-avatar">
-						</div><!-- #author-avatar -->
 						<div id="author-description">
 							<h2><?php printf( esc_attr__( 'About %s', 'twentyten' ), get_the_author() ); ?></h2>
 							<?php the_author_meta( 'description' ); ?>
@@ -47,16 +52,17 @@
 							</div><!-- #author-link	-->
 						</div><!-- #author-description -->
 					</div><!-- #entry-author-info -->
-<?php endif; ?>
-
-					<div class="entry-utility">
-						<?php twentyten_posted_in(); ?>
-						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
-					</div><!-- .entry-utility -->
+				<?php endif; ?>
+				
 				</div><!-- #post-## -->
 				<div class="clear">&nbsp;</div>
 				</div><!-- .blog-content-->
 
 				<?php comments_template( '', true ); ?>
+				
+				<footer class="bottom-links">
+					<div class="nav-previous"><?php previous_post_link( '%link', '<span class="meta-nav">' . _x( '&larr;', 'Previous post link', 'twentyten' ) . '</span> %title' ); ?></div>
+					<div class="nav-next tar"><?php next_post_link( '%link', '%title <span class="meta-nav">' . _x( '&rarr;', 'Next post link', 'twentyten' ) . '</span>' ); ?></div>
+				</footer>
 
 <?php endwhile; // end of the loop. ?>

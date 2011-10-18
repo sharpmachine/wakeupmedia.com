@@ -79,7 +79,7 @@ html
 }
 body
 {
-	background: url(../images/background.jpg) no-repeat top center;
+	background: url(../images/background2.png) no-repeat top center;
 	color: @wum-body;
 	/*min-height: 100%;*/
 	.amaranth;
@@ -97,6 +97,11 @@ h1, h2, h3, h4, h5, h6
 	font-style: normal;
 }
 
+h1.page-title
+{
+	text-align: center;
+}
+
 h1
 {
 	font-size: 4.571em;
@@ -112,6 +117,23 @@ h1.entry-title, h2.entry-title
 	text-transform: uppercase;
 	margin-bottom: 45px;
 	margin-top: -17px;
+}
+
+h2.wum-archives
+{
+	font-size: 2.571em;
+	font-weight: 700;
+	.amaranth;
+	text-align: left;
+	margin-bottom: 0px;
+	font-style: italic;
+	margin-top: 10px;
+	text-transform: none;
+	
+	a
+	{
+		color: #111;
+	}
 }
 
 h2
@@ -171,10 +193,17 @@ blockquote
 	font-weight: 700;
 }
 
+hr.archives
+{
+	margin-top: 25px;
+}
 .tar
 {
 	text-align: right;
 }
+
+
+
 /*.......................................................the header*/
 header
 {
@@ -254,6 +283,7 @@ nav
 	.menu-header, div.menu
 	{
 		margin: 0 auto;
+		width: 985px;
 		
 		ul
 		{
@@ -1206,9 +1236,16 @@ footer.bottom-links
 	background-color: @wum-box;
 	margin-bottom: -35px;
 	
+	div
+	{
+		width: 50%;
+		float: left;
+	}
+	
 	a
 	{
 		line-height: 30px;
+		font-size: 19px;
 	}
 }
 
@@ -1294,6 +1331,14 @@ footer.bottom-links
 	h4
 	{
 		margin-bottom: 0;
+	}
+}
+
+#author-description
+{
+	h2
+	{
+		margin-bottom: 5px;
 	}
 }
 

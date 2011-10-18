@@ -18,7 +18,7 @@ html {
   font-weight: 400;
 }
 body {
-  background: url(../images/background.jpg) no-repeat top center;
+  background: url(../images/background2.png) no-repeat top center;
   color: #636363;
   font-family: 'Amaranth', sans-serif;
 }
@@ -27,6 +27,7 @@ body {
   background-color: #ffffff;
 }
 h1, h2, h3, h4, h5, h6 { font-style: normal; }
+h1.page-title { text-align: center; }
 h1 {
   font-size: 4.571em;
   font-family: 'Josefin Sans', sans-serif;
@@ -42,6 +43,17 @@ h1.entry-title, h2.entry-title {
   margin-bottom: 45px;
   margin-top: -17px;
 }
+h2.wum-archives {
+  font-size: 2.571em;
+  font-weight: 700;
+  font-family: 'Amaranth', sans-serif;
+  text-align: left;
+  margin-bottom: 0px;
+  font-style: italic;
+  margin-top: 10px;
+  text-transform: none;
+}
+h2.wum-archives a { color: #111111; }
 h2 {
   font-size: 2.571em;
   font-weight: 400;
@@ -52,6 +64,7 @@ a {
   text-decoration: none;
 }
 strong, blockquote { font-weight: 700; }
+hr.archives { margin-top: 25px; }
 .tar { text-align: right; }
 header {
   margin: 0 auto;
@@ -108,7 +121,10 @@ nav {
   font-weight: 400;
   font-style: normal;
 }
-nav .menu-header { margin: 0 auto; }
+nav .menu-header {
+  margin: 0 auto;
+  width: 985px;
+}
 nav .menu-header ul {
   list-style: none;
   margin: 0;
@@ -119,7 +135,10 @@ nav .menu-header li {
   position: relative;
   display: inline;
 }
-nav div.menu { margin: 0 auto; }
+nav div.menu {
+  margin: 0 auto;
+  width: 985px;
+}
 nav div.menu ul {
   list-style: none;
   margin: 0;
@@ -728,7 +747,14 @@ footer.bottom-links {
   background-color: #dfdfdf;
   margin-bottom: -35px;
 }
-footer.bottom-links a { line-height: 30px; }
+footer.bottom-links div {
+  width: 50%;
+  float: left;
+}
+footer.bottom-links a {
+  line-height: 30px;
+  font-size: 19px;
+}
 .black-bar {
   height: 75px;
   width: 985px;
@@ -800,4 +826,5 @@ footer.bottom-links a { line-height: 30px; }
   font-style: italic;
 }
 .old-posts h4 { margin-bottom: 0; }
+#author-description h2 { margin-bottom: 5px; }
 .last { margin-right: 0; }

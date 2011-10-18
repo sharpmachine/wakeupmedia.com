@@ -15,7 +15,7 @@ get_header(); ?>
 				
 			<div class="posts-col-2">
 			
-			<?php $featured_query = new WP_Query('author=3&showposts=4');
+			<?php $featured_query = new WP_Query('author=3&showposts=4&paged='.$paged);
 			while ($featured_query->have_posts()) : $featured_query->the_post();
 			$do_not_duplicate[] = $post->ID 
 			 ?>
@@ -33,7 +33,7 @@ get_header(); ?>
 			
 			<div class="posts-col-2 last">
 
-			<?php $featured_query = new WP_Query('author=2&showposts=4');
+			<?php $featured_query = new WP_Query('author=2&showposts=4&paged='.$paged);
 			while ($featured_query->have_posts()) : $featured_query->the_post();
 			$do_not_duplicate[] = $post->ID 
 			 ?>
@@ -56,7 +56,7 @@ get_header(); ?>
 	
 				<div class="posts-col-2 tar old-posts">
 					
-					<?php query_posts('author=3&showposts=10'); ?>
+					<?php query_posts('author=3&showposts=5&paged='.$paged); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
@@ -74,7 +74,7 @@ get_header(); ?>
 
 				<div class="posts-col-2 last old-posts">
 					
-					<?php query_posts('author=2&showposts=10'); ?>
+					<?php query_posts('author=2&showposts=5&paged='.$paged); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
@@ -89,6 +89,17 @@ get_header(); ?>
 		
 						<?php endwhile; ?>
 				</div><!-- .posts-col-2 -->
+				
+<?php /* Display navigation to next/previous pages when applicable */ ?>
+<?php if (  $wp_query->max_num_pages > 1 ) : ?>
+			<!-- WP-Pagination Plugin -->
+				<div id="nav-below" class="navigation">
+					<?php if(function_exists('wp_paginate')) {
+    wp_paginate();
+} ?>
+				</div><!-- #nav-below -->
+<?php endif; ?>
+				
 			</section><!-- #content -->
 		</div><!-- #content-container -->
 <?php get_footer(); ?>
