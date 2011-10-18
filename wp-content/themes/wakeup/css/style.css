@@ -699,6 +699,34 @@ a.question {
   border-radius: 10px;
   box-shadow: inset -3px -3px 5px #f86d6d;
 }
+.yt_holder {
+  background-color: #111111;
+  width: 985px;
+  height: 310px;
+  margin-left: -35px;
+}
+.yt_holder #ytvideo {
+  width: 551px;
+  margin: 0 auto;
+}
+.yt_holder ul.video-playlist li {
+  list-style-type: none;
+  display: block;
+  float: left;
+  width: 216px;
+  margin-bottom: 5px;
+  padding: 2px;
+}
+.yt_holder ul.video-playlist li img {
+  width: 120px;
+  float: left;
+  margin-right: 5px;
+  border: 1px solid #999999;
+}
+.yt_holder ul.video-playlist li a {
+  text-decoration: none;
+  display: block;
+}
 .col-2, .col-4 {
   float: left;
   margin-right: 15px;

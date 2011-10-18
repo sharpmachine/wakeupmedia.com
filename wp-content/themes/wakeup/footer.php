@@ -68,11 +68,13 @@
 <?php wp_footer(); ?>
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
-  <script src="<?php bloginfo ('template_directory'); ?>/js/script.js"></script>
+  
 
 	<!-- Remove these before deploying to production -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script src="<?php bloginfo('template_directory'); ?>/js/jquery.youtubeplaylist.js" type="text/javascript" charset="utf-8"></script>
+	<script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
+  	<script src="<?php bloginfo ('template_directory'); ?>/js/script.js"></script>
 	<script src="<?php bloginfo ('template_directory'); ?>/js/hashgrid.js" type="text/javascript"></script>
 </body>
 </html>

@@ -5,32 +5,29 @@
  get_header(); ?>
 
 		<div id="content-container">
-			<section id="content" role="main">
-				
+			<section id="content" role="main">	
 			<?php get_template_part( 'loop', 'page' ); ?>
 			<?php rewind_posts(); ?>
-
-			<?php query_posts("post_type=videos&posts_per_page=100"); ?>
+				<div class="yt_holder">
+    				<div id="ytvideo"></div>
+					<ul class="video-playlist">
+						<?php query_posts("post_type=videos&posts_per_page=100"); ?>
+						<?php if (have_posts()) :  while (have_posts()) : the_post(); ?>
+						<li>
+							<a class="video-thumb" href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>"></a>
+							
+						</li>
+						<?php endwhile; ?>
 			
-			<?php if (have_posts()) : ?>
+						<?php else : ?>
 			
-	<?php while (have_posts()) : the_post(); ?>
-		
-		<div class="videos-container">
-			<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="260" height="195"></a>
-			<span><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></span>
-		</div>
-	<?php endwhile; ?>
+							<p>Sorry, no videos right now.  Check back soon though!</p>
 			
-		<?php // Navigation ?>
-			
-	<?php else : ?>
-			
-		<?php // No Posts Found ?>
-			
-<?php endif; ?>
-			
-
+						<?php endif; ?>
+						
+					</ul><!-- .demo2 -->
+				</div><!-- .yt_holder -->
+				
 			</section><!-- #content -->
 		</div><!-- #content-container -->
 
