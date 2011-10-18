@@ -273,36 +273,40 @@ footer #footer #site-info a {
   list-style: none;
 }
 .wp-paginate a {
-  background: #dddddd;
-  border: 1px solid #cccccc;
-  color: #666666;
+  background: #73afb2;
+  color: #ffffff;
   margin-right: 4px;
   padding: 3px 6px;
   text-align: center;
   text-decoration: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 .wp-paginate a:hover {
-  background: #cccccc;
-  color: #888888;
+  background: #000000;
+  color: #ffffff;
 }
 .wp-paginate a:active {
-  background: #cccccc;
-  color: #888888;
+  background: #000000;
+  color: #ffffff;
 }
 .wp-paginate .title {
-  color: #555555;
+  color: #ffffff;
   margin-right: 4px;
 }
 .wp-paginate .gap {
-  color: #999999;
+  color: #ffffff;
   margin-right: 4px;
 }
 .wp-paginate .current {
   color: #ffffff;
-  background: #5f87ae;
-  border: 1px solid #89adcf;
+  background: #f75fd3;
   margin-right: 4px;
   padding: 3px 6px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
 }
 #contact-form {
   background-color: #000000;
