@@ -447,6 +447,34 @@ div.wpcf7 img.ajax-loader {
   margin-bottom: 10px;
   margin-top: 0;
 }
+.blogging-articles .article {
+  background-color: #dfdfdf;
+  padding: 30px;
+}
+.blogging-articles .article .author-avatar {
+  width: 85px;
+  float: left;
+  margin-right: 25px;
+}
+.blogging-articles .article .blog-content {
+  width: 745px;
+  float: left;
+}
+.blogging-articles .article .entry-content {
+  font-family: 'Droid Serif', Georgia, serif;
+  font-style: normal;
+  font-size: 16px;
+}
+.blogging-articles .article h1.entry-title {
+  font-size: 36px;
+  font-family: 'Amaranth', sans-serif;
+  text-align: left;
+  text-transform: none;
+  font-style: italic;
+  font-weight: 700;
+  margin-bottom: 10px;
+  margin-top: 0;
+}
 .blogging-articles .entry-meta {
   font-size: 19px;
   margin-bottom: 15px;

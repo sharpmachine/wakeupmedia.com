@@ -57,7 +57,9 @@
 					<h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
 					<?php endwhile; ?>
 				</div>
-				<a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte" class="question">Have a question for Brigitte?</a>
+				<div class="question-button">
+					<a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte" class="question">Have a question for Brigitte?</a>
+				</div>
 			</article>
 			
 			</section><!-- #content -->

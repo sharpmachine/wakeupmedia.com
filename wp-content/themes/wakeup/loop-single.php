@@ -36,6 +36,9 @@
 
 
 					<div class="entry-utility">
+						<?php if ( 'article' == get_post_type() ): ?>
+							This entry was posted in <?php echo get_the_term_list( $post->ID, 'cateogories', ' ', ', ', '' ); ?> and <?php echo get_the_term_list( $post->ID, 'article_tags', 'tagged ', ', ', '' ); ?>.  
+							<?php endif; ?>
 						<?php twentyten_posted_in(); ?>
 						<?php edit_post_link( __( 'Edit', 'twentyten' ), '<span class="edit-link">', '</span>' ); ?>
 					</div><!-- .entry-utility -->

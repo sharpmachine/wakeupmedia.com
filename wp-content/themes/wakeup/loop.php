@@ -44,6 +44,8 @@
 	 *
 	 * Without further ado, the loop:
 	 */ ?>
+	 
+	 
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php /* How to display posts of the Gallery format. The gallery category is the old way. */ ?>
