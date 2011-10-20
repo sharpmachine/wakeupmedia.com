@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 		<div id="content-container">
-			<section id="content" role="main">
+			<section id="content" role="main"  class="mass-archive-pages">
 
 <?php
 	/* Queue the first post, that way we know

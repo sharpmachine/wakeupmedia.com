@@ -19,7 +19,7 @@
 					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
-					<h3><a href="#" title="See all past posts">Older Entries...</a></h3>
+					<h3>Recent Entries...</h3>
 					<?php query_posts('author=3&showposts=4'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
@@ -48,7 +48,7 @@
 					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
-					<h3><a href="#" title="See all past posts">Older Entries...</a></h3>
+					<h3>Recent Entries...</h3>
 					<?php query_posts('author=2&showposts=4'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;

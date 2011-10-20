@@ -1,14 +1,16 @@
 <?php get_header(); ?>
 
 		<div id="content-container">
-			<section id="content" role="main">
+			<section id="content" role="main" class="mass-archive-pages">
 
 <?php
 	if ( have_posts() )
 		the_post();
 ?>
 
-				<h1 class="page-title author"><?php printf( __( 'What %s is saying', 'twentyten' ), "<span class='vcard'><a class='url fn n' href='" . get_author_posts_url( get_the_author_meta( 'ID' ) ) . "' title='" . esc_attr( get_the_author() ) . "' rel='me'>" . get_the_author() . "</a></span>" ); ?></h1>
+				<h1 class="page-title author">What <?php the_author(); ?> is saying</h1>
+				
+				
 
 <?php
 	rewind_posts();

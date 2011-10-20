@@ -233,6 +233,7 @@ footer #footer h6 {
 footer #footer h3 { font-style: italic; }
 footer #footer p { font-size: 0.857em; }
 footer #footer a { font-size: 0.857em; }
+footer #footer p { margin: 0 0 3em; }
 footer #footer img.alignleft { margin-right: 14px; }
 footer #footer a {
   display: block;
@@ -258,7 +259,6 @@ footer #footer .pad-60 {
 footer #footer #site-info {
   clear: both;
   padding-top: 20px;
-  text-align: right;
 }
 footer #footer #site-info a {
   display: inline;
@@ -697,7 +697,7 @@ a.question {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  box-shadow: inset -3px -3px 5px #f86d6d;
+  box-shadow: inset 0 0 65px #f86d6d;
 }
 .yt_holder {
   background-color: #111111;
@@ -773,8 +773,11 @@ a.question {
 .older-entries h4 {
   font-size: 0.857em;
   font-weight: 700;
+  background-color: #dfdfdf;
+  padding: 5px 10px;
+  font-style: normal;
 }
-.older-entries h4 a { font-size: 14px; }
+.older-entries h4 a { font-size: 16px; }
 .lbg-box {
   width: 865px;
   height: 299px;
@@ -887,4 +890,9 @@ footer.bottom-links a {
 }
 .old-posts h4 { margin-bottom: 0; }
 #author-description h2 { margin-bottom: 5px; }
+.mass-archive-pages .hentry {
+  background-color: #dfdfdf;
+  padding: 1px 0px 30px 30px;
+  margin-bottom: 10px;
+}
 .last { margin-right: 0; }

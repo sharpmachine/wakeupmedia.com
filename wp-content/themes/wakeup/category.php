@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 		<div id="content-container">
-			<section id="content" role="main">
+			<section id="content" role="main" class="mass-archive-pages">
 
 				<h1 class="page-title"><?php
 					printf( __( 'Category: %s', 'twentyten' ), '<span>' . single_cat_title( '', false ) . '</span>' );
