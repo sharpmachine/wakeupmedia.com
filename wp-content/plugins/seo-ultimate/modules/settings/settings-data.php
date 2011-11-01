@@ -111,19 +111,9 @@ class SU_SettingsData extends SU_Module {
 				, 'nofollow' => 'Nofollow'
 				, 'target' => 'Target'
 			);
-			if (is_array($djlinks) && count($djlinks)) {
+			if (is_array($djlinks) && count($djlinks))
 				$djlinks = suarr::key_replace($djlinks, $csv_headers, true, true);
-				
-				$djlinks['to_type'] = suarr::value_replace($djlinks['to_type'], array(
-					  'url' => 'URL'
-				), false, false);
-				
-				$djlinks['nofollow'] = suarr::value_replace($djlinks['nofollow'], array(
-					  0 => 'No'
-					, 1 => 'Yes'
-				), false, false);
-				
-			} else
+			else
 				$djlinks = array(array_fill_keys($csv_headers, ''));
 			
 			suio::export_csv($djlinks);

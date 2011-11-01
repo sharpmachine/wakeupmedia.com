@@ -3,9 +3,9 @@
 Plugin Name: Display widgets
 Plugin URI: http://strategy11.com/display-widgets/
 Description: Adds checkboxes to each widget to show or hide on site pages.
-Author: Stephanie Wells
+Author: Strategy11
 Author URI: http://strategy11.com
-Version: 1.20
+Version: 1.21
 */
 
 load_plugin_textdomain( 'display-widgets', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );

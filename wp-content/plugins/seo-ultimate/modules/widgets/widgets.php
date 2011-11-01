@@ -127,15 +127,15 @@ class SU_Widget_SiloedTerms extends WP_Widget {
 		$count = isset($instance['count']) ? (bool)$instance['count'] : false;
 		$use_desc_for_title = isset($instance['use_desc_for_title']) ? (bool)$instance['use_desc_for_title'] : true;
 ?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title:', 'seo-ultimate' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 		
 		<p><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('count'); ?>" name="<?php echo $this->get_field_name('count'); ?>"<?php checked( $count ); ?> />
-		<label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show post counts' ); ?></label>		
+		<label for="<?php echo $this->get_field_id('count'); ?>"><?php _e( 'Show post counts', 'seo-ultimate' ); ?></label>		
 		<br /><input type="checkbox" class="checkbox" id="<?php echo $this->get_field_id('use_desc_for_title'); ?>" name="<?php echo $this->get_field_name('use_desc_for_title'); ?>"<?php checked( $use_desc_for_title ); ?> />
-		<label for="<?php echo $this->get_field_id('use_desc_for_title'); ?>"><?php _e( 'Use term descriptions in title attributes' ); ?></label></p>
+		<label for="<?php echo $this->get_field_id('use_desc_for_title'); ?>"><?php _e( 'Use term descriptions in title attributes', 'seo-ultimate' ); ?></label></p>
 		
-		<p><label for="<?php echo $this->get_field_id('taxonomy'); ?>"><?php _e('Taxonomy:') ?></label>
+		<p><label for="<?php echo $this->get_field_id('taxonomy'); ?>"><?php _e('Taxonomy:', 'seo-ultimate') ?></label>
 		<select class="widefat" id="<?php echo $this->get_field_id('taxonomy'); ?>" name="<?php echo $this->get_field_name('taxonomy'); ?>">
 		<?php foreach ( get_object_taxonomies('post') as $taxonomy ) :
 					$tax = get_taxonomy($taxonomy);
@@ -214,7 +214,7 @@ class SU_Widget_FooterLinks extends WP_Widget {
 		$title = esc_attr( $instance['title'] );
 		$display = empty($instance['display']) ? 'list' : $instance['display'];
 ?>
-		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: <em>(optional)</em>' ); ?></label>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e( 'Title: <em>(optional)</em>', 'seo-ultimate' ); ?></label>
 		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
 		
 		<p>

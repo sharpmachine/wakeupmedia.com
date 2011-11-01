@@ -1,26 +1,28 @@
 === Display Widgets ===
 Contributors: sswells
 Donate link: http://strategy11.com/donate/
-Tags: widget, widgets, admin, show, hide, page, Thesis, sidebar, content, wpmu, wordpress, plugin, post, posts, content, filter
+Tags: widget, widgets, admin, show, hide, page, Thesis, sidebar, content, wpmu, wordpress, plugin, post, posts, content, filter, widget logic, widget context
 Requires at least: 2.8
-Tested up to: 3.1
-Stable tag: 1.20
+Tested up to: 3.2
+Stable tag: 1.21
 
 Simply hide widgets on specified pages. Adds checkboxes to each widget to either show or hide it on every site page.
 
 == Description ==
 
-Change your sidebar content with different pages. Avoid creating multiple sidebars and duplicating widgets by adding check boxes to each widget in the admin (as long as it is written in the WordPress version 2.8 format) which will either show or hide the widgets on every site page. Great for use with the [Thesis WordPress Theme](http://blog.strategy11.com/thesis "Thesis WordPress Theme") (aff link), or just to avoid extra coding. 
+Change your sidebar content with different pages. Avoid creating multiple sidebars and duplicating widgets by adding check boxes to each widget in the admin (as long as it is written in the WordPress version 2.8 format) which will either show or hide the widgets on every site page. Great for avoiding extra coding and keeping your sidebars clean. 
 
 By default, 'Hide on Checked' is selected with no boxes checked, so all current widgets will continue to display on all pages. 
 
 http://strategy11.com/display-widgets/
 
 = Translations =
-* Dutch ([Alanya Hotels](http://www.alanyahotels.com/ "Alanya Hotels"))
+* Chinese ([Hanolex](http://hanolex.org "Hanolex"))
+* Dutch (Alanya Hotels)
 * German ([Caspar Hübinger](http://glueckpress.com "Caspar Hübinger"))
 * Hebrew ([Ariel](http://arielk.net "Ariel"))
 * Japanese ([BNG NET](http://staff.blog.bng.net/ "BNG NET"))
+* Romanian (Nobelcom)
 * Russian ([Serhij](http://darmoid.ru "Serhij"))
 * Spanish ([Alicia García Holgado](http://grial.usal.es/pfcgrial "Alicia García Holgado"))
 
@@ -44,6 +46,11 @@ This is a known limitation. Widgets written in the pre-2.8 format don't work the
 1. The extra widget options added.
 
 == Changelog ==
+
+= 1.21 =
+* Added Romanian translation (Nobelcom)
+* Added Chinese translation ([Hanolex](http://hanolex.org "Hanolex"))
+
 = 1.20 =
 * Added Hebrew translation ([Ariel](http://arielk.net "Ariel"))
 * Fix css typo to correctly show the pointer cursor to show/hide option under the headings
@@ -62,7 +69,7 @@ This is a known limitation. Widgets written in the pre-2.8 format don't work the
 
 = 1.16 =
 * Corrected naming of the Japanese translation files
-* Added Dutch translation ([Alanya Hotels](http://www.alanyahotels.com/ "Alanya Hotels"))
+* Added Dutch translation (Alanya Hotels)
 
 = 1.15 =
 * Added custom post type support

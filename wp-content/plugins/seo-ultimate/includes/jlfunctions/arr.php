@@ -147,7 +147,8 @@ class suarr {
 	
 	function value_replace($array, $value_changes, $recursive = true, $return_replaced_only = false) {
 		$newarray = array();
-		foreach ($array as $key => $value) {
+		
+		foreach ((array)$array as $key => $value) {
 			
 			$oldvalue = $value;
 			
@@ -159,6 +160,7 @@ class suarr {
 			if ($value != $oldvalue || !$return_replaced_only)
 				$newarray[$key] = $value;
 		}
+		
 		return $newarray;
 	}
 	

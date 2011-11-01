@@ -136,6 +136,9 @@ class SU_ContentAutolinks extends SU_Module {
 				else
 					$url = $this->jlsuggest_value_to_url($to_id ? "obj_$type/$to_id" : "obj_$type");
 				
+				if (!is_string($url))
+					continue;
+				
 				if (!$this->get_setting('enable_current_url_links', false) && suurl::equal($url, suurl::current()))
 					continue;
 				

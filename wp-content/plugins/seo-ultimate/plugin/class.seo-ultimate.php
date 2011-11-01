@@ -180,6 +180,7 @@ class SEO_Ultimate {
 		/********** ACTION & FILTER HOOKS **********/
 		
 		//Initializes modules at WordPress initialization
+		add_action('init', array(&$this, 'load_textdomain'), 0); //Run before widgets_init hook (wp-includes/default-widgets.php)
 		add_action('init', array(&$this, 'init'));
 		
 		//Hook to output all <head> code
@@ -597,9 +598,6 @@ class SEO_Ultimate {
 	 */
 	function init() {
 		
-		//Allow translation of this plugin
-		load_plugin_textdomain('seo-ultimate', '', plugin_basename($this->plugin_dir_path));
-		
 		//Load default module settings and run modules' init tasks
 		foreach ($this->modules as $key => $module) {
 			//Accessing $module directly causes problems when the modules use the &$this reference
@@ -615,6 +613,13 @@ class SEO_Ultimate {
 				$this->modules[$key]->upgrade();
 			$this->modules[$key]->init();
 		}
+	}
+	
+	/**
+	 * @since 6.9.7
+	 */
+	function load_textdomain() {
+		load_plugin_textdomain('seo-ultimate', '', trailingslashit(plugin_basename($this->plugin_dir_path)) . 'translations');
 	}
 	
 	/**
@@ -1153,6 +1158,8 @@ class SEO_Ultimate {
 			, 'Bugfix' => 'bugfix'
 			, 'Improvement' => 'improvement'
 			, 'Security Fix' => 'security'
+			, 'New Translation' => 'new-lang'
+			, 'Updated Translation' => 'updated-lang'
 		);
 		
 		$change_labels = array(
@@ -1161,6 +1168,8 @@ class SEO_Ultimate {
 			, 'bugfix'      => array(__('bugfix', 'seo-ultimate'), __('bugfixes', 'seo-ultimate'))
 			, 'improvement' => array(__('improvement', 'seo-ultimate'), __('improvements', 'seo-ultimate'))
 			, 'security'    => array(__('security fix', 'seo-ultimate'), __('security fixes', 'seo-ultimate'))
+			, 'new-lang'    => array(__('new language pack', 'seo-ultimate'), __('new language packs', 'seo-ultimate'))
+			, 'updated-lang'=> array(__('language pack update', 'seo-ultimate'), __('language pack updates', 'seo-ultimate'))
 		);
 		
 		$changes = array();
