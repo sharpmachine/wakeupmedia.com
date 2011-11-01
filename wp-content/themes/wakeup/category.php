@@ -13,7 +13,7 @@
 
 				get_template_part( 'loop', 'category' );
 				?>
-
+			
 			</section><!-- #content -->
 		</div><!-- #content-container -->
 <?php get_footer(); ?>

@@ -14,7 +14,7 @@
 
 <?php
 	rewind_posts();
-	 get_template_part( 'loop', 'author' );
+	 get_template_part( 'loop', 'authors' );
 ?>
 
 			</section><!-- #content -->

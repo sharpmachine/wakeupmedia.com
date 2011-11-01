@@ -895,4 +895,8 @@ footer.bottom-links a {
   padding: 1px 0px 30px 30px;
   margin-bottom: 10px;
 }
+li.pagenav, li.categories {
+  float: left;
+  margin-right: 20px;
+}
 .last { margin-right: 0; }

@@ -24,7 +24,8 @@ get_header(); ?>
 				<h3 class="entry-title">
 					<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php get_short_title();  ?></a>
 				</h3>
-				<div class="posted-on"><?php twentyten_posted_on(); ?></div>
+				<div class="posted-on"><?php twentyten_posted_on_debra(); ?></div>
+				
 			<?php echo get_short_excerpt(); ?>
 			</div>
 				</div><!-- .posts-col-4 -->
@@ -42,7 +43,7 @@ get_header(); ?>
 						<h3 class="entry-title">
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php get_short_title();  ?></a>
 						</h3>
-						<div class="posted-on"><?php twentyten_posted_on(); ?></div>
+						<div class="posted-on"><?php twentyten_posted_on_brigitte(); ?></div>
 					<?php echo get_short_excerpt(); ?>
 					
 					</div>
@@ -51,7 +52,7 @@ get_header(); ?>
 			</div><!-- .posts-col-2 -->
 				
 				<div class="black-bar">
-					<h2>Older Posts</h2>
+					<h2>Older Articles</h2>
 				</div>
 	
 				<div class="posts-col-2 tar old-posts">
@@ -64,7 +65,7 @@ get_header(); ?>
 			
 					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<h3 class="entry-title">
-							<h4>Posted on <?php the_date(); ?> by <?php the_author(); ?></h4>
+							<h4><?php twentyten_posted_on_older_articles(); ?></h4>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();  ?></a>
 						</h3>
 					</div>
@@ -82,7 +83,7 @@ get_header(); ?>
 			
 					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<h3 class="entry-title">
-							<h4>Posted on <?php the_date(); ?> by <?php the_author(); ?></h4>
+							<h4><?php twentyten_posted_on_older_articles(); ?></h4>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();  ?></a>
 						</h3>
 					</div>
@@ -92,8 +93,8 @@ get_header(); ?>
 				</div><!-- .posts-col-2 -->
 				
 				<footer class="bottom-links">
-					<div class="nav-previous"><a href="<?php bloginfo('url'); ?>/author/debra/">See all posts by Debra</a></div>
-					<div class="nav-next tar"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">See all posts by Brigitte</a></div>
+					<div class="nav-previous"><a href="<?php bloginfo('url'); ?>/articles-debra/">See all articles posted by Debra</a></div>
+					<div class="nav-next tar"><a href="<?php bloginfo('url'); ?>/articles-brigitte/">See all articles posted by Brigitte</a></div>
 				</footer>
 			</section><!-- #content -->
 		</div><!-- #content-container -->
