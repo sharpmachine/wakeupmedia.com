@@ -648,11 +648,8 @@ function help_dashboard_widget_function() {
 		
 		<p style=clear:both;padding-top:5px;margin-bottom:0.5em;color:#666;font-size:14px;>Helpful Quick Links:</p>
 		
-		<a href=http://login.mailchimp.com target=_blank>Mailchimp Login</a> |
-		<a href=http://mailchimp.com/support/online-training target=_blank>Mailchimp Training</a> |
 		<a href=http://docs.disqus.com/kb target=_blank>Disqus Training</a> |
-		<a href=http://google.com/analytics target=_blank>Analytics Login</a> | 
-		<a href=http://mail.google.com target=_blank>Mail Login</a>
+		<a href=http://google.com/analytics target=_blank>Analytics Login</a> 
 		
 		<p>Still stuck?  Give us a call at <strong>(480) 648-8229</strong> or email us at <a href=mailto:info@sharpmachinemedia.com?subject=Help!><strong>info@sharpmachinemedia.com</strong></a>.
 	";
