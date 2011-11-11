@@ -81,6 +81,10 @@ ul.radio_list.horizontal li {
 	margin-right: 20px;
 }
 
+ul.checkbox_list {
+	background: transparent !important;
+}
+
 ul.checkbox_list input[type="checkbox"] {
 	margin-right: 5px;
 }

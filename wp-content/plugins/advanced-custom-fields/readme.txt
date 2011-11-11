@@ -33,6 +33,8 @@ Advanced Custom Fields is the perfect solution for any wordpress website which n
 * Date Picker (jquery date picker, options for format, api returns string)
 * True / False (tick box with message, api returns true or false)
 * Repeater (ability to create repeatable blocks of fields!)
+* Relationship	(select and order post objects with a tidy interface)
+* Color Picker (Farbtastic!)
 
 = Tested on =
 * Mac Firefox 	:)
@@ -75,9 +77,6 @@ Your votes really make a difference! Thanks.
 = Q. I can't see the "Select Image" button for my image field! =
 A. For Image uploads to work, your post type must support "editor"
 
-= Q. ACF uses custom database tables, can I still query posts based on meta_key / value? =
-A. Yes, meta_key and meta_value act as usual. All field data is stored as a normal custom field, but is attached to a row in the acf_values table for extra functionality!
-
 = Q. I have a question =
 A. Chances are, someone else has asked it. Check out the support forum at: 
 http://support.plugins.elliotcondon.com/categories/advanced-custom-fields/
@@ -94,6 +93,18 @@ http://support.plugins.elliotcondon.com/categories/advanced-custom-fields/
 
 
 == Changelog ==
+
+= 3.0.0 =
+* ACF doesn't use any custom tables anymore! All data is saved as post_meta!
+* Faster and more stable across different servers
+* Drag-able / order-able metaboxes
+* Fields extend from a parent object! Now you can create you own field types!
+* New location rule: Taxonomy
+* New function: register_field($class, $url);
+* New Field: Color Picker
+* New Option: Text + Textarea formatting
+* New Option: WYSIWYG Show / Hide media buttons, Full / Basic Toolbar buttons (Great for a basic wysiwyg inside a repeater for your clients)
+* Lots of bug fixes
 
 = 2.1.4 =
 * Fixed add image tinymce error for options Page WYSIWYG
@@ -263,6 +274,9 @@ http://support.plugins.elliotcondon.com/categories/advanced-custom-fields/
 
 
 == Upgrade Notice ==
+
+= 3.0.0 =
+* Editor is broken in WordPress 3.3
 
 = 2.1.4 =
 * Adds post_id column back into acf_values

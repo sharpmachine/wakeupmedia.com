@@ -1,56 +1,63 @@
 <?php
 
-class acf_Radio
+class acf_Radio extends acf_Field
 {
-	var $name;
-	var $title;
-	
-	function acf_Radio()
-	{
-		$this->name = 'radio';
-		$this->title = __('Radio Button','acf');
-	}
-	
 	
 	/*--------------------------------------------------------------------------------------
 	*
-	*	HTML
+	*	Constructor
 	*
 	*	@author Elliot Condon
-	*	@since 2.0.6
+	*	@since 1.0.0
+	*	@updated 2.2.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 	
-	function html($field)
+	function __construct($parent)
 	{
-		if(empty($field->value))
-		{
-			$field->value = array();
-		}
+    	parent::__construct($parent);
+    	
+    	$this->name = 'radio';
+		$this->title = __('Radio Button','acf');
 		
-		if(empty($field->options['choices']))
+   	}
+   	
+   		
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_field($field)
+	{
+		// defaults
+		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'vertical';
+		$field['choices'] = isset($field['choices']) ? $field['choices'] : array();
+		
+		// no choices
+		if(empty($field['choices']))
 		{
-			
 			echo '<p>' . __("No choices to choose from",'acf') . '</p>';
-			
 			return false;
 		}
-		
-		$layout = isset($field->options['layout']) ? $field->options['layout'] : 'vertical';
-		
-		
-		echo '<ul class="radio_list ' .$field->input_class . ' ' . $layout . '">';
+				
+		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
 			
-		foreach($field->options['choices'] as $key => $value)
+		foreach($field['choices'] as $key => $value)
 		{
 			$selected = '';
 			
-			if($key == $field->value)
+			if($key == $field['value'])
 			{
-				$selected = 'checked="checked"';
+				$selected = 'checked="checked" data-checked="checked"';
 			}
 			
-			echo '<li><label><input type="radio" class="'.$field->input_class.'" name="'.$field->input_name.'" value="'.$key.'" '.$selected.' />'.$value.'</label></li>';
+			echo '<li><label><input type="radio" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
 		}
 		
 		echo '</ul>';
@@ -60,38 +67,37 @@ class acf_Radio
 
 	/*--------------------------------------------------------------------------------------
 	*
-	*	Options HTML
+	*	create_options
 	*
 	*	@author Elliot Condon
 	*	@since 2.0.6
+	*	@updated 2.2.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 	
-	function options_html($key, $field)
-	{
-		$options = $field->options;
-		
-		// layout
-		$options['layout'] = isset($options['layout']) ? $options['layout'] : 'vertical';
+	function create_options($key, $field)
+	{	
+		// defaults
+		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'vertical';
 		
 		// implode checkboxes so they work in a textarea
-		if(isset($options['choices']) && is_array($options['choices']))
+		if(isset($field['choices']) && is_array($field['choices']))
 		{		
-			foreach($options['choices'] as $choice_key => $choice_val)
+			foreach($field['choices'] as $choice_key => $choice_val)
 			{
-				$options['choices'][$choice_key] = $choice_key.' : '.$choice_val;
+				$field['choices'][$choice_key] = $choice_key.' : '.$choice_val;
 			}
-			$options['choices'] = implode("\n", $options['choices']);
+			$field['choices'] = implode("\n", $field['choices']);
 		}
 		else
 		{
-			$options['choices'] = "";
+			$field['choices'] = "";
 		}
 		
 		?>
 
 
-		<tr class="field_option field_option_radio">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
 				<p class="description"><?php _e("Enter your choices one per line<br />
@@ -105,22 +111,25 @@ class acf_Radio
 				blue : Blue",'acf'); ?></p>
 			</td>
 			<td>
-				<textarea rows="5" name="acf[fields][<?php echo $key; ?>][options][choices]" id=""><?php echo $options['choices']; ?></textarea>
+				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
 			</td>
 		</tr>
-		<tr class="field_option field_option_radio">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Layout",'acf'); ?></label>
 			</td>
 			<td>
 				<?php 
-					$temp_field = new stdClass();	
-					$temp_field->type = 'radio';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][layout]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['layout'];
-					$temp_field->options = array('layout' => 'horizontal', 'choices' => array('vertical' => 'Vertical', 'horizontal' => 'Horizontal'));
-					$this->html($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'radio',
+					'name'	=>	'fields['.$key.'][layout]',
+					'value'	=>	$field['layout'],
+					'layout' => 'horizontal', 
+					'choices' => array(
+						'vertical' => 'Vertical', 
+						'horizontal' => 'Horizontal'
+					)
+				));
 				?>
 			</td>
 		</tr>
@@ -132,43 +141,39 @@ class acf_Radio
 	
 	/*--------------------------------------------------------------------------------------
 	*
-	*	Format Options
-	*	- this is called from save_field.php, this function formats the options into a savable format
+	*	pre_save_field
+	*	- called just before saving the field to the database.
 	*
 	*	@author Elliot Condon
-	*	@since 2.0.6
+	*	@since 2.2.0
 	* 
 	*-------------------------------------------------------------------------------------*/
-
-	function format_options($options)
-	{	
-		// if no choices, dont do anything
-		if(!$options['choices'] || is_array($options['choices']))
-		{
-			return $options;
-		}
+	
+	function pre_save_field($field)
+	{
+		// defaults
+		$field['choices'] = isset($field['choices']) ? $field['choices'] : '';
 		
+		// vars
+		$new_choices = array();
 		
 		// explode choices from each line
-		if(strpos($options['choices'], "\n") !== false)
+		if(strpos($field['choices'], "\n") !== false)
 		{
 			// found multiple lines, explode it
-			$choices = explode("\n", $options['choices']);
+			$field['choices'] = explode("\n", $field['choices']);
 		}
 		else
 		{
 			// no multiple lines! 
-			$choices = array($options['choices']);
+			$field['choices'] = array($field['choices']);
 		}
 		
-		
-		
-		$new_choices = array();
-		foreach($choices as $choice)
+		// key => value
+		foreach($field['choices'] as $choice)
 		{
 			if(strpos($choice, ' : ') !== false)
 			{
-
 				$choice = explode(' : ', $choice);
 				$new_choices[trim($choice[0])] = trim($choice[1]);
 			}
@@ -178,59 +183,12 @@ class acf_Radio
 			}
 		}
 		
+		// update choices
+		$field['choices'] = $new_choices;
 		
-		// return array containing all choices
-		$options['choices'] = $new_choices;
-		
-		return $options;
-	}
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	Format Value
-	*	- this is called from api.php
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
-	
-	function format_value_for_api($value, $options = null)
-	{
-		if(!$value)
-		{
-			return false;
-		}
-		
-		$is_array = @unserialize($value);
-		
-		if($is_array)
-		{
-			return unserialize($value);
-		}
-		else
-		{
-			return $value;
-		}
-		
+		// return updated field
+		return $field;
 
-	}
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	Format Value for input
-	*	- this is called from acf.php
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
-
-	function format_value_for_input($value)
-	{
-		return $this->format_value_for_api($value);
 	}
 }
 

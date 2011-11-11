@@ -1,45 +1,24 @@
-.postbox#acf_input {
-	border: #EAEAEA solid 0px;
-	background: transparent;
+/*---------------------------------------------------------------------------------------------
+	Post Box
+---------------------------------------------------------------------------------------------*/
+
+#poststuff .acf_postbox .inside {
+	margin: 0;
+	padding: 0;
+}
+
+.acf_postbox .field {
 	position: relative;
-	overflow: visible;
-	border: 0 none !important;
-	
+	padding: 10px 10px;
+	border-top: 1px solid #fff;
+	border-bottom: #e8e8e8 solid 1px;
 }
 
-.postbox#acf_input.loading {
-	min-height: 50px;
+.acf_postbox .field:last-child {
+	border-bottom: none;
 }
 
-.postbox#acf_input #acf_loading {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	height: 50px;
-	width: 50px;
-	margin-left: -25px;
-	margin-top: -25px;
-	background: #5a5a5a url(../images/loading.gif) 50% 50% no-repeat;
-	-moz-border-radius: 5px; -webkit-border-radius: 5px; -khtml-border-radius: 5px; border-radius: 5px; 
-	display: none;
-	z-index: 3;
-}
-
-.postbox#acf_input.loading #acf_loading {
-	display: block;
-}
-
-#acf_fields_ajax {
-	position: relative;
-}
-
-#acf_fields_ajax .field {
-	position: relative;
-	padding: 10px 2px;
-	border-top: 1px solid #eaeaea;
-}
-
-#acf_fields_ajax .field > label {
+#poststuff .acf_postbox .field > label {
 	display: block;
 	color: #21759B;
     font-size: 12px;
@@ -48,50 +27,48 @@
     text-shadow: 0 1px 0 #FFFFFF;
 }
 
-.postbox#acf_input > h3.hndle{
-	display: none;
-}
-
-.postbox#acf_input > .inside {
-	margin: 0;
-	padding: 0;
-}
-
-.postbox#acf_input > .handlediv {
-	display: none;
-	height: 0;
-	width: 0;
-}
-
-#acf_fields_ajax .postbox h3 {
-	cursor: default;
-}
-
-.acf_wysiwyg {
-	overflow: hidden;
-	background: #fff;
-}
-
-.acf_wysiwyg textarea{ 
-	height: 320px; 
-}
-
-#post-body .acf_wysiwyg .wp_themeSkin .mceStatusbar a.mceResize {
-	top: -2px !important;
-}
-
-#acf_fields_ajax .field  input[type="text"], 
-#acf_fields_ajax .field  textarea,
-#acf_fields_ajax .field  select{
-    width: 99.8%;
-}
-
-#poststuff .inside p.instructions {
+#poststuff .acf_postbox p.instructions {
 	font-size: 11px;
 	margin: -6px 0 10px;
 	padding: 0;
 	color: #999;
 }
+
+/* no box style */
+#poststuff .acf_postbox.no_box {
+	border: 0 none;
+	background: transparent;
+}
+
+#poststuff .acf_postbox.no_box > h3,
+#poststuff .acf_postbox.no_box > .handlediv {
+	display: none;
+}
+
+#poststuff .acf_postbox.no_box .field {
+    border-bottom: 1px solid #F4F4F4;
+}
+
+
+/*---------------------------------------------------------------------------------------------
+	Basic Field Styles
+---------------------------------------------------------------------------------------------*/
+
+.acf_postbox .field  input[type="text"], 
+.acf_postbox .field  input[type="password"], 
+.acf_postbox .field  textarea,
+.acf_postbox .field  select{
+    width: 100%;
+	padding: 5px;
+	resize: none;
+}
+
+/*---------------------------------------------------------------------------------------------
+	Field: WYSIWYG
+---------------------------------------------------------------------------------------------*/
+
+
+
 
 
 /*---------------------------------------------------------------------------------------------
@@ -298,7 +275,6 @@ a.remove_field:hover {
     float: right;
     margin: 0;
     text-align: center;
-    width: 70px;
 }
 
 #acf_input .wp_themeSkin tr.mceFirst td.mceToolbar {
@@ -331,32 +307,6 @@ ul.checkbox_list {
 	In Box
 ---------------------------------------------------------------------------------------------*/
 
-#acf_input #acf_fields_ajax {
-	
-}
-
-#acf_input #acf_fields_ajax .postbox {
-	
-}
-
-#acf_input #acf_fields_ajax .postbox .inside {
-	margin: 0;
-	padding: 0;
-}
-
-#acf_input #acf_fields_ajax .postbox .inside .field {
-	padding: 10px 10px;
-	border-top: 1px solid #fff;
-	border-bottom: #DFDFDF solid 1px;
-}
-
-#acf_input #acf_fields_ajax .postbox .inside .field:last-child {
-	border-bottom: none;
-}
-
-.no_move .postbox .hndle {
-	cursor: default !important;
-}
 
 /*---------------------------------------------------------------------------------------------
 	relationship

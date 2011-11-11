@@ -1,71 +1,317 @@
 <?php
 
-class acf_Relationship
+class acf_Relationship extends acf_Field
 {
-	var $name;
-	var $title;
-	var $parent;
 	
-	function acf_Relationship($parent)
+	/*--------------------------------------------------------------------------------------
+	*
+	*	Constructor
+	*
+	*	@author Elliot Condon
+	*	@since 1.0.0
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function __construct($parent)
 	{
-		$this->name = 'relationship';
+    	parent::__construct($parent);
+    	
+    	$this->name = 'relationship';
 		$this->title = __("Relationship",'acf');
-		$this->parent = $parent;
+		
+   	}
+   	
+   	
+   	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_print_scripts / admin_print_styles
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function admin_print_scripts()
+	{
+		wp_enqueue_script(array(
+
+			'jquery-ui-sortable',
+			
+		));
 	}
 	
-	function html($field)
+	function admin_print_styles()
 	{
-		$options = $field->options;
-		//$options['min'] = isset($options['min']) ? $options['min'] : '0';
-		$options['max'] = isset($options['max']) ? $options['max'] : '-1';
-		$options['meta_key'] = isset($options['meta_key']) ? $options['meta_key'] : '';
-		$options['meta_value'] = isset($options['meta_value']) ? $options['meta_value'] : '';
+  
+	}
+   		
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_head
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function admin_head()
+	{
+		?>
+		<script type="text/javascript">
 		
-		// get post types
-		$post_types = isset($options['post_type']) ? $options['post_type'] : false;
-		if(!$post_types || $post_types[0] == "")
-		{
+		(function($){
 			
-			$post_types = get_post_types(array('public' => true));
-			foreach($post_types as $key => $value)
+			/*----------------------------------------------------------------------
+			*
+			*	update_input_val
+			*
+			*---------------------------------------------------------------------*/
+			
+			$.fn.update_input_val = function()
 			{
-				if($value == 'attachment')
+				// vars
+				var div = $(this);
+				var right = div.find('.relationship_right .relationship_list');
+				var value = new Array();
+				
+				// add id's to array
+				right.find('a:not(.hide)').each(function(){
+					value.push($(this).attr('data-post_id'));
+				});
+				
+				// set value
+				div.children('input').val(value.join(','));
+			};
+			
+			
+			/*----------------------------------------------------------------------
+			*
+			*	Add
+			*
+			*---------------------------------------------------------------------*/
+			
+			$('#poststuff .acf_relationship .relationship_left .relationship_list a').live('click', function(){
+				
+				// vars
+				var id = $(this).attr('data-post_id');
+				var div = $(this).closest('.acf_relationship');
+				var max = parseInt(div.attr('data-max')); if(max == -1){ max = 9999; }
+				var right = div.find('.relationship_right .relationship_list');
+				
+				// max posts
+				if(right.find('a:not(.hide)').length >= max)
 				{
-					unset($post_types[$key]);
+					alert('Maximum values reached ( ' + max + ' values )');
+					return false;
 				}
-			}
+
+				// hide / show
+				$(this).addClass('hide');
+				right.find('a[data-post_id="' + id + '"]').removeClass('hide').appendTo(right);
+				
+				// update input value
+				div.update_input_val();
+				
+				return false;
+				
+			});
+			
+			
+			/*----------------------------------------------------------------------
+			*
+			*	Remove
+			*
+			*---------------------------------------------------------------------*/
+			
+			$('#poststuff .acf_relationship .relationship_right .relationship_list a').live('click', function(){
+				
+				// vars
+				var id = $(this).attr('data-post_id');
+				var div = $(this).closest('.acf_relationship');
+				var left = div.find('.relationship_left .relationship_list');
+				
+				// hide / show
+				$(this).addClass('hide');
+				left.find('a[data-post_id="' + id + '"]').removeClass('hide');
+				
+				// update input value
+				div.update_input_val();
+				
+				return false;
+				
+			});
+			
+			
+			/*----------------------------------------------------------------------
+			*
+			*	Search Left List
+			*
+			*---------------------------------------------------------------------*/
+			
+			$.expr[':'].Contains = function(a,i,m){
+		    	return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+			};
+			
+			$('#poststuff .acf_relationship input.relationship_search').live('change', function()
+			{	
+				// vars
+				var filter = $(this).val();
+				var div = $(this).closest('.acf_relationship');
+				var left = div.find('.relationship_left .relationship_list');
+				
+			    if(filter)
+			    {
+					left.find("a:not(:Contains(" + filter + "))").addClass('filter_hide');
+			        left.find("a:Contains(" + filter + "):not(.hide)").removeClass('filter_hide');
+			    }
+			    else
+			    {
+			    	left.find("a:not(.hide)").removeClass('filter_hide');
+			    }
+		
+			    return false;
+			    
+			})
+			.live('keyup', function(){
+			    $(this).change();
+			})
+			.live('focus', function(){
+				$(this).siblings('label').hide();
+			})
+			.live('blur', function(){
+				if($(this).val() == "")
+				{
+					$(this).siblings('label').show();
+				}
+			});
+			
+			
+			/*----------------------------------------------------------------------
+			*
+			*	setup_acf_relationship
+			*
+			*---------------------------------------------------------------------*/
+			
+			$.fn.setup_acf_relationship = function(){
+				
+				$(this).find('.acf_relationship').each(function(){
+				
+					// vars
+					var div = $(this);
+					
+					// reset search value
+					div.find('input.relationship_search').val('');
+					
+					// make right sortable
+					div.find('.relationship_right .relationship_list').sortable({
+						axis: "y", // limit the dragging to up/down only
+					    start: function(event, ui)
+					    {
+							ui.item.addClass('sortable_active');
+					    },
+					    stop: function(event, ui)
+					    {
+					    	ui.item.removeClass('sortable_active');
+					    	div.update_input_val();
+					    }
+					});
+				
+				});
+				
+			};
+			
+			$(document).ready(function(){
+				
+				$('#poststuff').setup_acf_relationship();
+				
+				// create wysiwyg when you add a repeater row
+				$('.repeater #add_field').live('click', function(){
+
+					var repeater = $(this).closest('.repeater');
+					
+					// run after the repeater has added the row
+					setTimeout(function(){
+						repeater.children('table').children('tbody').children('tr:last-child').setup_acf_relationship();
+					}, 1);
+					
+				});
+				
+			});
+			
+		})(jQuery);
+		</script>
+		<?php
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_field($field)
+	{
+
+		$field['max'] = isset($field['max']) ? $field['max'] : '-1';
+		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : false;
+		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : false;
+		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : false;
+		
+		if(!$field['post_type'] || !is_array($field['post_type']) || $field['post_type'][0] == "")
+		{
+			$field['post_type'] = get_post_types(array('public' => true));
 		}
 		
-		
-		// get posts for list
+		// attachment doesn't work if it is the only item in an array???
+		if(is_array($field['post_type']) && count($field['post_type']) == 1)
+		{
+			$field['post_type'] = $field['post_type'][0];
+		}
+
 		$posts = get_posts(array(
 			'numberposts' 	=> 	-1,
-			'post_type'		=>	$post_types,
+			'post_type'		=>	$field['post_type'],
 			'orderby'		=>	'title',
 			'order'			=>	'ASC',
-			'meta_key'		=>	$options['meta_key'],
-			'meta_value'	=>	$options['meta_value'],
+			//'meta_key'		=>	$field['meta_key'],
+			//'meta_value'	=>	$field['meta_value'],
 		));
 		
-
 		$values_array = array();
-		if($field->value != "")
+		if($field['value'] != "")
 		{
-			$values_array = explode(',', $field->value);
+			$temp_array = explode(',', $field['value']);
+			foreach($temp_array as $p)
+			{
+				// if the post doesn't exist, continue
+				if(!get_the_title($p)) continue;
+				
+				$values_array[] = $p;
+			}
+			
 		}
 		
+		
+		
 		?>
-		<div class="acf_relationship" data-max="<?php echo $options['max']; ?>">
+		<div class="acf_relationship" data-max="<?php echo $field['max']; ?>">
 			
-			<input type="hidden" name="<?php echo $field->input_name; ?>" value="<?php echo $field->value; ?>" />
+			<input type="hidden" name="<?php echo $field['name']; ?>" value="<?php echo implode(',', $values_array); ?>" />
 			
 			<div class="relationship_left">
 				<table class="widefat">
 					<thead>
 						<tr>
 							<th>
-								<label class="relationship_label" for="relationship_<?php echo $field->input_name; ?>">Search...</label>
-								<input class="relationship_search" type="text" id="relationship_<?php echo $field->input_name; ?>" />
+								<label class="relationship_label" for="relationship_<?php echo $field['name']; ?>">Search...</label>
+								<input class="relationship_search" type="text" id="relationship_<?php echo $field['name']; ?>" />
 								<div class="clear_relationship_search"></div>
 							</th>
 						</tr>
@@ -126,58 +372,49 @@ class acf_Relationship
 	}
 	
 	
-	/*---------------------------------------------------------------------------------------------
-	 * Options HTML
-	 * - called from fields_meta_box.php
-	 * - displays options in html format
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function options_html($key, $field)
-	{
-		$options = $field->options;
-		
-		$options['post_type'] = isset($options['post_type']) ? $options['post_type'] : '';
-		$options['max'] = isset($options['max']) ? $options['max'] : '-1';
-		$options['meta_key'] = isset($options['meta_key']) ? $options['meta_key'] : '';
-		$options['meta_value'] = isset($options['meta_value']) ? $options['meta_value'] : '';
-		
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{	
+		// defaults
+		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : '';
+		$field['max'] = isset($field['max']) ? $field['max'] : '-1';
+		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : '';
+		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : '';
 		?>
-		
-		<tr class="field_option field_option_relationship">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Post Type",'acf'); ?></label>
-				<p class="description"><?php _e("Filter posts by selecting a post type",'acf'); ?></p>
+				<p class="description"><?php _e("Filter posts by selecting a post type<br />
+				Tip: deselect all post types to show all post type's posts",'acf'); ?></p>
 			</td>
 			<td>
 				<?php 
-				$post_types = array('' => '- All -');
+				$post_types = array('' => '-All-');
 				
-				foreach (get_post_types() as $post_type ) {
+				foreach (get_post_types(array('public' => true)) as $post_type ) {
 				  $post_types[$post_type] = $post_type;
 				}
 				
-				unset($post_types['attachment']);
-				unset($post_types['nav_menu_item']);
-				unset($post_types['revision']);
-				unset($post_types['acf']);
-				
-
-				$temp_field = new stdClass();	
-				$temp_field->type = 'select';
-				$temp_field->input_name = 'acf[fields]['.$key.'][options][post_type]';
-				$temp_field->input_class = '';
-				$temp_field->value = $options['post_type'];
-				$temp_field->options = array('choices' => $post_types, 'multiple' => '1');
-				$this->parent->create_field($temp_field); 
-				
+				$this->parent->create_field(array(
+					'type'	=>	'select',
+					'name'	=>	'fields['.$key.'][post_type]',
+					'value'	=>	$field['post_type'],
+					'choices'	=>	$post_types,
+					'multiple'	=>	'1',
+				));
 				?>
-				
 			</td>
 		</tr>
-		<tr class="field_option field_option_relationship">
+		<?php /*<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Filter Posts",'acf'); ?></label>
 				<p class="description"><?php _e("Where meta_key == meta_value",'acf'); ?></p>
@@ -185,37 +422,37 @@ class acf_Relationship
 			<td>
 				<div style="width:45%; float:left">
 				<?php 
-					$temp_field->type = 'text';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][meta_key]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['meta_key'];
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][meta_key]',
+					'value'	=>	$field['meta_key'],
+				));
 				?>
 				</div>
 				<div style="width:10%; float:left; text-align:center; padding:5px 0 0;">is equal to</div>
 				<div style="width:45%; float:left">
 				<?php 
-					$temp_field->type = 'text';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][meta_value]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['meta_value'];
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][meta_value]',
+					'value'	=>	$field['meta_value'],
+				));
 				?>
 				</div>
 			</td>
-		</tr>
-		<tr class="field_option field_option_relationship">
+		</tr>*/ ?>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Maximum posts",'acf'); ?></label>
 				<p class="description"><?php _e("Set to -1 for inifinit",'acf'); ?></p>
 			</td>
 			<td>
 				<?php 
-					$temp_field->type = 'text';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][max]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['max'];
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][max]',
+					'value'	=>	$field['max'],
+				));
 				?>
 			</td>
 		</tr>
@@ -225,18 +462,19 @@ class acf_Relationship
 	}
 	
 	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value_for_api
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	
-	/*---------------------------------------------------------------------------------------------
-	 * Format Value
-	 * - this is called from api.php
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function format_value_for_api($value, $options = null)
+	function get_value_for_api($post_id, $field)
 	{
+		// vars
+		$value = parent::get_value($post_id, $field);
 		$return = false;
 		
 		if(!$value || $value == "")
@@ -251,7 +489,7 @@ class acf_Relationship
 			$return = array();
 			foreach($value as $v)
 			{
-				$return[$v] = get_post($v);
+				$return[] = get_post($v);
 			}
 		}
 		else

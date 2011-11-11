@@ -1,56 +1,180 @@
 <?php
 
-class acf_File
+class acf_File extends acf_Field
 {
-	var $name;
-	var $title;
-	var $parent;
+	/*--------------------------------------------------------------------------------------
+	*
+	*	Constructor
+	*
+	*	@author Elliot Condon
+	*	@since 1.0.0
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	function acf_File($parent)
+	function __construct($parent)
 	{
-		$this->name = 'file';
+    	parent::__construct($parent);
+    	
+    	$this->name = 'file';
 		$this->title = __('File','acf');
-		$this->parent = $parent;
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('media_send_to_editor', array($this, 'media_send_to_editor'), 15, 2 );
-		//add_action('admin_init', array($this, 'admin_init'));
-		
+   	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_print_scripts / admin_print_styles
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function admin_print_scripts()
+	{
+		wp_enqueue_script(array(
+			'jquery',
+			'jquery-ui-core',
+			'jquery-ui-tabs',
+
+			'thickbox',
+			'media-upload',			
+		));
+	}
+	
+	function admin_print_styles()
+	{
+  		wp_enqueue_style(array(
+			'thickbox',		
+		));
 	}
 	
 	
-	/*---------------------------------------------------------------------------------------------
-	 * Options HTML
-	 * - called from fields_meta_box.php
-	 * - displays options in html format
-	 *
-	 * @author Elliot Condon
-	 * @since 2.0.3
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function options_html($key, $field)
+	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_head
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function admin_head()
+	{
+		?>
+		<script type="text/javascript">
+		
+		(function($){
+
+			$(document).ready(function(){
+				
+				var post_id = $('input#post_ID').val();
+				
+				$('#poststuff .acf_file_uploader').each(function(){
+			
+					//console.log('file setup');
+					var div = $(this);
+			
+					div.find('p.no_file input.button').click(function(){
+						
+						// set global var
+						window.acf_div = div;
+						
+						// show the thickbox
+						tb_show('Add File to field', 'media-upload.php?post_id='+post_id+'&type=file&acf_type=file&TB_iframe=1');
+						
+						return false;
+					});
+					
+					
+					div.find('p.file input.button').unbind('click').click(function()
+					{
+						div.find('input.value').val('');
+						div.removeClass('active');
+					
+						return false;
+					});
+				
+				});
+				
+				
+			});
+			
+		})(jQuery);
+		</script>
+		<?php
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_field($field)
 	{
 		// vars
-		$options = $field->options;
-		$options['save_format'] = isset($options['save_format']) ? $options['save_format'] : 'url';
+		$class = "";
+		$file_src = "";
+		
+		// get file url
+		if($field['value'] != '' && is_numeric($field['value']))
+		{
+			$file_src = wp_get_attachment_url($field['value']);
+			if($file_src) $class = "active";
+		}
+				
+		// html
+		echo '<div class="acf_file_uploader ' . $class . '">';
+			echo '<p class="file"><span class="file_url">'.$file_src.'</span> <input type="button" class="button" value="'.__('Remove File','acf').'" /></p>';
+			echo '<input class="value" type="hidden" name="' . $field['name'] . '" value="' . $field['value'] . '" />';
+			echo '<p class="no_file">'.__('No File selected','acf').'. <input type="button" class="button" value="'.__('Add File','acf').'" /></p>';
+		echo '</div>';
+
+	}
+
+
+
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{
+		// vars
+		$field['save_format'] = isset($field['save_format']) ? $field['save_format'] : 'url';
 		
 		?>
-		<tr class="field_option field_option_file">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Return Value",'acf'); ?></label>
 			</td>
 			<td>
 				<?php 
-					$temp_field = new stdClass();	
-					$temp_field->type = 'select';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][save_format]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['save_format'];
-					$temp_field->options = array('choices' => array(
+				$this->parent->create_field(array(
+					'type'	=>	'radio',
+					'name'	=>	'fields['.$key.'][save_format]',
+					'value'	=>	$field['save_format'],
+					'layout'	=>	'horizontal',
+					'choices' => array(
 						'url'	=>	'File URL',
 						'id'	=>	'Attachment ID'
-					));
-					$this->parent->create_field($temp_field);
+					)
+				));
 				?>
 			</td>
 		</tr>
@@ -163,53 +287,19 @@ class acf_File
 	
 	/*--------------------------------------------------------------------------------------
 	*
-	*	html
+	*	get_value_for_api
 	*
 	*	@author Elliot Condon
-	*	@since 2.0.6
+	*	@since 3.0.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 	
-	function html($field)
+	function get_value_for_api($post_id, $field)
 	{
+		// vars
+		$format = isset($field['save_format']) ? $field['save_format'] : 'url';
 		
-		$class = "";
-		$file_src = "";
-		
-		if($field->value != '' && is_numeric($field->value))
-		{
-			$file_src = wp_get_attachment_url($field->value);
-			
-			if($file_src)
-			{
-				$class = " active";
-			}
-		}
-
-
-		echo '<div class="acf_file_uploader'.$class.'">';
-			echo '<p class="file"><span class="file_url">'.$file_src.'</span> <input type="button" class="button" value="'.__('Remove File','acf').'" /></p>';
-			echo '<input class="value" type="hidden" name="'.$field->input_name.'" value="'.$field->value.'" />';
-			echo '<p class="no_file">'.__('No File selected','acf').'. <input type="button" class="button" value="'.__('Add File','acf').'" /></p>';
-		echo '</div>';
-
-	}
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	Format Value
-	*	- this is called from api.php
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
-
-	function format_value_for_api($value, $options = null)
-	{
-
-		$format = isset($options['save_format']) ? $options['save_format'] : 'url';
+		$value = parent::get_value($post_id, $field);
 		
 		if($format == 'url')
 		{
@@ -217,9 +307,7 @@ class acf_File
 		}
 		
 		return $value;
-		
 	}
-	
 	
 }
 

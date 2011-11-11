@@ -1,48 +1,91 @@
 <?php
 
-class acf_Text
+class acf_Text extends acf_Field
 {
-	var $name;
-	var $title;
-	var $parent;
 	
-	function acf_Text($parent)
+	/*--------------------------------------------------------------------------------------
+	*
+	*	Constructor
+	*
+	*	@author Elliot Condon
+	*	@since 1.0.0
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function __construct($parent)
 	{
-		$this->name = 'text';
+    	parent::__construct($parent);
+    	
+    	$this->name = 'text';
 		$this->title = __("Text",'acf');
-		$this->parent = $parent;
-	}
+		
+   	}
+   
+
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	function html($field)
+	function create_field($field)
 	{
-		echo '<input type="text" value="'.$field->value.'" id="'.$field->input_name.'" class="'.$field->input_class.'" name="'.$field->input_name.'" />';
+		echo '<input type="text" value="' . $field['value'] . '" id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" />';
 	}
 	
 	
 	/*--------------------------------------------------------------------------------------
 	*
-	*	Options HTML
+	*	create_options
 	*
 	*	@author Elliot Condon
 	*	@since 2.0.6
+	*	@updated 2.2.0
 	* 
 	*-------------------------------------------------------------------------------------*/
 	
-	function options_html($key, $field)
+	function create_options($key, $field)
 	{
+		// defaults
+		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
+		$field['formatting'] = isset($field['formatting']) ? $field['formatting'] : 'html';
+		
 		?>
-		<tr class="field_option field_option_text">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Default Value",'acf'); ?></label>
 			</td>
 			<td>
 				<?php 
-					$temp_field = new stdClass();
-					$temp_field->type = 'text';
-					$temp_field->input_name = 'acf[fields]['.$key.'][default_value]';
-					$temp_field->input_class = 'default_value';
-					$temp_field->value = $field->default_value;
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][default_value]',
+					'value'	=>	$field['default_value'],
+				));
+				?>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Formatting",'acf'); ?></label>
+				<p class="description"><?php _e("Define how to render html tags",'acf'); ?></p>
+			</td>
+			<td>
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'select',
+					'name'	=>	'fields['.$key.'][formatting]',
+					'value'	=>	$field['formatting'],
+					'choices' => array(
+						'none'	=>	'None',
+						'html'	=>	'HTML'
+					)
+				));
 				?>
 			</td>
 		</tr>
@@ -50,9 +93,50 @@ class acf_Text
 	}
 	
 	
-	function format_value_for_input($value)
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value
+	*
+	*	@author Elliot Condon
+	*	@since 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_value($post_id, $field)
 	{
-		return htmlspecialchars($value, ENT_QUOTES);
+		$value = parent::get_value($post_id, $field);
+		
+		$value = htmlspecialchars($value, ENT_QUOTES);
+		
+		return $value;
+	}
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value_for_api
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_value_for_api($post_id, $field)
+	{
+		// vars
+		$format = isset($field['formatting']) ? $field['formatting'] : 'html';
+
+		$value = parent::get_value($post_id, $field);
+		
+		if($format == 'none')
+		{
+			$value = htmlspecialchars($value, ENT_QUOTES);
+		}
+		elseif($format == 'html')
+		{
+			$value = html_entity_decode($value);
+		}
+		
+		return $value;
 	}
 	
 }

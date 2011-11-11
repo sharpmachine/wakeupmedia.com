@@ -1,74 +1,81 @@
 <?php
 
-class acf_True_false
+class acf_True_false extends acf_Field
 {
-	var $name;
-	var $title;
 	
-	function acf_True_false()
+	/*--------------------------------------------------------------------------------------
+	*
+	*	Constructor
+	*
+	*	@author Elliot Condon
+	*	@since 1.0.0
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function __construct($parent)
 	{
-		$this->name = 'true_false';
+    	parent::__construct($parent);
+    	
+    	$this->name = 'true_false';
 		$this->title = __("True / False",'acf');
-	}
+		
+   	}
+
+
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	function html($field)
+	function create_field($field)
 	{
-		// set default message
-		if(empty($field->options['message']))
-		{
-			$field->options['message'] = "";
-		}
+		// vars
+		$field['message'] = isset($field['message']) ? $field['message'] : '';
 		
-		// set choices
-		$field->options['choices'] = array(
-			'1' =>	$field->options['message']
-		);
-		
-		// echo html
-		echo '<ul class="checkbox_list '.$field->input_class.'">';
-		
-		foreach($field->options['choices'] as $key => $value)
-		{
-			$selected = '';
-			if($key == $field->value)
-			{
-				$selected = 'checked="yes"';
-			}
-			echo '<li><label><input type="checkbox" class="'.$field->input_class.'" name="'.$field->input_name.'" value="'.$key.'" '.$selected.' />'.$value.'</label></li>';
-		}
+		// html
+		echo '<ul class="checkbox_list ' . $field['class'] . '">';
+			echo '<input type="hidden" name="'.$field['name'].'" value="0" />';
+			$selected = ($field['value'] == 1) ? 'checked="yes"' : '';
+			echo '<li><label><input type="checkbox" name="'.$field['name'].'" value="1" ' . $selected . ' />' . $field['message'] . '</label></li>';
 		
 		echo '</ul>';
 
 	}
 	
 	
-	/*---------------------------------------------------------------------------------------------
-	 * Options HTML
-	 * - called from fields_meta_box.php
-	 * - displays options in html format
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function options_html($key, $field)
-	{
-		$options = $field->options;
-		
-		if(!isset($options['message']))
-		{
-			$options['message'] = "";
-		}
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{	
+		$field['message'] = isset($field['message']) ? $field['message'] : '';
 		?>
-
-		<tr class="field_option field_option_true_false">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
-				<label for="acf[fields][<?php echo $key; ?>][options][message]"><?php _e("Message",'acf'); ?></label>
+				<label><?php _e("Message",'acf'); ?></label>
 				<p class="description"><?php _e("eg. Show extra content",'acf'); ?></a></p>
 			</td>
 			<td>
-				<input type="text" name="acf[fields][<?php echo $key; ?>][options][message]" id="acf[fields][<?php echo $key; ?>][options][message]" value="<?php echo $options['message']; ?>" />
-				
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][message]',
+					'value'	=>	$field['message'],
+				));
+				?>
 			</td>
 		</tr>
 
@@ -76,30 +83,20 @@ class acf_True_false
 	}
 
 
-	/*---------------------------------------------------------------------------------------------
-	 * Format Value
-	 * - this is called from api.php
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function format_value_for_api($value, $options = null)
-	{
-		return $this->format_value_for_input($value);	
-	}
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value_for_api
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	
-	/*---------------------------------------------------------------------------------------------
-	 * Format Value for input
-	 * - this is called from api.php
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function format_value_for_input($value)
+	function get_value_for_api($post_id, $field)
 	{
+		// get value
+		$value = parent::get_value($post_id, $field);
+		
 		if($value == '1')
 		{
 			return true;
@@ -109,8 +106,7 @@ class acf_True_false
 			return false;
 		}
 	}
-
-	
+		
 }
 
 ?>

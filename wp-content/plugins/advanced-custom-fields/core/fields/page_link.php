@@ -1,69 +1,77 @@
 <?php
 
-class acf_Page_link
+class acf_Page_link extends acf_Field
 {
-	var $name;
-	var $title;
-	var $parent;
 	
-	function acf_Page_link($parent)
+	/*--------------------------------------------------------------------------------------
+	*
+	*	Constructor
+	*
+	*	@author Elliot Condon
+	*	@since 1.0.0
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function __construct($parent)
 	{
-		$this->name = 'page_link';
+    	parent::__construct($parent);
+    	
+    	$this->name = 'page_link';
 		$this->title = __('Page Link','acf');
-		$this->parent = $parent;
-	}
+		
+   	}
+   	
 	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_field
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.5
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	/*---------------------------------------------------------------------------------------------
-	 * HTML
-	 * - this is called all over the shop, it creates the input html
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function html($field)
-	{	
-		// get post types
-		if(isset($field->options['post_type']) && is_array($field->options['post_type']) && $field->options['post_type'][0] != "")
+	function create_field($field)
+	{
+		// vars
+		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : false;
+		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : false;
+		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : false;
+		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : false;
+		
+		
+		if(!$field['post_type'] || !is_array($field['post_type']) || $field['post_type'][0] == "")
 		{
-			// 1. If select has selected post types, just use them
-			$post_types = $field->options['post_type'];
-		}
-		else
-		{
-			//2. If not post types have been selected, load all the public ones
-			$post_types = get_post_types(array('public' => true));
-			foreach($post_types as $key => $value)
+			$field['post_type'] = get_post_types(array('public' => true));
+			foreach($field['post_type'] as $key => $value)
 			{
 				if($value == 'attachment')
 				{
-					unset($post_types[$key]);
+					unset($field['post_type'][$key]);
 				}
 			}
 		}
 		
-
-		// start select
-		if(isset($field->options["multiple"]) && $field->options["multiple"] == '1')
+		// multiple select
+		$multiple = '';
+		if($field['multiple'] == '1')
 		{
-			$name_extra = '[]';
-			echo '<select id="'.$field->input_name.'" class="'.$field->input_class.'" name="'.$field->input_name.$name_extra.'" multiple="multiple" size="5" >';
-		}
-		else
+			$multiple = ' multiple="multiple" size="5" ';
+			$field['name'] .= '[]';
+		} 
+		
+		// html
+		echo '<select id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';
+		
+		// null
+		if($field['allow_null'] == '1')
 		{
-			echo '<select id="'.$field->input_name.'" class="'.$field->input_class.'" name="'.$field->input_name.'" >';	
-			
-			// add null
-			if(isset($field->options['allow_null']) && $field->options['allow_null'] == '1')
-			{
-				echo '<option value="null"> - Select - </option>';
-			}
+			echo '<option value="null"> - Select - </option>';
 		}
 		
-		
-		
-		foreach($post_types as $post_type)
+		foreach($field['post_type'] as $post_type)
 		{
 			// get posts
 			$posts = false;
@@ -76,8 +84,8 @@ class acf_Page_link
 					'post_type' => $post_type,
 					'sort_column' => 'menu_order',
 					'order' => 'ASC',
-					'meta_key' => $options['meta_key'],
-					'meta_value' => $options['meta_value'],
+					//'meta_key' => $field['meta_key'],
+					//'meta_value' => $field['meta_value'],
 				));
 			}
 			else
@@ -88,8 +96,8 @@ class acf_Page_link
 					'post_type' => $post_type,
 					'orderby' => 'title',
 					'order' => 'ASC',
-					'meta_key' => $options['meta_key'],
-					'meta_value' => $options['meta_value'],
+					//'meta_key' => $field['meta_key'],
+					//'meta_value' => $field['meta_value'],
 				));
 			}
 			
@@ -116,10 +124,10 @@ class acf_Page_link
 					$selected = '';
 					
 					
-					if(is_array($field->value))
+					if(is_array($field['value']))
 					{
 						// 2. If the value is an array (multiple select), loop through values and check if it is selected
-						if(in_array($key, $field->value))
+						if(in_array($key, $field['value']))
 						{
 							$selected = 'selected="selected"';
 						}
@@ -127,7 +135,7 @@ class acf_Page_link
 					else
 					{
 						// 3. this is not a multiple select, just check normaly
-						if($key == $field->value)
+						if($key == $field['value'])
 						{
 							$selected = 'selected="selected"';
 						}
@@ -151,26 +159,25 @@ class acf_Page_link
 	}
 	
 
-	/*---------------------------------------------------------------------------------------------
-	 * Options HTML
-	 * - called from fields_meta_box.php
-	 * - displays options in html format
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function options_html($key, $field)
-	{
-		$options = $field->options;
-
-		$options['post_type'] = isset($options['post_type']) ? $options['post_type'] : '';
-		$options['multiple'] = isset($options['multiple']) ? $options['multiple'] : '0';
-		$options['allow_null'] = isset($options['allow_null']) ? $options['allow_null'] : '0';
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{	
+		// defaults
+		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : '';
+		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : '0';
+		$field['allow_null'] = isset($field['allow_null']) ? $field['allow_null'] : '0';
 		
 		?>
-
-		<tr class="field_option field_option_page_link">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Post Type",'acf'); ?></label>
 				<p class="description"><?php _e("Filter posts by selecting a post type<br />
@@ -189,48 +196,51 @@ class acf_Page_link
 				unset($post_types['revision']);
 				unset($post_types['acf']);
 				
+				$this->parent->create_field(array(
+					'type'	=>	'select',
+					'name'	=>	'fields['.$key.'][post_type]',
+					'value'	=>	$field['post_type'],
+					'choices'	=>	$post_types,
+					'multiple'	=>	'1',
+				));
 				?>
-				<?php 
-					$temp_field = new stdClass();	
-					$temp_field->type = 'select';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][post_type]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['post_type'];
-					$temp_field->options = array('choices' => $post_types, 'multiple' => '1');
-					$this->parent->create_field($temp_field); 
-				
-				?>
-				
 			</td>
 		</tr>
-		<tr class="field_option field_option_page_link">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Allow Null?",'acf'); ?></label>
 			</td>
 			<td>
 				<?php 
-					$temp_field = new stdClass();	
-					$temp_field->type = 'true_false';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][allow_null]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['allow_null'];
-					$temp_field->options = array('message' => 'Add null value above choices');
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'radio',
+					'name'	=>	'fields['.$key.'][allow_null]',
+					'value'	=>	$field['allow_null'],
+					'choices'	=>	array(
+						'1'	=>	'Yes',
+						'0'	=>	'No',
+					),
+					'layout'	=>	'horizontal',
+				));
 				?>
 			</td>
 		</tr>
-		<tr class="field_option field_option_page_link">
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label><?php _e("Select multiple values?",'acf'); ?></label>
 			</td>
 			<td>
 				<?php 
-					$temp_field->type = 'true_false';
-					$temp_field->input_name = 'acf[fields]['.$key.'][options][multiple]';
-					$temp_field->input_class = '';
-					$temp_field->value = $options['multiple'];
-					$temp_field->options = array('message' => 'Turn this drop-down into a multi-select');
-					$this->parent->create_field($temp_field); 
+				$this->parent->create_field(array(
+					'type'	=>	'radio',
+					'name'	=>	'fields['.$key.'][multiple]',
+					'value'	=>	$field['multiple'],
+					'choices'	=>	array(
+						'1'	=>	'Yes',
+						'0'	=>	'No',
+					),
+					'layout'	=>	'horizontal',
+				));
 				?>
 			</td>
 		</tr>
@@ -238,18 +248,24 @@ class acf_Page_link
 	}
 	
 	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value_for_api
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.0
+	* 
+	*-------------------------------------------------------------------------------------*/
 	
-	/*---------------------------------------------------------------------------------------------
-	 * Format Value
-	 * - this is called from api.php
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1.3
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function format_value_for_api($value, $options = null)
+	function get_value_for_api($post_id, $field)
 	{
-		$value = $this->format_value_for_input($value);
+		// get value
+		$value = parent::get_value($post_id, $field);
+		
+		if(!$value)
+		{
+			return false;
+		}
 		
 		if($value == 'null')
 		{
@@ -269,31 +285,6 @@ class acf_Page_link
 		}
 		
 		return $value;
-	}
-	
-	
-	/*---------------------------------------------------------------------------------------------
-	 * Format Value for input
-	 * - this is called from api.php
-	 *
-	 * @author Elliot Condon
-	 * @since 1.1.3
-	 * 
-	 ---------------------------------------------------------------------------------------------*/
-	function format_value_for_input($value)
-	{
-		$is_array = @unserialize($value);
-		
-		if($is_array)
-		{
-			return unserialize($value);
-		}
-		else
-		{
-			return $value;
-		}
-		
-
 	}
 	
 
