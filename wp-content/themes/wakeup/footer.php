@@ -5,15 +5,15 @@
 		<div id="footer">
 			<h2>Wake Up More!</h2>
 			<div class="col-4">
-				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/justsayin.png" width="60" height="46" alt="Justsayin" class="alignleft"></a>Just Sayin'</h3>
+				<h3><a href="<?php bloginfo('url'); ?>/videos#just-sayin"><img src="<?php bloginfo('template_directory'); ?>/images/justsayin.png" width="60" height="46" alt="Justsayin" class="alignleft"></a>Just Sayin'</h3>
 				<p>Check out our Just Sayin’ videos were you’ll find a more candid side of us!</p>
 			</div>
 			<div class="col-4">
-				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/onthego.png" width="47" height="53" alt="Onthego" class="alignleft"></a>On-the-Go</h3>
+				<h3><a href="<?php bloginfo('url'); ?>/videos#on-the-go"><img src="<?php bloginfo('template_directory'); ?>/images/onthego.png" width="47" height="53" alt="Onthego" class="alignleft"></a>On-the-Go</h3>
 				<p>Our purses are big enough to fit a camera in so check out our videos from the streets!</p>
 			</div>
 			<div class="col-4">
-				<h3><a href="#"><img src="<?php bloginfo('template_directory'); ?>/images/blog.png" width="46" height="46" alt="Blog" class="alignleft"></a>Life Boosters</h3>
+				<h3><a href="<?php bloginfo('url'); ?>/articles"><img src="<?php bloginfo('template_directory'); ?>/images/blog.png" width="46" height="46" alt="Blog" class="alignleft"></a>Life Boosters</h3>
 				<p>Be encouraged by reading articles to lift you up and give you a new perspective!</p>
 			</div>
 			<div class="col-4 last">
@@ -72,9 +72,7 @@
 
 	<!-- Remove these before deploying to production -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-	<script src="<?php bloginfo('template_directory'); ?>/js/jquery.youtubeplaylist.js" type="text/javascript" charset="utf-8"></script>
 	<script src="<?php bloginfo ('template_directory'); ?>/js/plugins.js"></script>
   	<script src="<?php bloginfo ('template_directory'); ?>/js/script.js"></script>
-	<script src="<?php bloginfo ('template_directory'); ?>/js/hashgrid.js" type="text/javascript"></script>
 </body>
 </html>

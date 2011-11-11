@@ -21,27 +21,79 @@
 					</div><!-- .entry-content -->
 				</div><!-- #post-## -->
 					
-	<?php endwhile; endif; ?>
+	<?php endwhile;  endif; ?>
 	
-				<div class="yt_holder">
-    				<div id="ytvideo"></div>
-					<ul class="video-playlist">
-						<?php query_posts("post_type=videos&posts_per_page=100"); ?>
-						<?php if (have_posts()) :  while (have_posts()) : the_post(); ?>
-						<li>
-							<a class="video-thumb" href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>"><br \><?php the_title(); ?></a>
-							
-						</li>
-						<?php endwhile; ?>
+	<div class="black-bar">
+					<h2 class="split">Debra's Videos</h2>
+					<h2 class="split">Brigitte's Videos</h2>
+				</div>
+				
+				<div class="posts-col-2">
 			
-						<?php else : ?>
-			
-							<p>Sorry, no videos right now.  Check back soon though!</p>
-			
-						<?php endif; ?>
+						<?php $featured_query = new WP_Query('author=3&showposts=4&post_type=videos');
+						while ($featured_query->have_posts()) : $featured_query->the_post();
+						$do_not_duplicate[] = $post->ID 
+						 ?>
+							<div class="videos-container">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+								<span>
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</span>
+							</div><!-- .videos-container -->
+							<?php endwhile; ?>
+						</div><!-- .posts-col-2 -->
 						
-					</ul><!-- .demo2 -->
-				</div><!-- .yt_holder -->
+			<div class="posts-col-2 last">
+
+	
+					<?php $featured_query = new WP_Query('author=2&showposts=4&post_type=videos');
+						while ($featured_query->have_posts()) : $featured_query->the_post();
+						$do_not_duplicate[] = $post->ID 
+						 ?>
+							<div class="videos-container">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+								<span>
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</span>
+							</div><!-- .videos-container -->
+						<?php endwhile; ?>
+			</div><!-- .posts-col-2 -->
+				
+				<div class="black-bar" id="on-the-go">
+					<h2>On-The-Go!</h2>
+				</div>
+				
+				<?php query_posts('showposts=10&post_type=videos&video_categories=on-the-go'); ?>
+					<?php while (have_posts()) : the_post();
+					if (in_array ($post->ID, $do_not_duplicate)) continue;
+					update_post_caches($post);
+					 ?>
+					 <div class="videos-container">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+								<span>
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</span>
+							</div><!-- .videos-container -->
+							<?php endwhile; ?>
+				
+				<div class="black-bar" id="just-sayin">
+					<h2>Just Sayin'</h2>
+				</div>
+				<?php query_posts('showposts=10&post_type=videos&video_categories=just-sayin'); ?>
+					<?php while (have_posts()) : the_post();
+					if (in_array ($post->ID, $do_not_duplicate)) continue;
+					update_post_caches($post);
+					 ?>
+					 <div class="videos-container">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+								<span>
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								</span>
+							</div><!-- .videos-container -->
+							<?php endwhile; ?>
+	
+	
+
 				
 			</section><!-- #content -->
 		</div><!-- #content-container -->
