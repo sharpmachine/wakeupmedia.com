@@ -39,6 +39,8 @@
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>
+								<br \>
+								<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
 							</div><!-- .videos-container -->
 							<?php endwhile; ?>
 						</div><!-- .posts-col-2 -->
@@ -55,6 +57,8 @@
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>
+								<br \>
+								<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
 							</div><!-- .videos-container -->
 						<?php endwhile; ?>
 			</div><!-- .posts-col-2 -->
@@ -62,6 +66,8 @@
 				<div class="black-bar" id="on-the-go">
 					<h2>On-The-Go!</h2>
 				</div>
+				
+				<div class="videos">
 				
 				<?php query_posts('showposts=10&post_type=videos&video_categories=on-the-go'); ?>
 					<?php while (have_posts()) : the_post();
@@ -73,12 +79,15 @@
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>
+								<br \>
+								<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
 							</div><!-- .videos-container -->
 							<?php endwhile; ?>
-				
+				</div><!-- .videos -->
 				<div class="black-bar" id="just-sayin">
 					<h2>Just Sayin'</h2>
 				</div>
+				<div class="videos">
 				<?php query_posts('showposts=10&post_type=videos&video_categories=just-sayin'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
@@ -89,9 +98,11 @@
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>
+								<br \>
+								<span class="comments-link"><?php comments_popup_link( __( 'Leave a comment', 'twentyten' ), __( '1 Comment', 'twentyten' ), __( '% Comments', 'twentyten' ) ); ?></span>
 							</div><!-- .videos-container -->
 							<?php endwhile; ?>
-	
+				</div><!-- .videos -->
 	
 
 				
