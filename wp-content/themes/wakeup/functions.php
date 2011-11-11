@@ -612,7 +612,11 @@ add_action('admin_head', 'custom_logo');
 
 function custom_login_logo() {
   echo '<style type="text/css">
-    h1 a { background-image:url('.get_bloginfo('template_directory').'/images/login-logo.png) !important; }
+    h1 a 
+    { 
+    	background-image:url('.get_bloginfo('template_directory').'/images/home-logo.png) !important; 
+    	height: 161px;
+	}
     </style>';
 }
 
