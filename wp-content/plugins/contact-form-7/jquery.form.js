@@ -1,6 +1,6 @@
 /*!
  * jQuery Form Plugin
- * version: 2.87 (20-OCT-2011)
+ * version: 2.84 (12-AUG-2011)
  * @requires jQuery v1.3.2 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
@@ -87,15 +87,21 @@ $.fn.ajaxSubmit = function(options) {
 		return this;
 	}
 
-   var traditional = options.traditional;
-   if ( traditional === undefined ) {
-      traditional = $.ajaxSettings.traditional;
-   }
-   
-	var qx,n,v,a = this.formToArray(options.semantic);
+	var n,v,a = this.formToArray(options.semantic);
 	if (options.data) {
 		options.extraData = options.data;
-      qx = $.param(options.data, traditional);
+		for (n in options.data) {
+			if( $.isArray(options.data[n]) ) {
+				for (var k in options.data[n]) {
+					a.push( { name: n, value: options.data[n][k] } );
+				}
+			}
+			else {
+				v = options.data[n];
+				v = $.isFunction(v) ? v() : v; // if value is fn, invoke it
+				a.push( { name: n, value: v } );
+			}
+		}
 	}
 
 	// give pre-submit callback an opportunity to abort the submit
@@ -111,9 +117,7 @@ $.fn.ajaxSubmit = function(options) {
 		return this;
 	}
 
-	var q = $.param(a, traditional);
-   if (qx)
-      q = ( q ? (q + '&' + qx) : qx );
+	var q = $.param(a);
 
 	if (options.type.toUpperCase() == 'GET') {
 		options.url += (options.url.indexOf('?') >= 0 ? '&' : '?') + q;
@@ -128,7 +132,7 @@ $.fn.ajaxSubmit = function(options) {
 		callbacks.push(function() { $form.resetForm(); });
 	}
 	if (options.clearForm) {
-		callbacks.push(function() { $form.clearForm(options.includeHidden); });
+		callbacks.push(function() { $form.clearForm(); });
 	}
 
 	// perform a load on the target only if dataType is not provided
@@ -169,7 +173,7 @@ $.fn.ajaxSubmit = function(options) {
    }
    else {
 		// IE7 massage (see issue 57)
-		if ($.browser.msie && method == 'get' && typeof options.type === "undefined") {
+		if ($.browser.msie && method == 'get') { 
 			var ieMeth = $form[0].getAttribute('method');
 			if (typeof ieMeth === 'string')
 				options.type = ieMeth;
@@ -188,18 +192,11 @@ $.fn.ajaxSubmit = function(options) {
         var useProp = !!$.fn.prop;
 
         if (a) {
-            if ( useProp ) {
-            	// ensure that every serialized input is still enabled
-              	for (i=0; i < a.length; i++) {
-                    el = $(form[a[i].name]);
-                    el.prop('disabled', false);
-              	}
-            } else {
-              	for (i=0; i < a.length; i++) {
-                    el = $(form[a[i].name]);
-                    el.removeAttr('disabled');
-              	}
-            };
+        	// ensure that every serialized input is still enabled
+          	for (i=0; i < a.length; i++) {
+                el = $(form[a[i].name]);
+                el[ useProp ? 'prop' : 'attr' ]('disabled', false);
+          	}
         }
 
 		if ($(':input[name=submit],:input[id=submit]', form).length) {
@@ -436,8 +433,8 @@ $.fn.ajaxSubmit = function(options) {
                     xhr.statusText = docRoot.getAttribute('statusText') || xhr.statusText;
                 }
 
-				var dt = (s.dataType || '').toLowerCase();
-				var scr = /(json|script|text)/.test(dt);
+				var dt = s.dataType || '';
+				var scr = /(json|script|text)/.test(dt.toLowerCase());
 				if (scr || s.textarea) {
 					// see if user embedded response in textarea
 					var ta = doc.getElementsByTagName('textarea')[0];
@@ -452,19 +449,19 @@ $.fn.ajaxSubmit = function(options) {
 						var pre = doc.getElementsByTagName('pre')[0];
 						var b = doc.getElementsByTagName('body')[0];
 						if (pre) {
-							xhr.responseText = pre.textContent ? pre.textContent : pre.innerText;
+							xhr.responseText = pre.textContent ? pre.textContent : pre.innerHTML;
 						}
 						else if (b) {
-							xhr.responseText = b.textContent ? b.textContent : b.innerText;
+							xhr.responseText = b.innerHTML;
 						}
 					}
 				}
-				else if (dt == 'xml' && !xhr.responseXML && xhr.responseText != null) {
+				else if (s.dataType == 'xml' && !xhr.responseXML && xhr.responseText != null) {
 					xhr.responseXML = toXml(xhr.responseText);
 				}
 
                 try {
-                    data = httpData(xhr, dt, s);
+                    data = httpData(xhr, s.dataType, s);
                 }
                 catch (e) {
                     status = 'parsererror';
@@ -826,20 +823,20 @@ $.fieldValue = function(el, successful) {
  *  - inputs of type submit, button, reset, and hidden will *not* be effected
  *  - button elements will *not* be effected
  */
-$.fn.clearForm = function(includeHidden) {
+$.fn.clearForm = function() {
 	return this.each(function() {
-		$('input,select,textarea', this).clearFields(includeHidden);
+		$('input,select,textarea', this).clearFields();
 	});
 };
 
 /**
  * Clears the selected form elements.
  */
-$.fn.clearFields = $.fn.clearInputs = function(includeHidden) {
+$.fn.clearFields = $.fn.clearInputs = function() {
 	var re = /^(?:color|date|datetime|email|month|number|password|range|search|tel|text|time|url|week)$/i; // 'hidden' is not in this list
 	return this.each(function() {
 		var t = this.type, tag = this.tagName.toLowerCase();
-		if (re.test(t) || tag == 'textarea' || (includeHidden && /hidden/.test(t)) ) {
+		if (re.test(t) || tag == 'textarea') {
 			this.value = '';
 		}
 		else if (t == 'checkbox' || t == 'radio') {
@@ -900,13 +897,8 @@ $.fn.selected = function(select) {
 	});
 };
 
-// expose debug var
-$.fn.ajaxSubmit.debug = false;
-
 // helper fn for console logging
 function log() {
-	if (!$.fn.ajaxSubmit.debug) 
-		return;
 	var msg = '[jquery.form] ' + Array.prototype.join.call(arguments,'');
 	if (window.console && window.console.log) {
 		window.console.log(msg);

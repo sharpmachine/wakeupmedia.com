@@ -19,8 +19,8 @@ jQuery.fn.ytplaylist = function(options) {
   // default settings
   var options = jQuery.extend( {
     holderId: 'ytvideo',
-	playerHeight: 300,
-	playerWidth: 450,
+	playerHeight: 310,
+	playerWidth: 551,
 	addThumbs: false,
 	thumbSize: 'small',
 	showInline: false,
@@ -31,7 +31,7 @@ jQuery.fn.ytplaylist = function(options) {
  
   return this.each(function() {
 							
-   		var $el = $(this);
+   		var jQueryel = jQuery(this);
 		
 		var autoPlay = "";
 		var showRelated = "&rel=0";
@@ -81,24 +81,24 @@ jQuery.fn.ytplaylist = function(options) {
 		
 		
 		//
-		$el.children('li').each(function() {
-            $(this).find('a').each(function() {
-                var thisHref = $(this).attr('href');
+		jQueryel.children('li').each(function() {
+            jQuery(this).find('a.video-thumb').each(function() {
+                var thisHref = jQuery(this).attr('href');
                 
                 //old-style youtube links
                 if (thisHref.startsWith('http://www.youtube.com')) {
-                    $(this).addClass('yt-vid');
-                    $(this).data('yt-id', youtubeid(thisHref) );
+                    jQuery(this).addClass('yt-vid');
+                    jQuery(this).data('yt-id', youtubeid(thisHref) );
                 }
                 //new style youtu.be links
                 else if (thisHref.startsWith('http://youtu.be')) {
-                    $(this).addClass('yt-vid');
+                    jQuery(this).addClass('yt-vid');
                     var id = thisHref.substr(thisHref.lastIndexOf("/") + 1);
-                    $(this).data('yt-id', id );
+                    jQuery(this).data('yt-id', id );
                 }
                 else {
                     //must be an image link (naive)
-                    $(this).addClass('img-link');
+                    jQuery(this).addClass('img-link');
                 }
                 
                // alert(thisHref);
@@ -107,24 +107,24 @@ jQuery.fn.ytplaylist = function(options) {
 		
 		
 		//load video on request
-		$el.children("li").children("a.yt-vid").click(function() {
+		jQueryel.children("li").children("a.yt-vid").click(function() {
 			
 			if(options.showInline) {
-				$("li.currentvideo").removeClass("currentvideo");
-				$(this).parent("li").addClass("currentvideo").html(playNew($(this).data("yt-id")));
+				jQuery("li.currentvideo").removeClass("currentvideo");
+				jQuery(this).parent("li").addClass("currentvideo").html(playNew(jQuery(this).data("yt-id")));
 			}
 			else {
-				$("#"+options.holderId+"").html(playNew($(this).data("yt-id")));
-				$(this).parent().parent("ul").find("li.currentvideo").removeClass("currentvideo");
-				$(this).parent("li").addClass("currentvideo");
+				jQuery("#"+options.holderId+"").html(playNew(jQuery(this).data("yt-id")));
+				jQuery(this).parent().parent("ul").find("li.currentvideo").removeClass("currentvideo");
+				jQuery(this).parent("li").addClass("currentvideo");
 			}	
 			return false;
 		});
 
-		$el.find("a.img-link").click(function() {
-		    var $img = $('<img/>');
-		    $img.attr({
-		            src:$(this).attr('href') })
+		jQueryel.find("a.img-link").click(function() {
+		    var jQueryimg = jQuery('<img/>');
+		    jQueryimg.attr({
+		            src:jQuery(this).attr('href') })
 		        .css({
 		            display: 'none',
 		            position: 'absolute',
@@ -132,33 +132,33 @@ jQuery.fn.ytplaylist = function(options) {
 		            top: '50%'});
 
 		    if(options.showInline) {
-		        $("li.currentvideo").removeClass("currentvideo");
-		        $(this).parent("li").addClass("currentvideo").html($img);
+		        jQuery("li.currentvideo").removeClass("currentvideo");
+		        jQuery(this).parent("li").addClass("currentvideo").html(jQueryimg);
 	        }
 	        else {
 	            
-	            $("#"+options.holderId+"").html($img);
-				$(this).closest("ul").find("li.currentvideo").removeClass("currentvideo");
-				$(this).parent("li").addClass("currentvideo");
+	            jQuery("#"+options.holderId+"").html(jQueryimg);
+				jQuery(this).closest("ul").find("li.currentvideo").removeClass("currentvideo");
+				jQuery(this).parent("li").addClass("currentvideo");
 				
 	        }
             //wait for image to load (webkit!), then set width or height
             //based on dimensions of the image
             setTimeout(function() {
-                if ( $img.height() < $img.width() ) {
-                    $img.width(options.playerWidth).css('margin-top',parseInt($img.height()/-2, 10)).css({
+                if ( jQueryimg.height() < jQueryimg.width() ) {
+                    jQueryimg.width(options.playerWidth).css('margin-top',parseInt(jQueryimg.height()/-2, 10)).css({
                         height: 'auto'
                     });
                 }
                 else {
-                    $img.css({
+                    jQueryimg.css({
                         height: options.playerHeight,
                         width: 'auto',
                         top: '0px',
                         position: 'relative'
                     });
                 }
-                $img.fadeIn();
+                jQueryimg.fadeIn();
             }, 100);
             
             
@@ -169,29 +169,29 @@ jQuery.fn.ytplaylist = function(options) {
 		//do we want thumns with that?
 		if(options.addThumbs) {
 			
-			$el.children().each(function(i){
+			jQueryel.children().each(function(i){
 				
 				//replace first link
-				var $link = $(this).find('a:first');
-				var replacedText = $(this).text();
+				var jQuerylink = jQuery(this).find('a:first');
+				var replacedText = jQuery(this).text();
 				
-				if ($link.hasClass('yt-vid')) {
+				if (jQuerylink.hasClass('yt-vid')) {
 				    
 				    if(options.thumbSize == 'small') {
-    					var thumbUrl = "http://img.youtube.com/vi/"+$link.data("yt-id")+"/2.jpg";
+    					var thumbUrl = "http://img.youtube.com/vi/"+jQuerylink.data("yt-id")+"/2.jpg";
     				}
     				else {
-    					var thumbUrl = "http://img.youtube.com/vi/"+$link.data("yt-id")+"/0.jpg";
+    					var thumbUrl = "http://img.youtube.com/vi/"+jQuerylink.data("yt-id")+"/0.jpg";
     				}
 
     				var thumbHtml = "<img src='"+thumbUrl+"' alt='"+replacedText+"' />";
-    				$link.empty().html(thumbHtml+replacedText).attr("title", replacedText);
+    				jQuerylink.empty().html(thumbHtml+replacedText).attr("title", replacedText);
 				    
 				}
 				else {
 				    //is an image link
-				    var $img = $('<img/>').attr('src',$link.attr('href'));
-				    $link.empty().html($img).attr("title", replacedText);
+				    var jQueryimg = jQuery('<img/>').attr('src',jQuerylink.attr('href'));
+				    jQuerylink.empty().html(jQueryimg).attr("title", replacedText);
 				}	
 				
 			});	
@@ -199,7 +199,7 @@ jQuery.fn.ytplaylist = function(options) {
 		}
 		
 		//load inital video
-		var firstVid = $el.children("li:first-child").addClass("currentvideo").children("a").click();
+		var firstVid = jQueryel.children("li:first-child").addClass("currentvideo").children("a.video-thumb").click();
         
 			
 		

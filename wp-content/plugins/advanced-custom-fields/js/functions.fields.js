@@ -29,13 +29,13 @@
 			var name = $(this).attr('name');
 			var id = $(this).attr('id');
 
-			if(name && name.indexOf("fields[999]") != -1)
+			if(name && name.indexOf("[fields][999]") != -1)
 			{
-				name = name.replace('fields[999]','fields['+new_no+']');
+				name = name.replace('[fields][999]','[fields]['+new_no+']');
 			}
-			if(id && id.indexOf("fields[999]") != -1)
+			if(id && id.indexOf("[fields][999]") != -1)
 			{
-				id = id.replace('fields[999]','fields['+new_no+']');
+				id = id.replace('[fields][999]','[fields]['+new_no+']');
 			}
 			
 			if($(this).closest('.sub_field').hasClass('field_clone'))
@@ -110,28 +110,16 @@
 
 			var field = $(this).closest('.field');
 			var fields = field.closest('.fields');
-			var temp = $('<div style="height:' + field.height() + 'px"></div>');
-			//field.css({'-moz-transform' : 'translate(50px, 0)', 'opacity' : 0, '-moz-transition' : 'all 250ms ease-out'});
-			field.animate({'left' : '50px', 'opacity' : 0}, 250, function(){
-				field.before(temp);
-				field.remove();
-				
-				temp.animate({'height' : 0 }, 250, function(){
-					temp.remove();
-				})
-				
-				update_order_numbers();
 			
-				if(!fields.children('.field').exists())
-				{
-					// no more fields, show the message
-					fields.children('.no_fields_message').show();
-				}
-				
-			});
+			field.remove();
+			update_order_numbers();
 			
-			
-			
+			if(!fields.children('.field').exists())
+			{
+				// no more fields, show the message
+				fields.children('.no_fields_message').show();
+			}
+
 		});
 		
 		
@@ -160,13 +148,6 @@
 			
 			tr.insertAfter(tr_top);
 			tr.show();
-			
-			// firefox radio button fix
-			tr.find('input[type="radio"][data-checked="checked"]').each(function(){
-				
-				$(this).removeAttr('checked').attr('checked', 'checked');
-				
-			});
 			
 			
 		}).trigger('change');
@@ -228,7 +209,7 @@
 			
 			// update order numbers
 			update_order_numbers();
-			
+		
 			return false;
 			
 			
@@ -236,8 +217,9 @@
 		
 		
 		// Auto complete field name
-		$('#acf_fields tr.field_label input.label').live('blur', function()
+		$('.field_form tr.field_label input.label').live('blur', function()
 		{
+			//console.log('blur');
 			var label = $(this);
 			var name = $(this).closest('tr').siblings('tr.field_name').find('input.name');
 
@@ -275,108 +257,6 @@
 		});
 		
 	}
-	
-	
-	/*----------------------------------------------------------------------
-	*
-	*	setup_rules
-	*
-	*---------------------------------------------------------------------*/
-	
-	function setup_rules()
-	{
-		var tbody = $('table#location_rules tbody');
-		
-		
-		// show field type options
-		tbody.find('td.param select').live('change', function(){
-			
-			var tr = $(this).closest('tr');
-			var val = $(this).val();
-			
-			
-			// does it have options?
-			if(!$(this).find('option[value="options_page"]').exists())
-			{
-				//console.log('select: '+type+'. parent length: '+$(this).closest('.repeater').length);
-				$(this).append('<option value="options_page" disabled="true">Options Page (Unlock field with activation code)</option>');
-				
-			}
-			
-			
-			tr.find('td.value div').hide();
-			tr.find('td.value div [name]').attr('disabled', 'true');
-			
-			tr.find('td.value div[rel="'+val+'"]').show();
-			tr.find('td.value div[rel="'+val+'"] [name]').removeAttr('disabled');
-			
-		}).trigger('change');
-		
-		
-		// Add Button
-		tbody.find('td.buttons a.add').live('click',function(){
-
-			var tr_count = $(this).closest('tbody').children('tr').length;
-			var tr = $(this).closest('tr').clone();
-			
-			tr.insertAfter($(this).closest('tr'));
-			
-			update_names();
-			
-			can_remove_more();
-					
-			return false;
-			
-		});
-		
-		
-		// Remove Button
-		tbody.find('td.buttons a.remove').live('click',function(){
-			
-			var tr = $(this).closest('tr').remove();
-			
-			can_remove_more();
-			
-			return false;
-			
-		});
-		
-		function can_remove_more()
-		{
-			if(tbody.children('tr').length == 1)
-			{
-				tbody.children('tr').each(function(){
-					$(this).find('td.buttons a.remove').addClass('disabled');
-				});
-			}
-			else
-			{
-				tbody.children('tr').each(function(){
-					$(this).find('td.buttons a.remove').removeClass('disabled');
-				});
-			}
-			
-		}
-		
-		can_remove_more();
-		
-		function update_names()
-		{
-			tbody.children('tr').each(function(i){
-			
-				$(this).find('[name]').each(function(){
-				
-					var name = $(this).attr('name').split("][");
-					
-					var new_name = name[0] + "][" + i + "][" + name[2];
-
-					$(this).attr('name', new_name).attr('id', new_name);
-				});
-				
-			})
-		}
-		
-	}
 
 	/*----------------------------------------------------------------------
 	*
@@ -386,8 +266,8 @@
 	
 	$(document).ready(function(){
 		
-		// firefox radio button bug (fixed on line 152)
-		//if($.browser.mozilla) $("form").attr("autocomplete", "off");
+		// firefox radio button bug
+		if($.browser.mozilla) $("form").attr("autocomplete", "off");
 	
 		
 		// add active to Settings Menu
@@ -395,9 +275,21 @@
 		
 		// setup fields
 		setup_fields();
-		setup_rules();
+		
+		
+		$('#acf_fields input[type="radio"]').each(function(){
+			
+			if($(this).is(':checked'))
+			{
+				$(this).removeAttr('checked').attr('checked', 'checked');
+			}
+			else
+			{
+				
+			}
+			
+		});
 		
 	});
-
 
 })(jQuery);
