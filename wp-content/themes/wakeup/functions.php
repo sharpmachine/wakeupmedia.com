@@ -46,7 +46,7 @@
  * is designed for, generally via the style.css stylesheet.
  */
 if ( ! isset( $content_width ) )
-	$content_width = 640;
+	$content_width = 915;
 
 /** Tell WordPress to run twentyten_setup() when the 'after_setup_theme' hook is run. */
 add_action( 'after_setup_theme', 'twentyten_setup' );
@@ -101,8 +101,7 @@ function twentyten_setup() {
 		'primary' => __( 'Primary Navigation', 'twentyten' ),
 	) );
 
-	// This theme allows users to set a custom background
-	add_custom_background();
+
 
 	// Your changeable header business starts here
 	if ( ! defined( 'HEADER_TEXTCOLOR' ) )
@@ -128,7 +127,7 @@ function twentyten_setup() {
 
 	// Add a way for the custom header to be styled in the admin panel that controls
 	// custom headers. See twentyten_admin_header_style(), below.
-	add_custom_image_header( '', 'twentyten_admin_header_style' );
+
 
 	// ... and thus ends the changeable header business.
 
@@ -668,17 +667,20 @@ function help_add_dashboard_widgets() {
 add_action('wp_dashboard_setup', 'help_add_dashboard_widgets' );
 
 // Remove items from admin menu
-// function remove_admin_bar_links() {
-// 	global $wp_admin_bar;
-// 	$wp_admin_bar->remove_menu('themes');
-// 	$wp_admin_bar->remove_menu('background');
-// 	$wp_admin_bar->remove_menu('header');
-// 	$wp_admin_bar->remove_menu('new-theme');
-// 	$wp_admin_bar->remove_menu('new-plugin');
-// 	$wp_admin_bar->remove_menu('new-product_extras');
-// 	$wp_admin_bar->remove_menu('new-acf');
-// }
-// add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
+function remove_admin_bar_links() {
+	global $wp_admin_bar;
+	$wp_admin_bar->remove_menu('themes');
+	$wp_admin_bar->remove_menu('background');
+	$wp_admin_bar->remove_menu('header');
+	$wp_admin_bar->remove_menu('new-theme');
+	$wp_admin_bar->remove_menu('new-plugin');
+	$wp_admin_bar->remove_menu('new-product_extras');
+	$wp_admin_bar->remove_menu('new-acf');
+	$wp_admin_bar->remove_menu('new-link');
+	$wp_admin_bar->remove_menu('new-user');
+	$wp_admin_bar->remove_menu('edit');
+}
+add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_links' );
 
 // Add items to admin menu
 // function my_admin_bar_link() {

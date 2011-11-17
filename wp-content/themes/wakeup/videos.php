@@ -30,7 +30,7 @@
 				
 				<div class="posts-col-2">
 			
-						<?php $featured_query = new WP_Query('author=3&showposts=4&post_type=videos');
+						<?php $featured_query = new WP_Query('showposts=4&post_type=videos&video_categories=debra');
 						while ($featured_query->have_posts()) : $featured_query->the_post();
 						$do_not_duplicate[] = $post->ID 
 						 ?>
@@ -48,7 +48,7 @@
 			<div class="posts-col-2 last">
 
 	
-					<?php $featured_query = new WP_Query('author=2&showposts=4&post_type=videos');
+					<?php $featured_query = new WP_Query('showposts=4&post_type=videos&video_categories=brigitte');
 						while ($featured_query->have_posts()) : $featured_query->the_post();
 						$do_not_duplicate[] = $post->ID 
 						 ?>
@@ -104,7 +104,9 @@
 							<?php endwhile; ?>
 				</div><!-- .videos -->
 	
-
+<footer class="bottom-links">
+					<a href="http://www.youtube.com/user/wakeupmediatv">Watch more videos on our Youtube Channel</a>
+				</footer>
 				
 			</section><!-- #content -->
 		</div><!-- #content-container -->
