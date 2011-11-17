@@ -6,7 +6,7 @@
 			<?php // get_template_part( 'loop', 'index' ); ?>
 			
 			<article class="col-2">
-				<?php query_posts('author=3&post_type=videos&showposts=1'); ?>
+				<?php query_posts('video_categories=debra&post_type=videos&showposts=1'); ?>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 					<iframe width="450" height="253" src="http://www.youtube.com/embed/<?php the_field('youtube_video_id'); ?>" frameborder="0" allowfullscreen></iframe>
@@ -41,7 +41,7 @@
 			</article>
 			
 			<article class="col-2 last">
-				<?php query_posts('author=2&post_type=videos&showposts=1'); ?>
+				<?php query_posts('video_categories=brigitte&post_type=videos&showposts=1'); ?>
 				<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 					<iframe width="450" height="253" src="http://www.youtube.com/embed/<?php the_field('youtube_video_id'); ?>" frameborder="0" allowfullscreen></iframe>

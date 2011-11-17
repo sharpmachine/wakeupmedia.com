@@ -69,13 +69,13 @@
 				
 				<div class="videos">
 				
-				<?php query_posts('showposts=10&post_type=videos&video_categories=on-the-go'); ?>
+				<?php query_posts('showposts=12&post_type=videos&video_categories=on-the-go'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
 					 ?>
-					 <div class="videos-container">
-								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+					 <div class="videos-container2">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="223" height="143"></a>
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>
@@ -88,13 +88,13 @@
 					<h2>Just Sayin'</h2>
 				</div>
 				<div class="videos">
-				<?php query_posts('showposts=10&post_type=videos&video_categories=just-sayin'); ?>
+				<?php query_posts('showposts=12&post_type=videos&video_categories=just-sayin'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
 					 ?>
-					 <div class="videos-container">
-								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="216" height="139"></a>
+					 <div class="videos-container2">
+								<a href="http://www.youtube.com/watch?v=<?php the_field('youtube_video_id'); ?>&width=640&height=390" rel="lightbox[video]"><img src="http://img.youtube.com/vi/<?php the_field('youtube_video_id'); ?>/0.jpg" alt="Hello" width="223" height="143"></a>
 								<span>
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 								</span>

@@ -8,8 +8,8 @@
     						<div id="ytvideo">
 								<iframe width="551" height="310" src="http://www.youtube.com/embed/<?php the_field('youtube_video_id'); ?>" frameborder="0" allowfullscreen></iframe>
 							</div>
-					</div>
-					
+					</div><br \>
+					<?php the_content(); ?>
 				</div><!-- .entry-content -->
 
 
