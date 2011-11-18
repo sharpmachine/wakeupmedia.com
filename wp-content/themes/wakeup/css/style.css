@@ -18,6 +18,7 @@ body {
   background: url(../images/background2.png) no-repeat top center;
   color: #636363;
   font-family: 'Amaranth', sans-serif;
+  font-size: 14px;
 }
 .container {
   padding: 35px;
