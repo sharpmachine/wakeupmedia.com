@@ -5,10 +5,7 @@ html { min-height: 100%; }
   position: absolute;
   left: -9000px;
 }
-.josefin {
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: -2px;
-}
+.josefin { font-family: 'CaviarDreamsRegular'; }
 .amaranth { font-family: 'Amaranth', sans-serif; }
 html {
   background: -webkit-gradient(linear, left 55, left bottom, from(#d3f1f4), to(#79989c));
@@ -30,18 +27,15 @@ h1, h2, h3, h4, h5, h6 { font-style: normal; }
 h1.page-title { text-align: center; }
 h1 {
   font-size: 4.571em;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: -2px;
+  font-family: 'CaviarDreamsRegular';
   text-transform: uppercase;
 }
 h1.entry-title, h2.entry-title {
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: -2px;
+  font-family: 'CaviarDreamsRegular';
   text-align: center;
   font-size: 4.571em;
   text-transform: uppercase;
-  margin-bottom: 45px;
-  margin-top: -17px;
+  margin: 7px 0 30px 0;
 }
 h2.wum-archives {
   font-size: 2.571em;
@@ -81,7 +75,7 @@ header #header h1.debra {
   float: left;
   margin-bottom: 0;
   color: #ffffff;
-  margin-top: 208px;
+  margin-top: 216px;
   font-size: 4em;
 }
 header #header h1.bridgette {
@@ -89,7 +83,7 @@ header #header h1.bridgette {
   float: left;
   margin-bottom: 0;
   color: #ffffff;
-  margin-top: 208px;
+  margin-top: 216px;
   font-size: 4em;
 }
 header #header h1.debra {
@@ -116,8 +110,7 @@ nav {
   width: 100%;
   margin-top: 25px;
   height: 50px;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: -2px;
+  font-family: 'CaviarDreamsRegular';
   font-weight: 400;
   font-style: normal;
 }
@@ -151,12 +144,12 @@ nav div.menu li {
 }
 nav a {
   color: #ffffff;
-  line-height: 43px;
+  line-height: 53px;
   padding: 0 10px;
   text-decoration: none;
   font-size: 2em;
   text-transform: uppercase;
-  text-shadow: 1px 1px 1px #353630;
+  text-shadow: 0px 0px 1px #353630;
 }
 nav ul ul {
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.2);
@@ -843,10 +836,9 @@ footer.bottom-links a {
   text-align: center;
   color: #ffffff;
   margin-bottom: 0;
-  line-height: 66px;
+  line-height: 75px;
   font-size: 37px;
-  font-family: 'Josefin Sans', sans-serif;
-  letter-spacing: -2px;
+  font-family: 'CaviarDreamsRegular';
   text-transform: uppercase;
   font-weight: normal;
 }
