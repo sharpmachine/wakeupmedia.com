@@ -1,0 +1,7 @@
+.feature-box p {
+font-weight: normal;
+}
+
+#contact-form input[type="submit"] {
+height: 39px;
+}

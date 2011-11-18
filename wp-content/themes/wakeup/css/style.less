@@ -30,12 +30,13 @@ html { min-height: 100%; }
 /*.......................................................the misc LESS mixins & variables*/
 
 .gradient(@start:#d3f1f4 , @stop:#79989c) {
-
+	background: @start;
    background: -webkit-gradient(linear, left 55, left bottom, from(@start), to(@stop));
    /*background: -webkit-linear-gradient(@start, @stop);*/
    background: -moz-linear-gradient(center top, @start 0%, @stop 100%);
    background: -moz-gradient(center top, @start 0%, @stop 100%);
-   /*background:  gradient(center top, @start 0%, @stop 100%);*/
+   background: -o-linear-gradient(@start 0%, @stop 100%);
+   background: gradient(@start 0%, @stop 100%);
 }
 
 .rounded-corners(@radius:10px)
@@ -51,9 +52,10 @@ html { min-height: 100%; }
 	background-image: -webkit-gradient(radial, @posx @posy, @circle, @posx @posy, contain, from(@colorstop), to(@colorstart)); /* old WebKit Syntax */
 	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
 	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
-	background-image: -moz-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
+	background-image: -moz-radial-gradient(@posx @posy, circle, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
 	background-image: -ms-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* IE10+ */
 	background-image: -o-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* Opera (13?) */
+	background-image: -o-radial-gradient(50% 50%, 70% 70%, rgb(75, 75, 200), rgb(0, 0, 75));
 	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
 }
 
@@ -63,7 +65,7 @@ html { min-height: 100%; }
 	background-image: -webkit-gradient(radial, @posx @posy, @circle, @posx @posy, contain, from(@colorstop), to(@colorstart)); /* old WebKit Syntax */
 	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
 	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
-	background-image: -moz-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
+	background-image: -moz-radial-gradient(@posx @posy, circle, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
 	background-image: -ms-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* IE10+ */
 	background-image: -o-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* Opera (13?) */
 	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
@@ -319,6 +321,11 @@ nav
 		font-size: 2em;
 		text-transform: uppercase;
 		text-shadow: 0px 0px 1px @wum-darkgrey;
+		
+		:active
+		{
+			color: @wum-blue;
+		}
 	}
 	
 	ul ul
@@ -352,10 +359,16 @@ nav
 			padding: 10px;
 			width: 160px;
 			height: auto;
+			
+			:active
+			{
+				color: @wum-blue;
+			}
 		}
 	}
 	
-	li:hover > a, ul ul :hover > a
+	li:hover > a, ul ul :hover > a,
+	li:active > a, ul ul :active > a
 	{
 		color: @wum-blue;
 	}
@@ -1264,7 +1277,7 @@ ul li a {
 	background-color: @wum-box;
 	padding: 12px 20px;
 	margin-bottom: 20px;
-	min-height: 132px;
+	height: 132px;
 	
 	h3
 	{
