@@ -48,7 +48,6 @@
 	<link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/screen.css" type="text/css" media="screen, projection">
     <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/print.css" type="text/css" media="print">
-    <!--<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/wp-style.css">-->
     <link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/style.css">
 	<!--[if lt IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie7.css" type="text/css" media="screen, projection"><![endif]-->
 	<!--[if IE 8]><link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/ie8.css" type="text/css" media="screen, projection"><![endif]-->
@@ -56,7 +55,6 @@
 	<!-- Uncomment for mobile browsers-->
 	<link rel="stylesheet" type="text/css" media="only screen and (max-width: 480px), only screen and (max-device-width: 480px)" href="<?php bloginfo('template_directory'); ?>/css/handheld.css" />
 
-	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 	
 	<script src="<?php bloginfo('template_directory'); ?>/js/modernizr-1.7.min.js"></script>
