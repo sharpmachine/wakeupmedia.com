@@ -817,9 +817,16 @@ footer.bottom-links {
   background-color: #dfdfdf;
   margin-bottom: -35px;
 }
-footer.bottom-links div {
-  width: 50%;
+footer.bottom-links .nav-previous {
   float: left;
+  width: 50%;
+  margin-bottom: -20px;
+}
+footer.bottom-links .nav-next {
+  float: right;
+  text-align: right;
+  width: 50%;
+  margin-bottom: -20px;
 }
 footer.bottom-links a {
   line-height: 30px;

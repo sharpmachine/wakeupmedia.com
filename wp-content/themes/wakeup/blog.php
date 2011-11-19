@@ -88,8 +88,8 @@ get_header(); ?>
 					</div>
 		
 						<?php endwhile; ?>
-	
 				</div><!-- .posts-col-2 -->
+				
 				<footer class="bottom-links">
 					<div class="nav-previous"><a href="<?php bloginfo('url'); ?>/author/debra/">See all posts by Debra</a></div>
 					<div class="nav-next tar"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">See all posts by Brigitte</a></div>
