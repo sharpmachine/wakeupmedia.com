@@ -65,7 +65,7 @@ get_header(); ?>
 			
 					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<h3 class="entry-title">
-							<h4><?php twentyten_posted_on_older_articles(); ?></h4>
+							<span><?php twentyten_posted_on_older_articles(); ?></span><br>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();  ?></a>
 						</h3>
 					</div>
@@ -83,7 +83,7 @@ get_header(); ?>
 			
 					<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 						<h3 class="entry-title">
-							<h4><?php twentyten_posted_on_older_articles(); ?></h4>
+							<span><?php twentyten_posted_on_older_articles(); ?></span><br>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title();  ?></a>
 						</h3>
 					</div>

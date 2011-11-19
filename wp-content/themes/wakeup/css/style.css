@@ -895,7 +895,19 @@ footer.bottom-links a {
   font-weight: 700;
   font-style: italic;
 }
-.old-posts h4 { margin-bottom: 0; }
+.old-posts span {
+  font-size: 19px;
+  font-weight: 700;
+  font-style: italic;
+}
+.old-posts h4 {
+  margin-bottom: 0;
+  line-height: 30px;
+}
+.old-posts span {
+  margin-bottom: 0;
+  line-height: 30px;
+}
 #author-description h2 { margin-bottom: 5px; }
 .mass-archive-pages .hentry {
   background-color: #dfdfdf;
