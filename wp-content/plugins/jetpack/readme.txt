@@ -3,7 +3,7 @@ Contributors: automattic, apeatling, beaulebens, hugobaeta, joen, mdawaffe, andy
 Tags: WordPress.com, statistics, stats, views, tweets, twitter, widget, gravatar, hovercards, profile, equations, latex, math, maths, youtube, shortcode, archives, audio, blip, bliptv, dailymotion, digg, flickr, googlevideo, google, googlemaps, kyte, kytetv, livevideo, redlasso, rockyou, rss, scribd, slide, slideshare, soundcloud, vimeo, shortlinks, wp.me, subscriptions
 Requires at least: 3.1
 Tested up to: 3.3
-Stable tag: 1.2
+Stable tag: 1.2.1
 
 Supercharge your WordPress site with powerful features previously only available to WordPress.com users.
 
@@ -75,6 +75,13 @@ Use [shortcodes](http://support.wordpress.com/shortcodes/) to embed your media. 
 5. Spelling and Grammar demo.
 
 == Changelog ==
+
+= 1.2.1 =
+* Bug Fix: Ensure Site Stats menu item is accessible.
+* Bug Fix: Fixed errors displayed during some upgrades.
+* Bug Fix: Fix inaccurate new modules "bubble" in menu for some upgrades.
+* Bug Fix: Fix VaultPress detection.
+* Bug Fix: Fix link to http://jetpack.me/faq/
 
 = 1.2 =
 * Enhancement: Add Subscriptions: Subscribe to site's posts and posts' comments.

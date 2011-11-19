@@ -5,7 +5,7 @@
  * Plugin URI: http://wordpress.org/extend/plugins/jetpack/
  * Description: Bring the power of the WordPress.com cloud to your self-hosted WordPress. Jetpack enables you to connect your blog to a WordPress.com account to use the powerful features normally only available to WordPress.com users.
  * Author: Automattic
- * Version: 1.2
+ * Version: 1.2.1
  * Author URI: http://jetpack.me
  * License: GPL2+
  * Text Domain: jetpack
@@ -17,7 +17,7 @@ define( 'JETPACK__API_VERSION', 1 );
 define( 'JETPACK__MINIMUM_WP_VERSION', '3.1' );
 defined( 'JETPACK_CLIENT__AUTH_LOCATION' ) or define( 'JETPACK_CLIENT__AUTH_LOCATION', 'header' );
 defined( 'JETPACK_CLIENT__HTTPS' ) or define( 'JETPACK_CLIENT__HTTPS', 'AUTO' );
-define( 'JETPACK__VERSION', '1.2' );
+define( 'JETPACK__VERSION', '1.2.1' );
 
 /*
 Options:
@@ -633,10 +633,15 @@ class Jetpack {
 			'deactivate'  => 'Deactivate',
 			'free'        => 'Free',
 		);
+
 		$file = Jetpack::get_module_path( Jetpack::get_module_slug( $module ) );
+		if ( !file_exists( $file ) )
+			return false;
+
 		$mod = get_file_data( $file, $headers );
 		if ( empty( $mod['name'] ) )
 			return false;
+
 		$mod['name'] = translate( $mod['name'], 'jetpack' );
 		$mod['description'] = translate( $mod['description'], 'jetpack' );
 		if ( empty( $mod['sort'] ) )
@@ -747,12 +752,18 @@ class Jetpack {
 				}
 				continue;
 			}
+
+			$file = Jetpack::get_module_path( $module );
+			if ( !file_exists( $file ) ) {
+				continue;
+			}
+
 			// we'll override this later if the plugin can be included without fatal error
 			wp_safe_redirect( Jetpack::admin_url() );
 			Jetpack::state( 'error', 'module_activation_failed' );
 			Jetpack::state( 'module', $module );
 			ob_start();
-			require Jetpack::get_module_path( $module );
+			require $file;
 			$active[] = $module;
 			$state = in_array( $module, $other_modules ) ? 'reactivated_modules' : 'activated_modules';
 			if ( $active_state = Jetpack::state( $state ) ) {
@@ -1086,6 +1097,8 @@ p {
 	function admin_menu() {
 		list( $jetpack_version ) = explode( ':', Jetpack::get_option( 'version' ) );
 		if (
+			$jetpack_version
+		&&
 			$jetpack_version != JETPACK__VERSION
 		&&
 			( $new_modules = Jetpack::get_default_modules( $jetpack_version, JETPACK__VERSION ) )
@@ -1130,7 +1143,7 @@ p {
 			'<p><strong>' . __( 'Jetpack Module Options', 'jetpack' ) . '</strong></p>' .
 			'<p>' . __( '<strong>To Activate/Deactivate a Module</strong> - Click on Learn More. An Activate or Deactivate button will now appear next to the Learn More button. Click the Activate/Deactivate button.', 'jetpack' ) . '</p>' .
 			'<p><strong>' . __( 'For more information:', 'jetpack' ) . '</strong></p>' .
-			'<p><a href="https://jetpack.me/faq/">' . __( 'Jetpack FAQ', 'jetpack' ) . '</a></p>' .
+			'<p><a href="http://jetpack.me/faq/">' . __( 'Jetpack FAQ', 'jetpack' ) . '</a></p>' .
 			'<p><a href="http://jetpack.me/support/">' . __( 'Jetpack Support', 'jetpack' ) . '</a></p>';
 	}
 
@@ -1674,7 +1687,7 @@ p {
 							<?php _e( 'Answer a short survey to let us know how we&#8217;re doing and what to add in the future.', 'jetpack' ); ?>
 						</div>
 						<div class="jp-survey-button-container">
-							<p class="submit"><?php printf( '<a id="jp-survey-button" class="button-primary" target="_blank" href="%1$s">%2$s</a>', 'http://jetpack.me/survey/', __( 'Take Survey', 'jetpack' ) ); ?></p>
+							<p class="submit"><?php printf( '<a id="jp-survey-button" class="button-primary" target="_blank" href="%1$s">%2$s</a>', 'http://jetpack.me/survey/?rel=' . JETPACK__VERSION, __( 'Take Survey', 'jetpack' ) ); ?></p>
 						</div>
 					</div>
 				</div>
@@ -1738,6 +1751,7 @@ p {
 			die( '-1' );
 		}
 ?>
+		<p><?php esc_html_e( 'This is sensitive information.  Please do not post your BLOG_TOKEN or USER_TOKEN publicly; they are like passwords.' ); ?></p>
 		<ul>
 		<?php
 		foreach ( array(
@@ -1752,6 +1766,8 @@ p {
 		?>
 			<li><?php echo esc_html( $label ); ?>: <code><?php echo esc_html( Jetpack::get_option( $option_name ) ); ?></code></li>
 		<?php endforeach; ?>
+			<li>PHP_VERSION: <code><?php echo esc_html( PHP_VERSION ); ?></code></li>
+			<li>WORDPRESS_VERSION: <code><?php echo esc_html( $GLOBALS['wp_version'] ); ?></code></li>
 		</ul>
 <?php
 		exit;
@@ -1804,8 +1820,20 @@ p {
 		}
 		unset( $avail_raw );
 		usort( $available, array( 'Jetpack', 'sort_modules' ) );
-		list( $jetpack_version, $jetpack_version_time ) = explode( ':', Jetpack::get_option( 'version' ) );
-		list( $jetpack_old_version ) = explode( ':', Jetpack::get_option( 'old_version' ) );
+		$jetpack_version = Jetpack::get_option( 'version' );
+		if ( $jetpack_version ) {
+			list( $jetpack_version, $jetpack_version_time ) = explode( ':', $jetpack_version );
+		} else {
+			$jetpack_version = 0;
+			$jetpack_version_time = 0;
+		}
+
+		$jetpack_old_version = Jetpack::get_option( 'old_version' );
+		if ( $jetpack_old_version ) {
+			list( $jetpack_old_version ) = explode( ':', $jetpack_old_version );
+		} else {
+			$jetpack_old_version = 0;
+		}
 		$now = time();
 
 		foreach ( (array) $available as $module_data ) {
