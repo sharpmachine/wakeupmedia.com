@@ -104,7 +104,7 @@
 							<?php endwhile; ?>
 				</div><!-- .videos -->
 	
-				<footer class="bottom-links">
+				<footer class="bottom-links tar">
 					<a href="http://www.youtube.com/user/wakeupmediatv">Watch more videos on our Youtube Channel</a>
 				</footer>
 				

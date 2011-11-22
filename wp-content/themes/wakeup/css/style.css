@@ -108,7 +108,16 @@ body.home #header h1#site-title {
 }
 body.home #header img.home-logo { margin-top: 60px; }
 nav {
-  background: #353630;
+  background: #000000;
+  background: #000000;
+  background-image: -webkit-gradient(radial, center center, 299px, center center, contain, from(#000000), to(#999999));
+  background-image: -webkit-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -webkit-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -moz-radial-gradient(center center, circle, #999999 -200%, #000000 100%);
+  background-image: -ms-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -o-radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
+  background-image: -o-radial-gradient(50% 50%, 70% 70%, #4b4bc8, #00004b);
+  background-image: radial-gradient(center center, 299px 100px, #999999 -200%, #000000 100%);
   display: block;
   float: left;
   width: 100%;
@@ -206,6 +215,14 @@ footer #footer {
   margin: 0 auto;
   padding: 75px 35px;
   color: #727272;
+  background: #000000;
+  background-image: -webkit-gradient(radial, top center, 325px, top center, contain, from(#000000), to(#999999));
+  background-image: -webkit-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -webkit-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -moz-radial-gradient(top center, circle, #999999 -100%, #000000 100%);
+  background-image: -ms-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: -o-radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
+  background-image: radial-gradient(top center, 325px 335px, #999999 -100%, #000000 100%);
 }
 footer #footer h1 {
   color: #727272;
