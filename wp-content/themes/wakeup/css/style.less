@@ -70,6 +70,17 @@ html { min-height: 100%; }
 	background-image: -o-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* Opera (13?) */
 	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
 }
+.footer-radial(@posx:top, @posy:center, @circle:500px, @contain:335px, @colorstart:#999999, @colorstartpercent:-200%, @colorstop:#000, @colorstoppercent:100%)
+{
+	background: @colorstop; /* fallback for non-supporting browsers */
+	background-image: -webkit-gradient(radial, @posx @posy, @circle, @posx @posy, contain, from(@colorstop), to(@colorstart)); /* old WebKit Syntax */
+	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
+	background-image: -webkit-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* New WebKit syntax */
+	background-image: -moz-radial-gradient(@posx @posy, circle, @colorstart @colorstartpercent, @colorstop @colorstoppercent);
+	background-image: -ms-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* IE10+ */
+	background-image: -o-radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* Opera (13?) */
+	background-image: radial-gradient(@posx @posy, @circle @contain, @colorstart @colorstartpercent, @colorstop @colorstoppercent); /* standard syntax */
+}
 
 .video-holder-radial(@posx:center, @posy:center, @circle:550px, @contain:335px, @colorstart:#999999, @colorstartpercent:-100%, @colorstop:#000, @colorstoppercent:100%)
 {
@@ -417,7 +428,7 @@ footer
 		margin: 0 auto;
 		padding: 75px 35px;
 		color: #727272;
-		.contact-form-radial;
+		.footer-radial;
 		
 		h1, h2, h3, h4, h5, h6
 		{

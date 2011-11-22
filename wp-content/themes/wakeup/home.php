@@ -13,7 +13,7 @@
 				
 				<?php endwhile; endif; ?>
 	
-				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-debra">Debra’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
+				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-debra">Debra’s</a> latest video.</h5>
 				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/debra/">Debra's Blog</a></h2>
 				<div class="feature-box">
 					<?php $featured_query = new WP_Query('author=3&showposts=1');
@@ -47,7 +47,7 @@
 					<iframe width="450" height="253" src="http://www.youtube.com/embed/<?php the_field('youtube_video_id'); ?>" frameborder="0" allowfullscreen></iframe>
 				
 				<?php endwhile; endif; ?>
-				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte">Brigitte’s</a> latest video on what it really means to be a whole hearted servant to people and God.</h5>
+				<h5><a href="<?php bloginfo('url'); ?>/1-on-1-with-brigitte">Brigitte’s</a> latest video.</h5>
 				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Brigitte's  Blog</a></h2>
 				<div class="feature-box">
 				<?php $featured_query = new WP_Query('author=2&showposts=1');
