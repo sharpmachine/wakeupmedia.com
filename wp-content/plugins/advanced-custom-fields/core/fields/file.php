@@ -21,7 +21,24 @@ class acf_File extends acf_Field
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('media_send_to_editor', array($this, 'media_send_to_editor'), 15, 2 );
+		add_filter('get_media_item_args', array($this, 'allow_img_insertion'));
    	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_print_scripts / admin_print_styles
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.1
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function allow_img_insertion($vars)
+	{
+	    $vars['send'] = true;
+	    return($vars);
+	}
 	
 	
 	/*--------------------------------------------------------------------------------------
@@ -68,40 +85,34 @@ class acf_File extends acf_Field
 		<script type="text/javascript">
 		
 		(function($){
-
-			$(document).ready(function(){
+			
+			$('#poststuff .acf_file_uploader .no_file .button').live('click', function(){
 				
+				// vars
+				var div = $(this).closest('.acf_file_uploader');
 				var post_id = $('input#post_ID').val();
 				
-				$('#poststuff .acf_file_uploader').each(function(){
+				// set global var
+				window.acf_div = div;
+					
+				// show the thickbox
+				tb_show('Add Image to field', 'media-upload.php?post_id=' + post_id + '&type=file&acf_type=file&TB_iframe=1');
 			
-					//console.log('file setup');
-					var div = $(this);
-			
-					div.find('p.no_file input.button').click(function(){
-						
-						// set global var
-						window.acf_div = div;
-						
-						// show the thickbox
-						tb_show('Add File to field', 'media-upload.php?post_id='+post_id+'&type=file&acf_type=file&TB_iframe=1');
-						
-						return false;
-					});
-					
-					
-					div.find('p.file input.button').unbind('click').click(function()
-					{
-						div.find('input.value').val('');
-						div.removeClass('active');
-					
-						return false;
-					});
+				return false;
+			});
 				
-				});
+			$('#poststuff .acf_file_uploader .file .button').live('click', function(){
 				
+				// vars
+				var div = $(this).closest('.acf_file_uploader');
+				
+				div.find('input.value').val('');
+				div.removeClass('active');
+				
+				return false;
 				
 			});
+				
 			
 		})(jQuery);
 		</script>

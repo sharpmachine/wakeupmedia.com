@@ -94,6 +94,13 @@ http://support.plugins.elliotcondon.com/categories/advanced-custom-fields/
 
 == Changelog ==
 
+= 3.0.1 =
+* Bug Fix - repeater + wysiwyg delete / add duplicate id error
+* Bug fix - repeater + file - add file not working
+* Bug Fix - image / file no longer need the post type to support "editor"
+* WYSIWYG - fixed broken upload images
+* misc updates to accommodate the soon to be released "Flexible Field"
+
 = 3.0.0 =
 * ACF doesn't use any custom tables anymore! All data is saved as post_meta!
 * Faster and more stable across different servers

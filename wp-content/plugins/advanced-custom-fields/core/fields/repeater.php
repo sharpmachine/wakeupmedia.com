@@ -63,15 +63,21 @@ class acf_Repeater extends acf_Field
 		(function($){
 			
 			
+			function uniqid()
+	        {
+	        	var newDate = new Date;
+	        	return newDate.getTime();
+	        }
+	        
 			/*----------------------------------------------------------------------
 			*
 			*	Update Order Numbers
 			*
 			*---------------------------------------------------------------------*/
 		
-			$.fn.update_order_numbers = function(){
-				
-				$(this).children('table').children('tbody').children('tr').each(function(i){
+			function update_order_numbers(div)
+			{
+				div.children('table').children('tbody').children('tr.row').each(function(i){
 					$(this).children('td.order').html(i+1);
 				});
 			
@@ -80,12 +86,10 @@ class acf_Repeater extends acf_Field
 			
 			/*----------------------------------------------------------------------
 			*
-			*	Sortable
+			*	Make Sortable
 			*
 			*---------------------------------------------------------------------*/
-			$.fn.make_sortable = function(){
-				
-				var r = $(this);
+			function make_sortable(div){
 				
 				var fixHelper = function(e, ui) {
 					ui.children().each(function() {
@@ -94,25 +98,12 @@ class acf_Repeater extends acf_Field
 					return ui;
 				};
 				
-				r.children('table').children('tbody').unbind('sortable').sortable({
+				div.children('table').children('tbody').unbind('sortable').sortable({
 					update: function(event, ui){
-						r.update_order_numbers();
-						//r.setup_wysiwyg();
-						//r.setup_relationship();
-						//r.setup_datepicker();
-						//r.setup_image();
-						//r.setup_file();
+						update_order_numbers(div);
 					},
 					handle: 'td.order',
 					helper: fixHelper,
-				    start: function(event, ui)
-				    {
-		
-				    },
-				    stop: function(event, ui)
-				    {
-				    	//ui.item.setup_wysiwyg();
-				    }
 				});
 			};
 			
@@ -121,115 +112,95 @@ class acf_Repeater extends acf_Field
 				
 				$('#poststuff .repeater').each(function(){
 				
-					var r = $(this);
-					var row_limit = parseInt(r.attr('data-row_limit'));
-					var row_count = r.children('table').children('tbody').children('tr.row').length;
+					var div = $(this);
+					var row_limit = parseInt(div.attr('data-row_limit'));
+					var row_count = div.children('table').children('tbody').children('tr.row').length;
 					
 					// has limit been reached?
-					if(row_count >= row_limit) r.find('#add_field').attr('disabled','true');
+					if(row_count >= row_limit) div.find('#add_field').attr('disabled','true');
 					
 					// sortable
 					if(row_limit > 1){
-						r.make_sortable();
+						make_sortable(div)
 					}
 					
 				});
+					
+			});
+			
+			// add field
+			$('#poststuff .repeater #add_field').live('click', function(){
 				
-		
-				// add field
-				$('#poststuff .repeater #add_field').live('click', function(){
-					
-					var r = $(this).closest('.repeater');
-					var row_limit = parseInt(r.attr('data-row_limit'));			
-					var row_count = r.children('table').children('tbody').children('tr.row').length;
-					
-					// row limit
-					if(row_count >= row_limit)
-					{
-						// reached row limit!
-						r.find('#add_field').attr('disabled','true');
-						return false;
-					}
-					
-					// create and add the new field
-					var new_field = r.children('table').children('tbody').children('tr.row_clone').clone(false);
-					new_field.attr('class', 'row');
-					r.children('table').children('tbody').append(new_field); 
-					
-					// update names
-					new_field.find('[name]').each(function(){
-					
-						var name = $(this).attr('name').replace('[999]','['+row_count+']');
-						$(this).attr('name', name);
-						$(this).attr('id', name);
-						
-					});
-					
-					// reset values
-					//if(!shift_is_down)
-					//{
-						//new_field.reset_values();
-					//}
-					
-					// setup sub fields
-					//new_field.setup_wysiwyg();
-					//new_field.setup_relationship();
-					//new_field.setup_datepicker();
-					//new_field.setup_image();
-					//new_field.setup_file();
-					
-					r.update_order_numbers();
-					
-					// there is now 1 more row
-					row_count ++;
-					
-					// disable the add field button if row limit is reached
-					if((row_count+1) >= row_limit)
-					{
-						r.find('#add_field').attr('disabled','true');
-					}
-					
+				var div = $(this).closest('.repeater');
+				var row_limit = parseInt(div.attr('data-row_limit'));			
+				var row_count = div.children('table').children('tbody').children('tr.row').length;
+				
+				// row limit
+				if(row_count >= row_limit)
+				{
+					// reached row limit!
+					div.find('#add_field').attr('disabled','true');
 					return false;
+				}
+				
+				// deactivate any wysiwygs
+				div.children('table').children('tbody').children('tr.row_clone').acf_deactivate_wysiwyg();
+			
+				// create and add the new field
+				var new_field = div.children('table').children('tbody').children('tr.row_clone').clone(false);
+				new_field.attr('class', 'row');
+				
+				// update names
+				var new_id = uniqid();
+				new_field.find('[name]').each(function(){
+				
+					var name = $(this).attr('name').replace('[999]','[' + new_id + ']');
+					$(this).attr('name', name);
+					$(this).attr('id', name);
 					
 				});
 				
+				// add row
+				div.children('table').children('tbody').append(new_field); 
 				
-				// remove field
-				$('#poststuff .repeater a.remove_field').die('click');
-				$('#poststuff .repeater a.remove_field').live('click', function(){
-					
-					var r = $(this).closest('.repeater');
-					var tr = $(this).closest('tr');
-					
-					tr.find('td').animate({'opacity':'0', 'height' : '0px'}, 300,function(){
-						tr.remove();
-						r.update_order_numbers();
-					});
-					
-					r.find('#add_field').removeAttr('disabled');
-					
-					return false;
-					
+				// activate wysiwyg
+				new_field.acf_activate_wysiwyg();
+			
+				update_order_numbers(div);
+				
+				// there is now 1 more row
+				row_count ++;
+				
+				// disable the add field button if row limit is reached
+				if((row_count+1) >= row_limit)
+				{
+					div.find('#add_field').attr('disabled','true');
+				}
+				
+				return false;
+				
+			});
+			
+			
+			// remove field
+			$('#poststuff .repeater a.remove_field').live('click', function(){
+				
+				var div = $(this).closest('.repeater');
+				var tr = $(this).closest('tr');
+				
+				tr.animate({'left' : '50px', 'opacity' : 0}, 250,function(){
+					tr.remove();
+					update_order_numbers(div);
 				});
-					
-					
-				// Update Order Numbers
-				$.fn.update_order_numbers = function(){
-					
-					$(this).children('table').children('tbody').children('tr.row').each(function(i){
-						$(this).children('td.order').html(i+1);
-					});
 				
-				};
+				div.find('#add_field').removeAttr('disabled');
+				
+				return false;
+				
 			});
 			
 		})(jQuery);
 		</script>
-		<style type="text/css">
-			.repeater tr.row_clone {
-				display: none;
-			}
-		</style>
 		<?php
 	}
 	

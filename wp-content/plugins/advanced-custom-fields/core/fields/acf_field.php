@@ -81,6 +81,22 @@ class acf_Field
 	
 	/*--------------------------------------------------------------------------------------
 	*
+	*	admin_head_field
+	*	- called on the acf edit page - used for adding script / styles to field options
+	*
+	*	@author Elliot Condon
+	*	@since 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function admin_head_field()
+	{
+		
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
 	*	admin_print_scripts / admin_print_styles
 	*
 	*	@author Elliot Condon

@@ -59,7 +59,7 @@ foreach($this->fields as $field)
 						</div>
 					</td>
 					<td class="field_name"><?php echo $field['name']; ?></td>
-					<td class="field_type"><?php echo $field['type']; ?></td>
+					<td class="field_type"><?php echo $fields_names[$field['type']]; ?></td>
 				</tr>
 			</table>
 		</div>

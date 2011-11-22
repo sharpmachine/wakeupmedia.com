@@ -114,7 +114,14 @@ function get_field($field_name, $post_id = false)
 
 function the_field($field_name, $post_id = false)
 {
-	echo get_field($field_name, $post_id);
+	$value = get_field($field_name, $post_id);
+	
+	if(is_array($value))
+	{
+		$value = @implode(', ',$value);
+	}
+	
+	echo $value;
 }
 
 
@@ -153,6 +160,11 @@ function the_repeater_field($field_name, $post_id = false)
 	reset_the_repeater_field();
 	return false;
 	
+}
+
+function the_flexible_field($field_name, $post_id = false)
+{
+	return the_repeater_field($field_name, $post_id);
 }
 
 
@@ -245,5 +257,32 @@ function acf_register_field($array)
 	return $array;
 }
 add_filter('acf_register_field', 'acf_register_field');
+
+
+
+/*--------------------------------------------------------------------------------------
+*
+*	get_sub_field
+*
+*	@author Elliot Condon
+*	@since 1.0.3
+* 
+*-------------------------------------------------------------------------------------*/
+
+function get_row_layout()
+{
+	
+	// vars
+	$field = $GLOBALS['acf_field'];
+	$i = $GLOBALS['acf_count'];
+	
+	// no value
+	if(!$field) return false;
+
+	if(!isset($field[$i]['acf_fc_layout'])) return false;
+	
+	return $field[$i]['acf_fc_layout'];
+}
+
 
 ?>

@@ -22,8 +22,25 @@ class acf_Image extends acf_Field
 		
 		add_action('admin_head-media-upload-popup', array($this, 'popup_head'));
 		add_filter('media_send_to_editor', array($this, 'media_send_to_editor'), 15, 2 );
+		add_filter('get_media_item_args', array($this, 'allow_img_insertion'));
    	}
    	
+   	
+   	/*--------------------------------------------------------------------------------------
+	*
+	*	admin_print_scripts / admin_print_styles
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.1
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function allow_img_insertion($vars)
+	{
+	    $vars['send'] = true;
+	    return($vars);
+	}
+	
    	
    	/*--------------------------------------------------------------------------------------
 	*
@@ -69,39 +86,35 @@ class acf_Image extends acf_Field
 		<script type="text/javascript">
 		
 		(function($){
-
-			$(document).ready(function(){
+		
+			$('#poststuff .acf_image_uploader .button').live('click', function(){
 				
-				$('#poststuff .acf_image_uploader .button').live('click', function(){
-					
-					// vars
-					var div = $(this).closest('.acf_image_uploader');
-					var post_id = $('input#post_ID').val();
-					var preview_size = div.attr('data-preview_size');
-					
-					// set global var
-					window.acf_div = div;
-						
-					// show the thickbox
-					tb_show('Add Image to field', 'media-upload.php?post_id=' + post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+				// vars
+				var div = $(this).closest('.acf_image_uploader');
+				var post_id = $('input#post_ID').val();
+				var preview_size = div.attr('data-preview_size');
 				
-					return false;
-				});
+				// set global var
+				window.acf_div = div;
 					
-				$('#poststuff .acf_image_uploader .remove_image').live('click', function(){
-					
-					// vars
-					var div = $(this).closest('.acf_image_uploader');
-					
-					div.find('input.value').val('');
-					div.removeClass('active');
-					
-					return false;
-					
-				});
+				// show the thickbox
+				tb_show('Add Image to field', 'media-upload.php?post_id=' + post_id + '&type=image&acf_type=image&acf_preview_size=' + preview_size + 'TB_iframe=1');
+			
+				return false;
+			});
+				
+			$('#poststuff .acf_image_uploader .remove_image').live('click', function(){
+				
+				// vars
+				var div = $(this).closest('.acf_image_uploader');
+				
+				div.find('input.value').val('');
+				div.removeClass('active');
+				
+				return false;
 				
 			});
-			
+				
 		})(jQuery);
 		</script>
 		<?php

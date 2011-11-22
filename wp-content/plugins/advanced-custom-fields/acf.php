@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://plugins.elliotcondon.com/advanced-custom-fields/
 Description: Customise your edit pages with an assortment of field types: Wysiwyg, Repeater, text, textarea, image, file, select, checkbox post type, page link and more! Hide unwanted metaboxes and assign to any edit page!
-Version: 3.0.0
+Version: 3.0.1
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -45,7 +45,7 @@ class Acf
 		$this->dir = plugins_url('',__FILE__);
 		$this->siteurl = get_bloginfo('url');
 		$this->wpadminurl = admin_url();
-		$this->version = '3.0.0';
+		$this->version = '3.0.1';
 		$this->upgrade_version = '3.0.0'; // this is the latest version which requires an upgrade
 		
 		
@@ -67,10 +67,14 @@ class Acf
 		add_action('admin_print_scripts', array($this, 'admin_print_scripts'));
 		add_action('admin_print_styles', array($this, 'admin_print_styles'));
 		add_action('wp_ajax_acf_upgrade', array($this, 'upgrade_ajax'));
+		
 		return true;
 	}
 	
 	
+	
+
+
 	/*--------------------------------------------------------------------------------------
 	*
 	*	setup_fields
@@ -303,6 +307,12 @@ class Acf
 				echo '<link rel="stylesheet" type="text/css" href="'.$this->dir.'/css/global.css" />';
 				echo '<link rel="stylesheet" type="text/css" href="'.$this->dir.'/css/fields.css" />';
 				
+				// fields admin_head
+				foreach($this->fields as $field)
+				{
+					$this->fields[$field->name]->admin_head_field();
+				}
+				
 				add_meta_box('acf_fields', 'Fields', array($this, 'meta_box_fields'), 'acf', 'normal', 'high');
 				add_meta_box('acf_location', 'Location </span><span class="description">- Add Fields to Edit Screens', array($this, 'meta_box_location'), 'acf', 'normal', 'high');
 				add_meta_box('acf_options', 'Options</span><span class="description">- Customise the edit page', array($this, 'meta_box_options'), 'acf', 'normal', 'high');
@@ -393,6 +403,7 @@ class Acf
 		// input meta boxes
 		if(in_array($GLOBALS['pagenow'], array('post.php', 'post-new.php')) && $GLOBALS['post_type'] != 'acf')
 		{
+			wp_preload_dialogs( array( 'plugins' => 'safari,inlinepopups,spellchecker,paste,wordpress,media,fullscreen,wpeditimage,wpgallery,tabfocus' ) );
 			?>
 			<script type="text/javascript">
 			(function($){
