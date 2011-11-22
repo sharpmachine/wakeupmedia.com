@@ -217,12 +217,12 @@ footer #footer {
   color: #727272;
   background: #000000;
   background-image: -webkit-gradient(radial, top center, 500px, top center, contain, from(#000000), to(#999999));
-  background-image: -webkit-radial-gradient(top center, 500px 335px, #999999 -200%, #000000 100%);
-  background-image: -webkit-radial-gradient(top center, 500px 335px, #999999 -200%, #000000 100%);
-  background-image: -moz-radial-gradient(top center, circle, #999999 -200%, #000000 100%);
-  background-image: -ms-radial-gradient(top center, 500px 335px, #999999 -200%, #000000 100%);
-  background-image: -o-radial-gradient(top center, 500px 335px, #999999 -200%, #000000 100%);
-  background-image: radial-gradient(top center, 500px 335px, #999999 -200%, #000000 100%);
+  background-image: -webkit-radial-gradient(top center, 500px 335px, #999999 -350%, #000000 100%);
+  background-image: -webkit-radial-gradient(top center, 500px 335px, #999999 -350%, #000000 100%);
+  background-image: -moz-radial-gradient(top center, circle, #999999 -350%, #000000 100%);
+  background-image: -ms-radial-gradient(top center, 500px 335px, #999999 -350%, #000000 100%);
+  background-image: -o-radial-gradient(top center, 500px 335px, #999999 -350%, #000000 100%);
+  background-image: radial-gradient(top center, 500px 335px, #999999 -350%, #000000 100%);
 }
 footer #footer h1 {
   color: #727272;
