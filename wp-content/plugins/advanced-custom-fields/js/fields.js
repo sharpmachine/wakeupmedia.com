@@ -258,7 +258,7 @@
 		
 		
 		// update field text when typing
-		$('.field_form tr.field_label input.label').live('keyup', function()
+		$('#acf_fields .field_form tr.field_label input.label').live('keyup', function()
 		{
 			var val = $(this).val();
 			var name = $(this).closest('.field').find('td.field_label strong a').first().html(val);
@@ -276,9 +276,18 @@
 		
 		
 		// sortable
-		$('.fields').sortable({
-			update: function(event, ui){update_order_numbers();},
-			handle: 'td.field_order'
+		$('#acf_fields td.field_order').live('mouseover', function(){
+			
+			var fields = $(this).closest('.fields');
+			
+			if(fields.hasClass('sortable')) return false;
+			
+			fields.addClass('sortable').sortable({
+				update: function(event, ui){
+					update_order_numbers();
+				},
+				handle: 'td.field_order'
+			});
 		});
 		
 	}
@@ -398,7 +407,7 @@
 	
 		
 		// add active to Settings Menu
-		$('#adminmenu #menu-settings').addClass('current');
+		$('#adminmenu #menu-settings').addClass('current wp-menu-open');
 		
 		// setup fields
 		setup_fields();

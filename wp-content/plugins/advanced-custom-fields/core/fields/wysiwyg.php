@@ -20,6 +20,8 @@ class acf_Wysiwyg extends acf_Field
     	$this->name = 'wysiwyg';
 		$this->title = __("Wysiwyg Editor",'acf');
 		
+		add_action('admin_head', 'wp_tiny_mce');
+		
    	}
    	
    	
@@ -75,6 +77,10 @@ class acf_Wysiwyg extends acf_Field
 		<script type="text/javascript">
 		(function($){
 			
+			// store wysiwyg buttons
+			$.acf_wysiwyg_buttons = {};
+			
+
 			$.fn.acf_deactivate_wysiwyg = function(){
 
 				$(this).find('.acf_wysiwyg textarea').each(function(){
@@ -93,66 +99,54 @@ class acf_Wysiwyg extends acf_Field
 				{
 					return false;
 				}
+	
 				
-				// vars
-				var orig_row_1 = tinyMCE.settings.theme_advanced_buttons1;
-				var orig_row_2 = tinyMCE.settings.theme_advanced_buttons2;
 				
+					
 				// add tinymce to all wysiwyg fields
 				$(this).find('.acf_wysiwyg textarea').each(function(){
 					
-					// if this is a repeater clone field, don't set it up!
-					//if(!$(this).closest('tr').hasClass('ignore_setup'))
-					//{
-						var toolbar = $(this).closest('.acf_wysiwyg').attr('data-toolbar');
-						
-						if(toolbar == 'basic')
-						{
-							tinyMCE.settings.theme_advanced_buttons1 = "bold,italic,formatselect,|,link,unlink,|,bullist,numlist,|,undo,redo";
-							tinyMCE.settings.theme_advanced_buttons2 = "";
-						}
-						else
-						{
-							// add images + code buttons
-							tinyMCE.settings.theme_advanced_buttons2 += ",code";
-						}
+					// reset buttons
+					tinyMCE.settings.theme_advanced_buttons1 = $.acf_wysiwyg_buttons.theme_advanced_buttons1;
+					tinyMCE.settings.theme_advanced_buttons2 = $.acf_wysiwyg_buttons.theme_advanced_buttons2;
+				
+					var toolbar = $(this).closest('.acf_wysiwyg').attr('data-toolbar');
+					
+					if(toolbar == 'basic')
+					{
+						tinyMCE.settings.theme_advanced_buttons1 = "bold,italic,formatselect,|,link,unlink,|,bullist,numlist,|,undo,redo";
+						tinyMCE.settings.theme_advanced_buttons2 = "";
+					}
+					else
+					{
+						// add images + code buttons
+						tinyMCE.settings.theme_advanced_buttons2 += ",code";
+					}
+					
 
-						tinyMCE.execCommand("mceRemoveControl", false, $(this).attr('id'));
-						tinyMCE.execCommand('mceAddControl', false, $(this).attr('id'));
-					//}
-					
-					// restor rows
-					tinyMCE.settings.theme_advanced_buttons1 = orig_row_1;
-					tinyMCE.settings.theme_advanced_buttons2 = orig_row_2;
-					
+					//console.log( $(this).attr('id') + ': before: ' + tinyMCE.settings.theme_advanced_buttons1);
+					//tinyMCE.execCommand("mceRemoveControl", false, $(this).attr('id'));
+					tinyMCE.execCommand('mceAddControl', false, $(this).attr('id'));
+
+
 				});
-				
-				
+
 				
 			};
 			
 			
-			$(document).ready(function(){
+			$(window).load(function(){
+				
+				// store variables
+				$.acf_wysiwyg_buttons.theme_advanced_buttons1 = tinyMCE.settings.theme_advanced_buttons1;
+				$.acf_wysiwyg_buttons.theme_advanced_buttons2 = tinyMCE.settings.theme_advanced_buttons2;
 				
 				$('#poststuff').acf_activate_wysiwyg();
-				
-				// create wysiwyg when you add a repeater row
-				/*$('.repeater #add_field').live('click', function(){
-					//alert('click');
-					
-					var repeater = $(this).closest('.repeater');
-					
-					// run after the repeater has added the row
-					setTimeout(function(){
-						repeater.children('table').children('tbody').children('tr:last-child').acf_setup_wysiwyg();
-					}, 1);
-					
-				});*/
 				
 			});
 			
 			// Sortable: Start
-			$('#poststuff .repeater > table > tbody').live( "sortstart", function(event, ui) {
+			$('#poststuff .repeater > table > tbody, #poststuff .acf_flexible_content > .values').live( "sortstart", function(event, ui) {
 				
 				$(ui.item).find('.acf_wysiwyg textarea').each(function(){
 					tinyMCE.execCommand("mceRemoveControl", false, $(this).attr('id'));
@@ -161,7 +155,7 @@ class acf_Wysiwyg extends acf_Field
 			});
 			
 			// Sortable: End
-			$('#poststuff .repeater > table > tbody').live( "sortstop", function(event, ui) {
+			$('#poststuff .repeater > table > tbody, #poststuff .acf_flexible_content > .values').live( "sortstop", function(event, ui) {
 				
 				$(ui.item).find('.acf_wysiwyg textarea').each(function(){
 					tinyMCE.execCommand("mceAddControl", false, $(this).attr('id'));

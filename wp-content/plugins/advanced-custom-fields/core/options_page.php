@@ -15,9 +15,6 @@ class Options_page
 
 	var $parent;
 	var $dir;
-	
-	var $menu_name;
-	var $menu_heading;
 	var $data;
 	
 	/*--------------------------------------------------------------------------------------
@@ -34,10 +31,6 @@ class Options_page
 		// vars
 		$this->parent = $parent;
 		$this->dir = $parent->dir;
-		
-		// Customize the Labels here 
-		$this->menu_name = __('acf_options','acf');
-		$this->menu_heading = __('Options','acf');
 		
 		// data for passing variables
 		$this->data = array();
@@ -65,18 +58,44 @@ class Options_page
 			return true;
 		}
 		
-		// add page
-		$options_page = add_menu_page($this->menu_heading, $this->menu_heading, 'edit_posts', 'acf-options',array($this, 'html'));
+		$parent_slug = 'acf-options';
+		$parent_title = __('Options','acf');
 		
+		// set parent slug
+		$custom = apply_filters('acf_register_options_page',array());
+		if(!empty($custom))
+		{	
+			$parent_slug = $custom[0]['slug'];
+			$parent_title = $custom[0]['title'];
+		}
+		
+		
+		// Parent
+		$parent_page = add_menu_page($parent_title, __('Options','acf'), 'edit_posts', $parent_slug, array($this, 'html'));	
 		
 		// some fields require js + css
-		add_action('admin_print_scripts-'.$options_page, array($this, 'admin_print_scripts'));
-		add_action('admin_print_styles-'.$options_page, array($this, 'admin_print_styles'));
-		
+		add_action('admin_print_scripts-'.$parent_page, array($this, 'admin_print_scripts'));
+		add_action('admin_print_styles-'.$parent_page, array($this, 'admin_print_styles'));
 		
 		// Add admin head
-		add_action('admin_head-'.$options_page, array($this,'admin_head'));
-		add_action('admin_footer-'.$options_page, array($this,'admin_footer'));
+		add_action('admin_head-'.$parent_page, array($this,'admin_head'));
+		add_action('admin_footer-'.$parent_page, array($this,'admin_footer'));
+		
+		if(!empty($custom))
+		{
+			foreach($custom as $c)
+			{
+				$child_page = add_submenu_page($parent_slug, $c['title'], $c['title'], 'edit_posts', $c['slug'], array($this, 'html'));
+				
+				// some fields require js + css
+				add_action('admin_print_scripts-'.$child_page, array($this, 'admin_print_scripts'));
+				add_action('admin_print_styles-'.$child_page, array($this, 'admin_print_styles'));
+				
+				// Add admin head
+				add_action('admin_head-'.$child_page, array($this,'admin_head'));
+				add_action('admin_footer-'.$child_page, array($this,'admin_footer'));
+			}
+		}
 
 	}
 	
@@ -145,7 +164,7 @@ class Options_page
 		}
 		
 		// create tyn mce instance for wysiwyg
-		wp_tiny_mce();
+		//add_action('admin_head', 'wp_tiny_mce');
 		
 		// add css + javascript
 		echo '<link rel="stylesheet" type="text/css" href="'.$this->parent->dir.'/css/global.css" />';
@@ -245,7 +264,7 @@ class Options_page
 		<div class="wrap no_move">
 		
 			<div class="icon32" id="icon-options-general"><br></div>
-			<h2><?php echo $this->menu_heading; ?></h2>
+			<h2><?php echo get_admin_page_title(); ?></h2>
 			
 			<?php if(isset($this->data['admin_message'])): ?>
 			<div id="message" class="updated"><p><?php echo $this->data['admin_message']; ?></p></div>

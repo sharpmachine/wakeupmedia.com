@@ -28,7 +28,7 @@ if($fields)
 		
 		echo '<div class="field">';
 						
-			echo '<label for="fields[' . $field['key'] . '][value]">' . $field['label'] . '</label>';
+			echo '<label class="field_label" for="fields[' . $field['key'] . '][value]">' . $field['label'] . '</label>';
 			if($field['instructions']) echo '<p class="instructions">' . $field['instructions'] . '</p>';
 			
 			$field['name'] = 'fields[' . $field['key'] . ']';

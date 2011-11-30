@@ -1,6 +1,12 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $this->dir ?>/css/acf.css" />
 <script type="text/javascript" src="<?php echo $this->dir ?>/js/acf.js" ></script>
-
+<?php
+/*--------------------------------------------------------------------------------------
+*
+*	Screen Meta Content
+*
+*-------------------------------------------------------------------------------------*/
+?>
 <div id="screen-meta-activate-acf-wrap" class="screen-meta-wrap hidden acf">
 	<div class="screen-meta-content">
 		
@@ -15,15 +21,9 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php
-				/*--------------------------------------------------------------------------------------
-				*
-				*	Repeater Field
-				*
-				*-------------------------------------------------------------------------------------*/
-				?>
+				<!-- Repeater Field -->
 				<tr>
-					<td><?php _e("Repeater",'acf'); ?></td>
+					<td><?php _e("Repeater Field",'acf'); ?></td>
 					<td><?php echo $this->is_field_unlocked('repeater') ? __("Active",'acf') : __("Inactive",'acf'); ?></td>
 					<td>
 						<form action="" method="post">
@@ -41,13 +41,7 @@
 						</form>
 					</td>
 				</tr>
-				<?php
-				/*--------------------------------------------------------------------------------------
-				*
-				*	Options Page
-				*
-				*-------------------------------------------------------------------------------------*/
-				?>
+				<!-- Options Page -->
 				<tr>
 					<td><?php _e("Options Page",'acf'); ?></td>
 					<td><?php echo $this->is_field_unlocked('options_page') ? __("Active",'acf') : __("Inactive",'acf'); ?></td>
@@ -71,10 +65,108 @@
 		</table>
 	</div>
 </div>
+<div id="screen-meta-export-acf-wrap" class="screen-meta-wrap hidden acf">
+	<div class="screen-meta-content">
+		
+		<form id="acf-screen-meta-form-1" method="post" action="<?php echo $this->dir; ?>/core/actions/export.php">
+		
+			<h5><?php _e("Export",'acf'); ?></h5>
+			<p><?php _e("ACF will create a .xml export file which is compatible with the native WP import plugin.",'acf'); ?></p>
+			
+			<table class="acf_activate widefat">
+			<thead>
+				<tr>
+					<th><?php _e("Select which ACF groups to export",'acf'); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+					<?php
+			
+					$acfs = get_pages(array(
+						'numberposts' 	=> 	-1,
+						'post_type'		=>	'acf',
+						'sort_column' => 'menu_order',
+						'order' => 'ASC',
+					));
+		
+					// blank array to hold acfs
+					$acf_posts = array();
+					
+					if($acfs)
+					{
+						foreach($acfs as $acf)
+						{
+							$acf_posts[$acf->ID] = $acf->post_title;
+						}
+					}
+					
+					$this->create_field(array(
+						'type'	=>	'select',
+						'name'	=>	'acf_posts',
+						'value'	=>	'',
+						'choices'	=>	$acf_posts,
+						'multiple'	=>	'1',
+					));
+					
+					?>
+						<input type="submit" class="button" name="acf_export" value="<?php _e("Export",'acf'); ?>" />
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</form>
+		
+		<form id="acf-screen-meta-form-2">
+			<h5><?php _e("Import",'acf'); ?></h5>
+			<p><?php _e("Have an ACF export file? Import it here. Please note that v2 and v3 .xml files are not compatible.",'acf'); ?></p>
+			
+			<table class="acf_activate widefat">
+			<thead>
+				<tr>
+					<th><?php _e("Import your .xml file",'acf'); ?></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<ol>
+							<li>Navigate to the <a href="<?php echo admin_url(); ?>import.php">Import Tool</a> and select WordPress</li>
+							<li>Install WP import plugin if prompted</li>
+							<li>Upload and import your exported .xml file</li>
+							<li>Select your user and ignore Import Attachments</li>
+							<li>That's it! Happy WordPressing</li>
+						</ol>
+					</td>
+				</tr>
+			</tbody>
+			</table>
+		</form>
+		
+		<div class="clear"></div>
+	</div>
+</div>
+<?php
+/*--------------------------------------------------------------------------------------
+*
+*	Screen Meta Toggle Tabs
+*
+*-------------------------------------------------------------------------------------*/
+?>
 <div id="screen-meta-activate-acf-link-wrap" class="hide-if-no-js screen-meta-toggle acf">
 	<a href="#screen-meta-activate-acf" id="screen-meta-activate-acf-link" class="show-settings"><?php _e("Unlock Fields",'acf'); ?></a>
 </div>
-
+<div id="screen-meta-export-acf-link-wrap" class="hide-if-no-js screen-meta-toggle acf">
+	<a href="#screen-meta-export-acf" id="screen-meta-export-acf-link" class="show-settings"><?php _e("Import / Export",'acf'); ?></a>
+</div>
+<?php
+/*--------------------------------------------------------------------------------------
+*
+*	Layout
+*
+*-------------------------------------------------------------------------------------*/
+?>
 <div class="acf_col_right hidden metabox-holder" id="poststuff" >
 
 	<div class="postbox">

@@ -95,6 +95,26 @@ class acf_Post_object extends acf_Field
 				));
 			}
 		
+			// filter by taxonomy
+			if(in_array('all', $field['taxonomy']))
+			{
+				// leave all posts
+			}
+			else
+			{
+				if($posts)
+				{
+					foreach($posts as $k => $post)
+					{
+						if(!$this->parent->in_taxonomy($post, $field['taxonomy']))
+						{
+							unset($posts[$k]);
+						}
+					}
+				}
+			}
+
+
 			// if posts, make a group for them
 			if($posts)
 			{
@@ -167,14 +187,13 @@ class acf_Post_object extends acf_Field
 		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : '';
 		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : '0';
 		$field['allow_null'] = isset($field['allow_null']) ? $field['allow_null'] : '0';
+		$field['taxonomy'] = isset($field['taxonomy']) ? $field['taxonomy'] : array('all');
 		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : '';
 		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : '';
 		?>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Post Type",'acf'); ?></label>
-				<p class="description"><?php _e("Filter posts by selecting a post type<br />
-				Tip: deselect all post types to show all post type's posts",'acf'); ?></p>
 			</td>
 			<td>
 				<?php 
@@ -189,6 +208,29 @@ class acf_Post_object extends acf_Field
 					'name'	=>	'fields['.$key.'][post_type]',
 					'value'	=>	$field['post_type'],
 					'choices'	=>	$post_types,
+					'multiple'	=>	'1',
+				));
+				?>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
+			</td>
+			<td>
+				<?php 
+				$choices = array(
+					'' => array(
+						'all' => '- All -'
+					)
+				);
+				$choices = array_merge($choices, $this->parent->get_taxonomies_for_select());
+				$this->parent->create_field(array(
+					'type'	=>	'select',
+					'name'	=>	'fields['.$key.'][taxonomy]',
+					'value'	=>	$field['taxonomy'],
+					'choices' => $choices,
+					'optgroup' => true,
 					'multiple'	=>	'1',
 				));
 				?>

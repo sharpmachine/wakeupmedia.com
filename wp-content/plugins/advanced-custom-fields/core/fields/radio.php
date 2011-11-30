@@ -79,6 +79,8 @@ class acf_Radio extends acf_Field
 	{	
 		// defaults
 		$field['layout'] = isset($field['layout']) ? $field['layout'] : 'vertical';
+		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
+
 		
 		// implode checkboxes so they work in a textarea
 		if(isset($field['choices']) && is_array($field['choices']))
@@ -112,6 +114,20 @@ class acf_Radio extends acf_Field
 			</td>
 			<td>
 				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Default Value",'acf'); ?></label>
+			</td>
+			<td>
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][default_value]',
+					'value'	=>	$field['default_value'],
+				));
+				?>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">

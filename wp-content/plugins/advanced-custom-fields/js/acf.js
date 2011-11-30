@@ -49,7 +49,7 @@
 		});
 		
 		// add active to Settings Menu
-		$('#adminmenu #menu-settings').addClass('current');
+		$('#adminmenu #menu-settings').addClass('current wp-menu-open');
 		
 				
 	});

@@ -43,6 +43,7 @@ class acf_Select extends acf_Field
 		$field['choices'] = isset($field['choices']) ? $field['choices'] : array();
 		$field['optgroup'] = isset($field['optgroup']) ? $field['optgroup'] : false;
 		
+		
 		// no choices
 		if(empty($field['choices']))
 		{
@@ -73,7 +74,8 @@ class acf_Select extends acf_Field
 			if($field['optgroup'])
 			{
 				// this select is grouped with optgroup
-				echo '<optgroup label="'.$key.'">';
+				if($key != '') echo '<optgroup label="'.$key.'">';
+				
 				if($value)
 				{
 					foreach($value as $id => $label)
@@ -95,7 +97,8 @@ class acf_Select extends acf_Field
 						echo '<option value="'.$id.'" '.$selected.'>'.$label.'</option>';
 					}
 				}
-				echo '</optgroup>';
+				
+				if($key != '') echo '</optgroup>';
 			}
 			else
 			{
@@ -139,6 +142,7 @@ class acf_Select extends acf_Field
 		// defaults
 		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : '0';
 		$field['allow_null'] = isset($field['allow_null']) ? $field['allow_null'] : '0';
+		$field['default_value'] = isset($field['default_value']) ? $field['default_value'] : '';
 		
 		// implode selects so they work in a textarea
 		if(isset($field['choices']) && is_array($field['choices']))
@@ -170,6 +174,20 @@ class acf_Select extends acf_Field
 			</td>
 			<td>
 				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Default Value",'acf'); ?></label>
+			</td>
+			<td>
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][default_value]',
+					'value'	=>	$field['default_value'],
+				));
+				?>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">

@@ -18,13 +18,17 @@
 	border-bottom: none;
 }
 
-#poststuff .acf_postbox .field > label {
+#poststuff .acf_postbox label.field_label {
 	display: block;
 	color: #21759B;
     font-size: 12px;
     font-weight: bold;
-    padding: 0 0 8px;
+    padding: 20px 0 8px;
     text-shadow: 0 1px 0 #FFFFFF;
+}
+
+#poststuff .acf_postbox label.field_label:first-child {
+	padding-top: 0;
 }
 
 #poststuff .acf_postbox p.instructions {
@@ -198,15 +202,6 @@
 }
 
 
-.repeater > table.row_layout > tbody > tr > td > label {
-	display: block;
-	color: #21759B;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 20px 0 8px;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-
 .repeater > table.row_layout > tbody > tr > td > label:first-child {
 	padding-top: 0;
 }
@@ -225,7 +220,7 @@ a.remove_field:hover {
 
 .repeater table tr td.order,
 .repeater table tr th.order{
-	width: 20px;
+	width: 16px;
 	text-align: center;
 	vertical-align: middle;
 	color: #aaa;
@@ -508,7 +503,7 @@ ul.checkbox_list {
 
 .acf_flexible_content table tr td.order,
 .acf_flexible_content table tr th.order{
-	width: 20px;
+	width: 16px;
 	text-align: center;
 	vertical-align: middle;
 	color: #aaa;
@@ -589,6 +584,7 @@ ul.checkbox_list {
 	border: 1px solid transparent;
 	border-bottom: 1px solid #EDEDED;
 	text-decoration: none;
+	min-width: 70px;
 }
 
 .acf_popup ul li:first-child a {
@@ -600,13 +596,23 @@ ul.checkbox_list {
 	border-bottom-color: transparent;
 }
 
+.acf_popup ul li:only-child a {
+	border-radius: 5px 5px 5px 5px;
+	border-bottom-color: transparent;
+}
 
 .acf_popup ul li a:hover {
-	background: url("../images/backgrounds.png") repeat-x scroll 0 0 #6E6E6E;
+	background: #EAF2FA;
+
+    color: #333 !important;
+}
+
+/*.acf_popup ul li a:hover {
+	background: #EAF2FA url("../images/backgrounds.png") repeat-x scroll 0 0 #6E6E6E;
     border: 1px solid #565656 !important;
     color: #FFFFFF;
     text-shadow: 0 1px 0 #000000;
-}
+}*/
 
 .acf_flexible_content .no_value_message {
 	padding: 19px;

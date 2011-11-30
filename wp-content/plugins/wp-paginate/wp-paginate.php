@@ -4,9 +4,9 @@ Plugin Name: WP-Paginate
 Plugin URI: http://www.ericmmartin.com/projects/wp-paginate/
 Description: A simple and flexible pagination plugin for WordPress posts and comments.
 Author: Eric Martin
-Version: 1.2.3
+Version: 1.2.4
 Author URI: http://www.ericmmartin.com
-Revision: $Id: wp-paginate.php 358882 2011-03-11 18:39:08Z emartin24 $
+Revision: $Id: wp-paginate.php 467949 2011-11-26 20:03:29Z emartin24 $
 */
 
 /*  Copyright 2011 Eric Martin (eric@ericmmartin.com)
@@ -43,7 +43,7 @@ if (!class_exists('WPPaginate')) {
 		/**
 		 * @var string The plugin version
 		 */
-		var $version = '1.2.3';
+		var $version = '1.2.4';
 
 		/**
 		 * @var string The options string name for this plugin
@@ -86,7 +86,7 @@ if (!class_exists('WPPaginate')) {
 			load_plugin_textdomain($this->localizationDomain, false, "$name/I18n/");
 
 			//"Constants" setup
-			$this->pluginurl = WP_PLUGIN_URL . "/$name/";
+			$this->pluginurl = plugins_url($name) . "/";
 			$this->pluginpath = WP_PLUGIN_DIR . "/$name/";
 
 			//Initialize the options
@@ -126,14 +126,14 @@ if (!class_exists('WPPaginate')) {
 			}
 
 			$prevlink = ($this->type === 'posts')
-				? esc_url(get_pagenum_link($page - 1)) 
+				? esc_url(get_pagenum_link($page - 1))
 				: get_comments_pagenum_link($page - 1);
 			$nextlink = ($this->type === 'posts')
-				? esc_url(get_pagenum_link($page + 1)) 
+				? esc_url(get_pagenum_link($page + 1))
 				: get_comments_pagenum_link($page + 1);
 
 			$output = stripslashes($before);
-			if ($pages > 1) {	
+			if ($pages > 1) {
 				$output .= sprintf('<ol class="wp-paginate%s">', ($this->type === 'posts') ? '' : ' wp-paginate-comments');
 				$output .= sprintf('<li><span class="title">%s</span></li>', stripslashes($title));
 				$ellipsis = "<li><span class='gap'>...</span></li>";
@@ -356,7 +356,7 @@ if (!class_exists('WPPaginate')) {
 			<th scope="row"><?php _e('Page Anchors:', $this->localizationDomain); ?></th>
 			<td>
 				<select name="anchor" id="anchor">
-				<?php for ($i=1; $i<=10; $i++) : ?>
+				<?php for ($i=0; $i<=10; $i++) : ?>
 					<option value="<?php echo $i; ?>" <?php echo ($i == $this->options['anchor']) ? "selected='selected'" : ""; ?>><?php echo $i; ?></option>
 				<?php endfor; ?>
 				</select>
@@ -412,6 +412,7 @@ if (class_exists('WPPaginate')) {
  */
 function wp_paginate($args = false) {
 	global $wp_paginate;
+	$wp_paginate->type = 'posts';
 	return $wp_paginate->paginate($args);
 }
 
@@ -425,7 +426,7 @@ function wp_paginate_comments($args = false) {
 }
 
 /*
- * The format of this plugin is based on the following plugin template: 
+ * The format of this plugin is based on the following plugin template:
  * http://pressography.com/plugins/wordpress-plugin-template/
  */
 ?>

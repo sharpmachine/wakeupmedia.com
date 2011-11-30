@@ -275,7 +275,7 @@ class acf_Repeater extends acf_Field
 					<?php if($layout == 'table'): ?>
 					<td>
 					<?php else: ?>
-					<label><?php echo $sub_field['label']; ?></label>
+					<label class="field_label"><?php echo $sub_field['label']; ?></label>
 					<?php endif; ?>	
 						
 						<?php 

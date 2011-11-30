@@ -260,50 +260,17 @@ if(empty($location['rules']))
 							</div>
 							<div rel="options_page">
 								<?php 
-								
-								$this->create_field(array(
-									'type'	=>	'select',
-									'name'	=>	'location[rules]['.$k.'][value]',
-									'value'	=>	$rule['value'],
-									'choices' => array(
-										'Options' => 'Options', 
-									),
-								));
-								
-								?>
-							</div>
-							<div rel="taxonomy">
-							
-								<?php 
+								$choices = array(
+									'Options' => 'Options', 
+								);
 									
-								$post_types = get_post_types();
-								
-								//unset($post_types['attachment']);
-								//unset($post_types['nav_menu_item']);
-								//unset($post_types['revision']);
-								//unset($post_types['acf']);
-								
-								$choices = array();
-								
-								if($post_types)
-								{
-									foreach($post_types as $post_type)
+								$custom = apply_filters('acf_register_options_page',array());
+								if(!empty($custom))
+								{	
+									$choices = array();
+									foreach($custom as $c)
 									{
-										$taxonomies = get_object_taxonomies($post_type);
-										if($taxonomies)
-										{
-											foreach($taxonomies as $taxonomy)
-											{
-												$terms = get_terms($taxonomy, array('hide_empty' => false));
-												if($terms)
-												{
-													foreach($terms as $term)
-													{
-														$choices[$post_type . ': ' . $taxonomy][$term->term_id] = $term->name; 
-													}
-												}
-											}
-										}
+										$choices[$c['title']] = $c['title'];
 									}
 								}
 								
@@ -312,6 +279,19 @@ if(empty($location['rules']))
 									'name'	=>	'location[rules]['.$k.'][value]',
 									'value'	=>	$rule['value'],
 									'choices' => $choices,
+								));
+								
+								?>
+							</div>
+							<div rel="taxonomy">
+							
+								<?php 
+
+								$this->create_field(array(
+									'type'	=>	'select',
+									'name'	=>	'location[rules]['.$k.'][value]',
+									'value'	=>	$rule['value'],
+									'choices' => $this->get_taxonomies_for_select(),
 									'optgroup' => true,
 								));
 

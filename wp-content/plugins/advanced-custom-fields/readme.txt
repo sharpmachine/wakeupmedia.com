@@ -94,6 +94,14 @@ http://support.plugins.elliotcondon.com/categories/advanced-custom-fields/
 
 == Changelog ==
 
+= 3.0.2 =
+* New Feature: Added Export tab to export a WP native .xml file
+* New Option: Relationship / Post type - filter by taxonomy
+* New Option: default values for checkbox, select and radio
+* New Function: register_options_page - add custom options pages (Requires the option page addon)
+* Bug fix: WYSIWYG + repeater button issues
+* Bug fix: general house keeping
+
 = 3.0.1 =
 * Bug Fix - repeater + wysiwyg delete / add duplicate id error
 * Bug fix - repeater + file - add file not working

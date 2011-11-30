@@ -38,6 +38,10 @@ if(isset($_POST['acf_field_deactivate']))
 	{
 		$message = "<p>Options page deactivated</p>";
 	}
+	elseif($field == "flexible_content")
+	{
+		$message = "<p>Flexible Content field deactivated</p>";
+	}
 	
 	// show message on page
 	$this->admin_message($message);
@@ -67,6 +71,10 @@ if(isset($_POST['acf_field_activate']) && isset($_POST['key']))
 		{
 			$message = "<p>Options page activated</p>";
 		}
+		elseif($field == "flexible_content")
+	{
+		$message = "<p>Flexible Content field activated</p>";
+	}
 		
 		$this->admin_message($message);
 	}

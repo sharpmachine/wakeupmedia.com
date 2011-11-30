@@ -262,6 +262,35 @@ add_filter('acf_register_field', 'acf_register_field');
 
 /*--------------------------------------------------------------------------------------
 *
+*	register_options_page
+*
+*	@author Elliot Condon
+*	@since 3.0.0
+* 
+*-------------------------------------------------------------------------------------*/
+
+$GLOBALS['acf_register_options_page'] = array();
+
+function register_options_page($title = "")
+{
+	$GLOBALS['acf_register_options_page'][] =  array(
+		'title'	=> $title,
+		'slug' => 'options-' . sanitize_title_with_dashes( $title ),
+	);
+}
+
+function acf_register_options_page($array)
+{
+	$array = array_merge($array, $GLOBALS['acf_register_options_page']);
+	
+	return $array;
+}
+add_filter('acf_register_options_page', 'acf_register_options_page');
+
+
+
+/*--------------------------------------------------------------------------------------
+*
 *	get_sub_field
 *
 *	@author Elliot Condon

@@ -261,9 +261,10 @@ class acf_Relationship extends acf_Field
 
 		$field['max'] = isset($field['max']) ? $field['max'] : '-1';
 		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : false;
+		$field['taxonomy'] = isset($field['taxonomy']) ? $field['taxonomy'] : array('all');
 		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : false;
 		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : false;
-		
+	
 		if(!$field['post_type'] || !is_array($field['post_type']) || $field['post_type'][0] == "")
 		{
 			$field['post_type'] = get_post_types(array('public' => true));
@@ -284,6 +285,25 @@ class acf_Relationship extends acf_Field
 			//'meta_value'	=>	$field['meta_value'],
 		));
 		
+		// filter by taxonomy
+		if(in_array('all', $field['taxonomy']))
+		{
+			// leave all posts
+		}
+		else
+		{
+			if($posts)
+			{
+				foreach($posts as $k => $post)
+				{
+					if(!$this->parent->in_taxonomy($post, $field['taxonomy']))
+					{
+						unset($posts[$k]);
+					}
+				}
+			}
+		}
+		
 		$values_array = array();
 		if($field['value'] != "")
 		{
@@ -295,8 +315,9 @@ class acf_Relationship extends acf_Field
 				
 				$values_array[] = $p;
 			}
-			
 		}
+		
+		
 		
 		
 		
@@ -387,18 +408,17 @@ class acf_Relationship extends acf_Field
 		// defaults
 		$field['post_type'] = isset($field['post_type']) ? $field['post_type'] : '';
 		$field['max'] = isset($field['max']) ? $field['max'] : '-1';
+		$field['taxonomy'] = isset($field['taxonomy']) ? $field['taxonomy'] : array('all');
 		//$field['meta_key'] = isset($field['meta_key']) ? $field['meta_key'] : '';
 		//$field['meta_value'] = isset($field['meta_value']) ? $field['meta_value'] : '';
 		?>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Post Type",'acf'); ?></label>
-				<p class="description"><?php _e("Filter posts by selecting a post type<br />
-				Tip: deselect all post types to show all post type's posts",'acf'); ?></p>
 			</td>
 			<td>
 				<?php 
-				$post_types = array('' => '-All-');
+				$post_types = array('' => '- All -');
 				
 				foreach (get_post_types(array('public' => true)) as $post_type ) {
 				  $post_types[$post_type] = $post_type;
@@ -443,6 +463,29 @@ class acf_Relationship extends acf_Field
 		</tr>*/ ?>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
+				<label><?php _e("Filter from Taxonomy",'acf'); ?></label>
+			</td>
+			<td>
+				<?php 
+				$choices = array(
+					'' => array(
+						'all' => '- All -'
+					)
+				);
+				$choices = array_merge($choices, $this->parent->get_taxonomies_for_select());
+				$this->parent->create_field(array(
+					'type'	=>	'select',
+					'name'	=>	'fields['.$key.'][taxonomy]',
+					'value'	=>	$field['taxonomy'],
+					'choices' => $choices,
+					'optgroup' => true,
+					'multiple'	=>	'1',
+				));
+				?>
+			</td>
+		</tr>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
 				<label><?php _e("Maximum posts",'acf'); ?></label>
 				<p class="description"><?php _e("Set to -1 for inifinit",'acf'); ?></p>
 			</td>
@@ -456,6 +499,7 @@ class acf_Relationship extends acf_Field
 				?>
 			</td>
 		</tr>
+		
 		
 
 		<?php

@@ -150,3 +150,22 @@ table.acf_activate input[type="submit"] {
 	display: none;
 }
 
+/*--------------------------------------------------------------------------------------------
+	Export
+--------------------------------------------------------------------------------------------*/
+
+#acf-screen-meta-form-1 {
+	float: left;
+	width: 48%;
+}
+
+#acf-screen-meta-form-1 select {
+	width: 99%;
+	height: 80px;
+	margin-bottom: 10px;
+}
+
+#acf-screen-meta-form-2 {
+	float: right;
+	width: 48%;
+}

@@ -66,7 +66,7 @@ foreach($this->fields as $field)
 		<div class="field_form_mask">
 			<div class="field_form">
 				
-				<table class="acf_input widefat">
+				<table class="acf_input widefat acf_field_form_table">
 					<tbody>
 						<tr class="field_label">
 							<td class="label">

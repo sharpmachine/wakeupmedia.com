@@ -3,7 +3,7 @@
 Plugin Name: Advanced Custom Fields
 Plugin URI: http://plugins.elliotcondon.com/advanced-custom-fields/
 Description: Customise your edit pages with an assortment of field types: Wysiwyg, Repeater, text, textarea, image, file, select, checkbox post type, page link and more! Hide unwanted metaboxes and assign to any edit page!
-Version: 3.0.1
+Version: 3.0.2
 Author: Elliot Condon
 Author URI: http://www.elliotcondon.com/
 License: GPL
@@ -45,7 +45,7 @@ class Acf
 		$this->dir = plugins_url('',__FILE__);
 		$this->siteurl = get_bloginfo('url');
 		$this->wpadminurl = admin_url();
-		$this->version = '3.0.1';
+		$this->version = '3.0.2';
 		$this->upgrade_version = '3.0.0'; // this is the latest version which requires an upgrade
 		
 		
@@ -124,14 +124,13 @@ class Acf
 		$return['date_picker'] = new acf_Date_picker($this);
 		$return['color_picker'] = new acf_Color_picker($this);
 		
-		// hook to load in third party fields
 		if($this->is_field_unlocked('repeater'))
 		{
 			include_once('core/fields/repeater.php');
 			$return['repeater'] = new acf_Repeater($this);
 		}
 		
-		// custom fields
+		// hook to load in third party fields
 		$custom = apply_filters('acf_register_field',array());
 		
 		if(!empty($custom))
@@ -293,7 +292,7 @@ class Acf
 		// vars
 		global $post;
 		
-		// hide upgrade page fro nav
+		// hide upgrade page from nav
 		echo '<style type="text/css"> #menu-settings a[href="options-general.php?page=acf-upgrade"]{ display:none; }</style>';
 		
 		
@@ -307,12 +306,6 @@ class Acf
 				echo '<link rel="stylesheet" type="text/css" href="'.$this->dir.'/css/global.css" />';
 				echo '<link rel="stylesheet" type="text/css" href="'.$this->dir.'/css/fields.css" />';
 				
-				// fields admin_head
-				foreach($this->fields as $field)
-				{
-					$this->fields[$field->name]->admin_head_field();
-				}
-				
 				add_meta_box('acf_fields', 'Fields', array($this, 'meta_box_fields'), 'acf', 'normal', 'high');
 				add_meta_box('acf_location', 'Location </span><span class="description">- Add Fields to Edit Screens', array($this, 'meta_box_location'), 'acf', 'normal', 'high');
 				add_meta_box('acf_options', 'Options</span><span class="description">- Customise the edit page', array($this, 'meta_box_options'), 'acf', 'normal', 'high');
@@ -320,9 +313,6 @@ class Acf
 			}
 			else
 			{
-				
-				// create tyn mce instance for wysiwyg
-				wp_tiny_mce();
 		
 				// find post type and add wysiwyg support
 				$post_type = get_post_type($post);
@@ -1323,7 +1313,6 @@ class Acf
 		    
 		    // Options Page
 		    case "options_page":
-		        
 		
 		        if($rule['operator'] == "==")
 		        {
@@ -1453,6 +1442,9 @@ class Acf
 		    case 'options_page':
 		        if(md5($this->get_license_key($field_name)) == "1fc8b993548891dc2b9a63ac057935d8"){ return true; }else{ return false; }
 		        break;
+		    case 'flexible_content':
+		    	if(md5($this->get_license_key($field_name)) == "d067e06c2b4b32b1c1f5b6f00e0d61d6"){ return true; }else{ return false; }
+		    	break;
 	    }
 	}
 	
@@ -1492,7 +1484,97 @@ class Acf
 		add_action('admin_notices', 'my_admin_notice');
 	}
 	
-
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_taxonomies_for_select
+	*
+	*---------------------------------------------------------------------------------------
+	*
+	*	returns a multidimentional array of taxonomies grouped by the post type / taxonomy
+	*
+	*	@author Elliot Condon
+	*	@since 3.0.2
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_taxonomies_for_select()
+	{
+		$post_types = get_post_types();
+		$choices = array();
+		
+		if($post_types)
+		{
+			foreach($post_types as $post_type)
+			{
+				$post_type_object = get_post_type_object($post_type);
+				$taxonomies = get_object_taxonomies($post_type);
+				if($taxonomies)
+				{
+					foreach($taxonomies as $taxonomy)
+					{
+						$terms = get_terms($taxonomy, array('hide_empty' => false));
+						if($terms)
+						{
+							foreach($terms as $term)
+							{
+								$choices[$post_type_object->label . ': ' . $taxonomy][$term->term_id] = $term->name; 
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return $choices;
+	}
+	
+	
+	function in_taxonomy($post, $ids)
+	{
+		$terms = array();
+		
+        $taxonomies = get_object_taxonomies($post->post_type);
+    	if($taxonomies)
+    	{
+        	foreach($taxonomies as $tax)
+			{
+				$all_terms = get_the_terms($post->ID, $tax);
+				if($all_terms)
+				{
+					foreach($all_terms as $all_term)
+					{
+						$terms[] = $all_term->term_id;
+					}
+				}
+			}
+		}
+        
+        if($terms)
+		{
+			if(is_array($ids))
+			{
+				foreach($ids as $id)
+				{
+					if(in_array($id, $terms))
+					{
+						return true; 
+					}
+				}
+			}
+			else
+			{
+				if(in_array($ids, $terms))
+				{
+					return true; 
+				}
+			}
+		}
+        	
+        return false;
+        	
+	}
 	
 }
 ?>
