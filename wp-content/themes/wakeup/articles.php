@@ -34,7 +34,7 @@ get_header(); ?>
 			
 			<div class="posts-col-2 last">
 
-			<?php $featured_query = new WP_Query('author=2&showposts=4&post_type=article');
+			<?php $featured_query = new WP_Query('author=5&showposts=4&post_type=article');
 			while ($featured_query->have_posts()) : $featured_query->the_post();
 			$do_not_duplicate[] = $post->ID 
 			 ?>
@@ -75,7 +75,7 @@ get_header(); ?>
 
 				<div class="posts-col-2 last old-posts">
 					
-					<?php query_posts('author=2&showposts=10&post_type=article'); ?>
+					<?php query_posts('author=5&showposts=10&post_type=article'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);

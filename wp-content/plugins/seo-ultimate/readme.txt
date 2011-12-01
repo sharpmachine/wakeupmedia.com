@@ -3,7 +3,7 @@ Contributors: SEO Design Solutions, JohnLamansky
 Tags: seo, SEO Ultimate, suite, google, yahoo, bing, search engines, admin, post, page, custom post types, categories, tags, terms, custom taxonomies, base, title, title tag, wp_title, meta, robots, noindex, nofollow, canonical, HTTP headers, 404, robots.txt, htaccess, slugs, url, anchor, more, link, excerpt, permalink, links, autolinks, code, footer, settings, redirect, 301, 302, 307, modules, uninstallable, reinstallable, downgradable, import, export, CSV, affiliate
 Requires at least: 3.2
 Tested up to: 3.2
-Stable tag: 6.9.7
+Stable tag: 6.9.8
 
 This all-in-one SEO plugin gives you control over title tags, noindex, meta tags, slugs, canonical, autolinks, 404 errors, rich snippets, and more.
 
@@ -264,6 +264,9 @@ Frequently asked questions, settings help, and troubleshooting tips for SEO Ulti
 
 
 == Changelog ==
+
+= Version 6.9.8 (December 1, 2011) =
+* Bugfix: Title Tag Rewriter now applies the Pagination Title Format to custom category/tag/taxonomy title tags
 
 = Version 6.9.7 (October 28, 2011) =
 * Bugfix: Fixed errors that appeared in Deeplink Juggernaut CSV exports

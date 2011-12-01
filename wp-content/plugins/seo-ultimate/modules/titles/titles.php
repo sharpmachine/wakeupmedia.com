@@ -59,7 +59,7 @@ class SU_Titles extends SU_Module {
 	}
 	
 	function get_default_settings() {
-	
+		
 		//We internationalize even non-text formats (like "{post} | {blog}") to allow RTL languages to switch the order of the variables
 		return array(
 			  'title_home' => __('{blog}', 'seo-ultimate')
@@ -156,7 +156,7 @@ class SU_Titles extends SU_Module {
 		if (is_category() || is_tag() || is_tax()) {
 			$tax_titles = $this->get_setting('taxonomy_titles');
 			if ($tax_title = $tax_titles[$wp_query->get_queried_object_id()])
-				return htmlspecialchars($tax_title);
+				return htmlspecialchars($this->get_title_paged($tax_title));
 		}
 		
 		//Get format

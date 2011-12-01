@@ -50,7 +50,7 @@
 				<h5><a href="<?php bloginfo('url'); ?>/videos">Brigitte’s</a> latest video.</h5>
 				<h2 class="no-mb"><a href="<?php bloginfo('url'); ?>/author/bridgitte/">Brigitte's  Blog</a></h2>
 				<div class="feature-box">
-				<?php $featured_query = new WP_Query('author=2&showposts=1');
+				<?php $featured_query = new WP_Query('author=5&showposts=1');
 					while ($featured_query->have_posts()) : $featured_query->the_post();
 					$do_not_duplicate[] = $post->ID 
 					 ?>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="older-entries">
 					<h3>Recent Entries...</h3>
-					<?php query_posts('author=2&showposts=4'); ?>
+					<?php query_posts('author=5&showposts=4'); ?>
 					<?php while (have_posts()) : the_post();
 					if (in_array ($post->ID, $do_not_duplicate)) continue;
 					update_post_caches($post);
