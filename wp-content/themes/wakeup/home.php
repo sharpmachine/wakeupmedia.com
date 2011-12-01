@@ -21,7 +21,7 @@
 					$do_not_duplicate[] = $post->ID 
 					 ?>
 					<h3><?php the_title(); ?></h3>
-					<p><?php echo get_avatar( get_the_author_email(), '85', '', 'headshots' ); ?><?php the_excerpt(); ?></p>
+					<?php echo get_avatar( get_the_author_email(), '85', '', 'headshots' ); ?><?php the_excerpt(); ?>
 					<?php endwhile; ?>
 				</div>
 				<div class="older-entries">
