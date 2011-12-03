@@ -32,7 +32,7 @@
 <body>
 	
 	<div id="logo">
-		<img src="http://www.wakeupmedia.com/wp-content/themes/wakeup/images/home-logo.png" width="285" height="161" alt="Logo">
+		<img src="http://wakeupmedia.com/wp-content/themes/wakeup/images/home-logo.png" width="285" height="161" alt="Logo">
 		<p>We are currently undergoing routine maintenance.  Please check back soon.</p>
 	</div>
 	
