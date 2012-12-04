@@ -40,6 +40,8 @@ class blcLink {
 	
 	var $false_positive = false;
 	var $result_hash = '';
+
+	var $dismissed = false;
 	
 	var $status_text = '';
 	var $status_code = '';
@@ -104,7 +106,7 @@ class blcLink {
 	);
 	
 	function __construct($arg = null){
-		global $wpdb;
+		global $wpdb; /** @var wpdb $wpdb  */
 		
 		$this->field_format = array(
 			'url' => '%s',
@@ -117,7 +119,7 @@ class blcLink {
 			'redirect_count' => '%d',
 			'log' => '%s',
 			'http_code' => '%d',
-			'request_duration' => '%f',
+			'request_duration' => '%F',
 			'timeout' => 'bool',
 			'result_hash' => '%s',
 			'broken' => 'bool',
@@ -126,9 +128,10 @@ class blcLink {
 			'being_checked' => 'bool',
 		 	'status_text' => '%s',
 		 	'status_code' => '%s',
+			'dismissed' => 'bool',
 		);
 		
-		if (is_int($arg)){
+		if (is_numeric($arg)){
 			//Load a link with ID = $arg from the DB.
 			$q = $wpdb->prepare("SELECT * FROM {$wpdb->prefix}blc_links WHERE link_id=%d LIMIT 1", $arg);
 			$arr = $wpdb->get_row( $q, ARRAY_A );
@@ -306,9 +309,14 @@ class blcLink {
    * @access private
    *
    * @param bool $broken
+   * @param string $new_result_hash
    * @return void
    */
-	function status_changed($broken, $new_result_hash = ''){
+	private function status_changed($broken, $new_result_hash = ''){
+		//If a link's status changes, un-dismiss it.
+		if ( $this->result_hash != $new_result_hash ) {
+			$this->dismissed = false;
+		}
 		
 		if ( $this->false_positive && !empty($new_result_hash) ){
 			//If the link has been marked as a (probable) false positive, 
@@ -359,7 +367,7 @@ class blcLink {
    * @return bool True if saved successfully, false otherwise.
    */
 	function save(){
-		global $wpdb;
+		global $wpdb; /** @var wpdb $wpdb */
 
 		if ( !$this->valid() ) return false;
 		
@@ -431,7 +439,6 @@ class blcLink {
 			//FB::log($q, 'Link update query');
 			
 			$rez = $wpdb->query($q) !== false;
-			
 			if ( $rez ){
 				//FB::log($this->link_id, "Link updated");
 			} else {
@@ -901,7 +908,7 @@ class blcLink {
  * @return bool
  */
 function blc_cleanup_links( $link_id = null ){
-	global $wpdb;
+	global $wpdb; /* @var wpdb $wpdb */
 	global $blclog;
 	
 	$q = "DELETE FROM {$wpdb->prefix}blc_links 

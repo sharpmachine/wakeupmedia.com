@@ -71,15 +71,11 @@ div.inside ul li.yoast {
 }
 
 .side .postbox p, .side .postbox a, .side .postbox a.rsswidget {
-	font-size: 11px;
+	font-size: 13px;
 }
 
 div.inside .button:hover, div.inside .button-primary:hover {
 	text-decoration: none;
-}
-
-.button, .button-primary {
-	margin-top: 10px;
 }
 
 .postbox#donate {

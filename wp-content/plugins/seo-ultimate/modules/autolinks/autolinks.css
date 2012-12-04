@@ -13,12 +13,16 @@
 }
 
 #su-autolinks table.widefat td.su-link-from-match {
-	width: 12em;
+	width: 11em;
 }
 
-#su-autolinks table.widefat td.su-link-from,
-#su-autolinks table.widefat td.su-link-to {
+#su-content-autolinks table.widefat td.su-link-to {
 	width: 20em;
+}
+
+#su-footer-autolinks table.widefat td.su-link-from,
+#su-footer-autolinks table.widefat td.su-link-to {
+	width: 15em;
 }
 
 #su-autolinks table.widefat td.su-link-sitewide-lpa {
@@ -26,10 +30,15 @@
 }
 
 #su-autolinks table.widefat td.su-link-options {
-	width: 8em;
+	width: 9em;
 }
 
-#su-autolinks table.widefat td.su-link-delete {
+#su-autolinks table.widefat td.su-link-delete,
+#su-autolinks table.widefat th.su-link-delete {
 	width: 3em;
 	text-align: center;
+}
+
+#su-autolinks table.widefat td {
+	padding-right: 0.5em;
 }

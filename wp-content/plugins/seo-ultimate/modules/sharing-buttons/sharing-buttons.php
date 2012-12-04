@@ -36,12 +36,11 @@ class SU_SharingButtons extends SU_Module {
 	
 	function admin_page_contents() {
 		$this->child_admin_form_start();
-		$this->admin_form_subheader(__('Which provider would you like to use for your sharing buttons?', 'seo-ultimate'));
 		$this->radiobuttons('provider', array(
 			  'none' => __('None; disable sharing buttons', 'seo-ultimate')
 			, 'sharethis' => __('Use the ShareThis button', 'seo-ultimate') //: %s{sharethis_code}
 			, 'addthis' => __('Use the AddThis button', 'seo-ultimate') //: %s{addthis_code}
-		));
+		), __('Which provider would you like to use for your sharing buttons?', 'seo-ultimate'));
 		$this->child_admin_form_end();
 	}
 	
@@ -64,6 +63,21 @@ class SU_SharingButtons extends SU_Module {
 		}
 		return $content;
 	}
+	
+	function add_help_tabs($screen) {
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-sharing-buttons-overview'
+			, 'title' => $this->has_enabled_parent() ? __('Sharing Facilitator', 'seo-ultimate') : __('Overview', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>What it does:</strong> Sharing Facilitator adds buttons to your posts/pages that make it easy for visitors to share your content.</li>
+	<li><strong>Why it helps:</strong> When visitors share your content on social networking sites, this can build links to your site. Sharing Facilitator makes it easy for visitors to do this.</li>
+	<li><strong>How to use it:</strong> Pick which button type you&#8217;d like to use (ShareThis or AddThis) and click Save Changes. Try enabling each button on your site and see which one you like better.</li>
+</ul>
+", 'seo-ultimate')));
+	}
+
 }
 
 }

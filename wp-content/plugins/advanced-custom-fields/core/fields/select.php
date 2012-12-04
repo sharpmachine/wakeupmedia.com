@@ -36,13 +36,17 @@ class acf_Select extends acf_Field
 	
 	function create_field($field)
 	{
-		// defaults
-		$field['value'] = isset($field['value']) ? $field['value'] : array();
-		$field['multiple'] = isset($field['multiple']) ? $field['multiple'] : false;
-		$field['allow_null'] = isset($field['allow_null']) ? $field['allow_null'] : false;
-		$field['choices'] = isset($field['choices']) ? $field['choices'] : array();
-		$field['optgroup'] = isset($field['optgroup']) ? $field['optgroup'] : false;
+		// vars
+		$defaults = array(
+			'value'			=>	array(),
+			'multiple' 		=>	'0',
+			'allow_null' 	=>	'0',
+			'choices'		=>	array(),
+			'optgroup'		=>	false,
+		);
 		
+		$field = array_merge($defaults, $field);
+
 		
 		// no choices
 		if(empty($field['choices']))
@@ -51,16 +55,22 @@ class acf_Select extends acf_Field
 			return false;
 		}
 		
+		
 		// multiple select
 		$multiple = '';
 		if($field['multiple'] == '1')
 		{
+			// create a hidden field to allow for no selections
+			echo '<input type="hidden" name="' . $field['name'] . '" />';
+			
 			$multiple = ' multiple="multiple" size="5" ';
 			$field['name'] .= '[]';
 		} 
 		
+		
 		// html
-		echo '<select id="' . $field['name'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';	
+		echo '<select id="' . $field['id'] . '" class="' . $field['class'] . '" name="' . $field['name'] . '" ' . $multiple . ' >';	
+		
 		
 		// null
 		if($field['allow_null'] == '1')
@@ -162,18 +172,17 @@ class acf_Select extends acf_Field
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
-				<p class="description"><?php _e("Enter your choices one per line<br />
+				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
 				<br />
-				Red<br />
-				Blue<br />
+				<?php _e("Red",'acf'); ?><br />
+				<?php _e("Blue",'acf'); ?><br />
 				<br />
-				or<br />
-				<br />
-				red : Red<br />
-				blue : Blue",'acf'); ?></p>
+				<?php _e("red : Red",'acf'); ?><br />
+				<?php _e("blue : Blue",'acf'); ?><br />
+				</p>
 			</td>
 			<td>
-				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+				<textarea class="texarea field_option-choices" rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
@@ -201,8 +210,8 @@ class acf_Select extends acf_Field
 					'name'	=>	'fields['.$key.'][allow_null]',
 					'value'	=>	$field['allow_null'],
 					'choices'	=>	array(
-						'1'	=>	'Yes',
-						'0'	=>	'No',
+						'1'	=>	__("Yes",'acf'),
+						'0'	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));
@@ -220,8 +229,8 @@ class acf_Select extends acf_Field
 					'name'	=>	'fields['.$key.'][multiple]',
 					'value'	=>	$field['multiple'],
 					'choices'	=>	array(
-						'1'	=>	'Yes',
-						'0'	=>	'No',
+						'1'	=>	__("Yes",'acf'),
+						'0'	=>	__("No",'acf'),
 					),
 					'layout'	=>	'horizontal',
 				));
@@ -245,46 +254,87 @@ class acf_Select extends acf_Field
 	
 	function pre_save_field($field)
 	{
-		// defaults
-		$field['choices'] = isset($field['choices']) ? $field['choices'] : '';
+		// vars
+		$defaults = array(
+			'choices'	=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+		
+		
+		// check if is array. Normal back end edit posts a textarea, but a user might use update_field from the front end
+		if( is_array( $field['choices'] ))
+		{
+		    return $field;
+		}
+
 		
 		// vars
 		$new_choices = array();
 		
-		// explode choices from each line
-		if(strpos($field['choices'], "\n") !== false)
-		{
-			// found multiple lines, explode it
-			$field['choices'] = explode("\n", $field['choices']);
-		}
-		else
-		{
-			// no multiple lines! 
-			$field['choices'] = array($field['choices']);
-		}
 		
-		// key => value
-		foreach($field['choices'] as $choice)
+		// explode choices from each line
+		if( $field['choices'] )
 		{
-			if(strpos($choice, ' : ') !== false)
+			if(strpos($field['choices'], "\n") !== false)
 			{
-				$choice = explode(' : ', $choice);
-				$new_choices[trim($choice[0])] = trim($choice[1]);
+				// found multiple lines, explode it
+				$field['choices'] = explode("\n", $field['choices']);
 			}
 			else
 			{
-				$new_choices[trim($choice)] = trim($choice);
+				// no multiple lines! 
+				$field['choices'] = array($field['choices']);
+			}
+			
+			
+			// key => value
+			foreach($field['choices'] as $choice)
+			{
+				if(strpos($choice, ' : ') !== false)
+				{
+					$choice = explode(' : ', $choice);
+					$new_choices[trim($choice[0])] = trim($choice[1]);
+				}
+				else
+				{
+					$new_choices[trim($choice)] = trim($choice);
+				}
 			}
 		}
 		
+		
+		
 		// update choices
 		$field['choices'] = $new_choices;
+		
 		
 		// return updated field
 		return $field;
 
 	}
 	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	get_value_for_api
+	*
+	*	@author Elliot Condon
+	*	@since 3.1.2
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function get_value_for_api($post_id, $field)
+	{
+		$value = parent::get_value($post_id, $field);
+		
+		if($value == 'null')
+		{
+			$value = false;
+		}
+		
+		return $value;
+	}
 	
 }
 

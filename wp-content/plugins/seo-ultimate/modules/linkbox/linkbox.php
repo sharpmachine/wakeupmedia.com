@@ -11,6 +11,9 @@ class SU_Linkbox extends SU_Module {
 
 	function get_module_title() { return __('Linkbox Inserter', 'seo-ultimate'); }
 	
+	function get_parent_module() { return 'misc'; }
+	function get_settings_key() { return 'linkbox'; }
+	
 	function get_default_settings() {
 		//The default linkbox HTML
 		return array(
@@ -41,13 +44,13 @@ class SU_Linkbox extends SU_Module {
 	}
 	
 	function admin_page_contents() {
-		$this->admin_form_start();
+		$this->child_admin_form_start();
 		$this->checkboxes(array('filter_posts'	=> __('At the end of posts', 'seo-ultimate')
 							,	'filter_pages'	=> __('At the end of pages', 'seo-ultimate')
 							,	'action_hook'	=> __('When called by the su_linkbox hook', 'seo-ultimate')
 		), __('Display linkboxes...', 'seo-ultimate'));
-		$this->textarea('html', __('Linkbox HTML', 'seo-ultimate'), 10);
-		$this->admin_form_end();
+		$this->textarea('html', __('Linkbox HTML', 'seo-ultimate'));
+		$this->child_admin_form_end();
 	}
 	
 	function should_linkbox() {
@@ -82,6 +85,61 @@ class SU_Linkbox extends SU_Module {
 	
 	function linkbox_action($id = false) {
 		echo $this->linkbox_filter('', $id);
+	}
+	
+	function add_help_tabs($screen) {
+	
+		$overview = __("
+<ul>
+	<li><strong>What it does:</strong> Linkbox Inserter can add linkboxes to your posts/pages.</li>
+	<li><strong>Why it helps:</strong> Linkboxes contain HTML code that visitors can use to link to your site. This is a great way to encourage SEO-beneficial linking activity.</li>
+	<li><strong>How to use it:</strong> Use the checkboxes to enable the Linkbox Inserter in various areas of your site. Customize the HTML if desired. Click &#8220;Save Changes&#8221; when finished.</li>
+</ul>
+", 'seo-ultimate');
+		
+		$settings = __("
+<p>Here&#8217;s information on the various settings:</p>
+
+<ul>
+	<li>
+		<strong>Display linkboxes...</strong>
+		<ul>
+			<li><strong>At the end of posts</strong> &mdash; Adds the linkbox HTML to the end of all posts (whether they're displayed on the blog homepage, in archives, or by themselves).</li>
+			<li><strong>At the end of pages</strong> &mdash; Adds the linkbox HTML to the end of all Pages.</li>
+			<li><strong>When called by the su_linkbox hook</strong> &mdash; For more fine-tuned control over where linkboxes appear, enable this option and add <code>&lt;?php do_action('su_linkbox'); ?&gt;</code> to your theme. You can also add an ID parameter to display the linkbox of a particular post/page; for example: <code>&lt;?php do_action('su_linkbox', 123); ?&gt;</code>.</li>
+		</ul>
+	</li>
+	<li>
+		<strong>HTML</strong> &mdash; The HTML that will be outputted to display the linkboxes. The HTML field supports these variables:
+		<ul>
+			<li>{id} &mdash; The ID of the current post/page, or the ID passed to the action hook call.</li>
+			<li>{url} &mdash; The permalink URL of the post/page.</li>
+			<li>{title} &mdash; The title of the post/page.</li>
+		</ul>
+	</li>
+</ul>
+", 'seo-ultimate');
+		
+		if ($this->has_enabled_parent()) {
+			$screen->add_help_tab(array(
+				  'id' => 'su-linkbox-help'
+				, 'title' => __('Linkbox Inserter', 'seo-ultimate')
+				, 'content' => 
+					'<h3>' . __('Overview', 'seo-ultimate') . '</h3>' . $overview . 
+					'<h3>' . __('Settings Help', 'seo-ultimate') . '</h3>' . $settings
+			));
+		} else {
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-linkbox-overview'
+				, 'title' => __('Overview', 'seo-ultimate')
+				, 'content' => $overview));
+			
+			$screen->add_help_tab(array(
+				  'id' => 'su-linkbox-settings'
+				, 'title' => __('Settings Help', 'seo-ultimate')
+				, 'content' => $settings));
+		}
 	}
 }
 

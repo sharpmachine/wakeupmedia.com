@@ -2,32 +2,29 @@
 Contributors: whiteshadow
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=A6P9S6CE3SRSW
 Tags: admin, dashboard, menu, security, wpmu
-Requires at least: 3.0
-Tested up to: 3.2.1
-Stable tag: 1.1.5
+Requires at least: 3.2
+Tested up to: 3.4.2
+Stable tag: 1.1.12
 
-Lets you directly edit the WordPress admin menu. You can re-order, hide or rename existing menus, add custom menus and more. 
+Lets you edit the WordPress admin menu. You can re-order, hide or rename menus, add custom menus and more. 
 
 == Description ==
-Admin Menu Editor lets you manually edit the Dashboard menu. You can reorder the menus, show/hide specific items, change access rights, and more. 
+Admin Menu Editor lets you manually edit the Dashboard menu. You can reorder the menus, show/hide specific items, change access rights, and more.
 
 **Features**
 
-* Edit any existing menu - change the title, access rights, menu icon and so on. 
+* Edit menu title, access rights, URL, icon and so on. 
 * Sort menu items via drag & drop.
-* Move a menu item to a different submenu via cut & paste. 
 * Hide/show any menu or menu item. A hidden menu is invisible to all users, including administrators.
+* Move a menu item to a different submenu. 
 * Create custom menus that point to any part of the Dashboard or an external URL.
 
-The [Pro version](http://wpplugins.com/plugin/146/admin-menu-editor-pro) of the plugin lets you also import/export menu configurations, make menu items open in a new window, and use [shortcodes](http://wpplugins.com/plugin/146/admin-menu-editor-pro?view=notes) in the Dashboard menu.
-
-[Suggest new features and improvements here](http://feedback.w-shadow.com/forums/58572-admin-menu-editor)
+The [Pro version](http://w-shadow.com/AdminMenuEditor/) lets you set per-role [menu permissions](http://w-shadow.com/admin-menu-editor-pro/documentation/permissions/), hide a menu from everyone except a specific user, export your admin menu, drag items between menu levels, make menus open in a new window and more.
 
 **Notes**
 
 * If you delete any of the default menus they will reappear after saving. This is by design. To get rid of a menu for good, either hide it or set it's access rights to a higher level.
-* If one of your menu items is only visible in the editor but not the Dashboard menu itself, make sure its "Custom" checkbox is ticked. The plugin will usually do this for you when you create a new menu.
-* You can't lower a menu's required access rights, but you can change them to be more restrictive.
+* In the free version, you can't lower a menu's required access rights, but you can change them to be more restrictive.
 * In case of emergency, you can reset the menu configuration back to the default by going to http://example.com/wp-admin/?reset\_admin\_menu=1
 
 == Installation ==
@@ -58,8 +55,53 @@ Plugins installed in the `mu-plugins` directory are treated as "always on", so y
 * When Admin Menu Editor is installed in `mu-plugins` or activated via "Network Activate", only the "super admin" user can access the menu editor page. Other users will see the customized Dashboard menu, but be unable to edit it.
 * It is currently not possible to install Admin Menu Editor as both a normal and global plugin on the same site.
 
+== Screenshots ==
+
+1. Plugin interface
+2. A sample menu created by the plugin
+3. Re-ordering menu items via drag and drop
 
 == Changelog ==
+
+= 1.1.12 =
+* Fixed several more small CPT-related bugs that would cause the wrong menu to be marked as current. 
+* Tested on WP 3.5-beta2.
+
+= 1.1.11 =
+* Tested on WP 3.4.2 and WP 3.5-alpha-21879.
+* Fixed a visual glitch related to the arrow that's used to expand menu settings. In certain situations clicking it would cause the arrow icon to be briefly replaced with multiple copies of the same icon.
+* Fixed the position of the URL and capability dropdown lists. Now they should show up directly under the corresponding input box instead of appearing some distance down and to the right.
+* Fixed the size of the toolbar buttons - now they're perfectly square.
+* Fixed a rare bug that would sometimes cause the wrong menu to be marked as active/expanded.
+* Only display the survey notice on the menu editor page, not on all admin pages.
+
+= 1.1.10 =
+* Added a new user survey. The notice will only appear for users who didn't complete or hide the previous one.
+* Fixed a number of bugs in the code that determines which menu should be expanded.
+* Fixed compatibility issues on sites running in SSL mode.
+
+= 1.1.8 =
+* Fix author URL (was 404).
+* Tested on WP 3.4.1
+* Update plugin description. Some notes were no longer accurate for the current version.
+
+= 1.1.7 = 
+* Tested on WP 3.4
+* Fixed a rare "failed to decode input" error.
+* Fixed menus not being expanded/collapsed properly when the current menu item has been moved to a different sub-menu.
+* Added a shortlist of Pro version benefits to the editor page (can be hidden).
+
+= 1.1.6.1 =
+* Tested on WP 3.3.2
+* Added a user survey.
+
+= 1.1.6 =
+* Tested on WP 3.3.1.
+* Fixed a couple 404's in the readme and the plugin itself.
+
+= 1.1.5 =
+* Fixed an error where there would be no custom menu to show.
+* Removed the "Feedback" button due to lack of use. You can still provide feedback via blog comments or email, of course.
 
 = 1.1.4 =
 * Fixed the updater's cron hook not being removed when the plugin is deactivated.
@@ -132,3 +174,11 @@ Plugins installed in the `mu-plugins` directory are treated as "always on", so y
 * First release on wordpress.org
 * Moved all images into a separate directory.
 * Added a readme.txt
+
+== Upgrade Notice ==
+
+= 1.1.11 =
+This version fixes several minor bugs and layout problems.
+
+= 1.1.9 =
+Optional upgrade. Just adds a couple of screenshots for the WordPress.org plugin description.

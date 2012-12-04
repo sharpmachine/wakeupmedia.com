@@ -21,6 +21,8 @@ function wpcf7_textarea_shortcode_handler( $tag ) {
 	if ( empty( $name ) )
 		return '';
 
+	$validation_error = wpcf7_get_validation_error( $name );
+
 	$atts = '';
 	$id_att = '';
 	$class_att = '';
@@ -29,8 +31,10 @@ function wpcf7_textarea_shortcode_handler( $tag ) {
 	$tabindex_att = '';
 	$title_att = '';
 
-	if ( 'textarea*' == $type )
-		$class_att .= ' wpcf7-validates-as-required';
+	$class_att = wpcf7_form_controls_class( $type );
+
+	if ( $validation_error )
+		$class_att .= ' wpcf7-not-valid';
 
 	foreach ( $options as $option ) {
 		if ( preg_match( '%^id:([-0-9a-zA-Z_]+)$%', $option, $matches ) ) {
@@ -87,8 +91,6 @@ function wpcf7_textarea_shortcode_handler( $tag ) {
 
 	$html = '<textarea name="' . $name . '"' . $atts . '>' . esc_textarea( $value ) . '</textarea>';
 
-	$validation_error = wpcf7_get_validation_error( $name );
-
 	$html = '<span class="wpcf7-form-control-wrap ' . $name . '">' . $html . $validation_error . '</span>';
 
 	return $html;
@@ -122,6 +124,9 @@ function wpcf7_textarea_validation_filter( $result, $tag ) {
 add_action( 'admin_init', 'wpcf7_add_tag_generator_textarea', 20 );
 
 function wpcf7_add_tag_generator_textarea() {
+	if ( ! function_exists( 'wpcf7_add_tag_generator' ) )
+		return;
+
 	wpcf7_add_tag_generator( 'textarea', __( 'Text area', 'wpcf7' ),
 		'wpcf7-tg-pane-textarea', 'wpcf7_tg_pane_textarea' );
 }

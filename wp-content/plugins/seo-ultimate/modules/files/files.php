@@ -136,6 +136,42 @@ class SU_Files extends SU_Module {
 			));
 		}
 	}
+	
+	function add_help_tabs($screen) {
+	
+		$screen->add_help_tab(array(
+			  'id' => 'su-files-overview'
+			, 'title' => __('Overview', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>What it does:</strong> The File Editor module lets you edit two important SEO-related files: robots.txt and .htaccess.</li>
+	<li><strong>Why it helps:</strong> You can use the <a href='http://www.robotstxt.org/robotstxt.html' target='_blank'>robots.txt file</a> to give instructions to search engine spiders. You can use the <a href='http://httpd.apache.org/docs/2.2/howto/htaccess.html' target='_blank'>.htaccess file</a> to implement advanced SEO strategies (URL rewriting, regex redirects, etc.). SEO Ultimate makes editing these files easier than ever.</li>
+	<li><strong>How to use it:</strong> Edit the files as desired, then click Save Changes. If you create a custom robots.txt file, be sure to enable it with the checkbox.</li>
+</ul>
+", 'seo-ultimate')));
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-files-faq'
+			, 'title' => __('FAQ', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>Will my robots.txt edits remain if I disable the File Editor?</strong><br />No. On a WordPress blog, the robots.txt file is dynamically generated just like your posts and Pages. If you disable the File Editor module or the entire SEO Ultimate plugin, the File Editor won&#8217;t be able to insert your custom code into the robots.txt file anymore.</li>
+	<li><strong>Will my .htaccess edits remain if I disable the File Editor?</strong><br />Yes. The .htaccess file is static. Your edits will remain even if you disable SEO Ultimate or its File Editor module.</li>
+</ul>
+", 'seo-ultimate')));
+
+		$screen->add_help_tab(array(
+			  'id' => 'su-files-troubleshooting'
+			, 'title' => __('Troubleshooting', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>Why do I get a &#8220;500 Server Error&#8221; after using the File Editor?</strong><br />You may have inserted code into your .htaccess file that your web server can't understand. As the File Editor warns, incorrectly editing your .htaccess file can disable your entire website in this way. To restore your site, you'll need to use an FTP client (or your web host's File Manager) to edit or rename your .htaccess file. If you need help, please contact your web host.</li>
+	<li><strong>Where did my .htaccess edits go?</strong><br />The .htaccess file is static, so SEO Ultimate doesn't have total control over it. It&#8217;s possible that WordPress, another plugin, or other software may overwrite your .htaccess file. If you have a backup of your blog&#8217;s files, you can try recovering your edits from there.</li>
+</ul>
+", 'seo-ultimate')));
+
+	
+	}
 }
 
 }

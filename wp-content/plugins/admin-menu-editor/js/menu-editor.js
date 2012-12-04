@@ -1,5 +1,7 @@
 //(c) W-Shadow
 
+/** @namespace wsEditorData */
+
 var wsIdCounter = 0;
 
 (function ($){
@@ -150,7 +152,7 @@ function buildSubmenu(items){
 	
 	//Only show menus that have items. 
 	//Skip arrays (with a length) because filled menus are encoded as custom objects.
-	var entry = null 
+	var entry = null;
 	if (items && (typeof items != 'Array')){
 		for (var item_file in items){
 			entry = buildMenuItem(items[item_file]);
@@ -836,20 +838,25 @@ $(document).ready(function(){
 			return;
 		}
 		dropdown.currentOwner = this; //Got ye now!
-		
+
+        //Pre-select the current capability (will clear selection if there's no match)
+        dropdown.list.val(inputBox.val());
+
+        //Show the list before moving it into place. This ensures the position will be calc. properly.
+        dropdown.list.show();
+
 		//Move the dropdown near to the button
 		var inputPos = inputBox.offset();
-		dropdown.list.css({
-			position: 'absolute',
-			left: inputPos.left,
-			top: inputPos.top + inputBox.outerHeight()
-		});
-		
-		//Pre-select the current capability (will clear selection if there's no match)
-		dropdown.list.val(inputBox.val());
-		
-		dropdown.list.show();
-		dropdown.list.focus();
+		dropdown.list
+            .css({
+			    position: 'absolute'
+            })
+            .offset({
+                left: inputPos.left,
+                top: inputPos.top + inputBox.outerHeight()
+            });
+
+        dropdown.list.focus();
 	});
 	
 	//Also show it when the user presses the down arrow in the input field  
@@ -1415,8 +1422,21 @@ $(document).ready(function(){
 			}
 			
 		}
-	}); 
-	
+	});
+
+	//Flag closed hints as hidden by sending the appropriate AJAX request to the backend.
+	$('.ws_hint_close').click(function() {
+		var hint = $(this).parents('.ws_hint').first();
+		hint.hide();
+		wsEditorData.showHints[hint.attr('id')] = false;
+		$.post(
+			wsEditorData.adminAjaxUrl,
+			{
+				'action' : 'ws_ame_hide_hint',
+				'hint' : hint.attr('id')
+			}
+		);
+	});
 	
 	//Finally, show the menu
     outputWpMenu(customMenu);

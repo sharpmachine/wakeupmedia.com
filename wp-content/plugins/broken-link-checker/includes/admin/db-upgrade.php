@@ -7,7 +7,7 @@ class blcDatabaseUpgrader {
    *
    * @return bool
    */
-    function upgrade_database(){
+    public static function upgrade_database(){
 		global $wpdb, $blclog;
 		
 		$conf = blc_get_configuration();
@@ -35,7 +35,7 @@ class blcDatabaseUpgrader {
 			
 		}
 		
-		$conf->options['current_db_version'] = 5;
+		$conf->options['current_db_version'] = BLC_DATABASE_VERSION;
 		$conf->save_options();
 		$blclog->info('Database successfully upgraded.');
 		
@@ -108,7 +108,7 @@ class blcDatabaseUpgrader {
 	}
 	
 	function upgrade_095($trigger_errors = false){
-		global $wpdb;
+		global $wpdb; /** @var wpdb $wpdb */
 		
 		//Prior to 0.9.5 all supported post types were internally represented using 
 		//a common 'post' container type. The current version creates a unique container 
@@ -162,7 +162,7 @@ class blcTableDelta {
 	 * @param bool $drop_indexes Whether to drop indexes not present in the input. Defaults to true.
 	 * @return array   
 	 */
-	function delta($queries, $execute = true, $drop_columns = true, $drop_indexes = true){
+	static function delta($queries, $execute = true, $drop_columns = true, $drop_indexes = true){
 		global $wpdb;
 	
 		// Separate individual queries into an array

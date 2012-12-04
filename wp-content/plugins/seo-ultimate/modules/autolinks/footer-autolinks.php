@@ -125,10 +125,6 @@ class SU_FooterAutolinks extends SU_Module {
 	
 	function admin_page_contents() {
 		
-		echo "\n<p>";
-		_e('The Content Links section of Deeplink Juggernaut lets you automatically link a certain word or phrase in your post/page content to a URL you specify.', 'seo-ultimate');
-		echo "</p>\n";
-		
 		$links = $this->get_setting('footer_links', array());
 		$num_links = count($links);
 		
@@ -196,7 +192,7 @@ class SU_FooterAutolinks extends SU_Module {
 			if (!isset($link['target']))	$link['target'] = '';
 			
 			$cells = array(
-				  'link-from' => $this->get_jlsuggest_box("footer_link_{$i}_from", $link['from'][0])
+				  'link-from' => $this->get_jlsuggest_box("footer_link_{$i}_from", $link['from'][0], 'types=posttype,taxonomy,home,author')
 				, 'link-from-match' =>
 					 $this->get_input_element('checkbox', "footer_link_{$i}_from_match_children", $link['from_match_children'] == 1, str_replace(' ', '&nbsp;', __('Match child content', 'seo-ultimate')))
 					.'<br />'

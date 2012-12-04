@@ -122,6 +122,11 @@ a.ws_edit_link:hover {
 	background-image: url('../images/bullet_arrow_down2.png');
 }
 
+.ws_edit_link:active {
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 .ws_edit_link_expanded {
 	background-color: #ffffd0;
 	border-bottom: none;
@@ -383,6 +388,9 @@ to accomodate the dropdown button.
 	padding: 4px;
 	border: 1px solid #c0c0e0;
 	float: left;
+
+    width: 16px;
+    height: 16px;
 	
 	border-radius: 3px;
 	-moz-border-radius: 3px;
@@ -549,11 +557,76 @@ a.ws_button:hover {
 }
 
 /************************************
+        Tooltips and hints
+*************************************/
+
+.ws_tooltip_trigger {
+	cursor: pointer;
+}
+
+.ws_tooltip_content_list {
+	list-style: disc;
+	margin-left: 1em;
+}
+
+.ws_hint {
+	background: #FFFFE0;
+	border: 1px solid #E6DB55;
+
+	margin-bottom: 0.5em;
+	border-radius: 3px;
+	position: relative;
+	padding-right: 20px;
+}
+
+.ws_hint_close {
+	border: 1px solid #E6DB55;
+	border-right: none;
+	border-top: none;
+	color: #dcc500;
+	font-weight: bold;
+	cursor: pointer;
+
+	width: 18px;
+	text-align: center;
+	border-radius: 3px;
+
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+
+.ws_hint_close:hover {
+	background-color: #ffef4c;
+	border-color: #e0b900;
+	color: black;
+}
+
+.ws_hint_content {
+	padding: 0.4em 0 0.4em 0.4em;
+}
+
+.ws_hint_content ul {
+	list-style: disc;
+	list-style-position: inside;
+	margin-left: 0.5em;
+}
+
+#ws_sidebar_pro_ad {
+	margin-top: 5px;
+	margin-left: 3px;
+
+	position: fixed;
+	right: 20px;
+	bottom: 40px;
+	z-index: 100;
+}
+
+/************************************
         Screen meta buttons
 *************************************/
 
 /* All buttons */
-#ws-ame-feedback-widget-wrap, 
 #ws-pro-version-notice {
 	float: right;
 	height: 22px;
@@ -581,7 +654,6 @@ a.ws_button:hover {
 	background-image: linear-gradient(bottom, #dfdfdf, #f1f1f1); /* proposed W3C Markup */
 }
 
-#ws-ame-feedback-widget-wrap a.show-settings, 
 #ws-pro-version-notice a.show-settings {
 	background-image: none;
 	padding:0 6px 0 6px;

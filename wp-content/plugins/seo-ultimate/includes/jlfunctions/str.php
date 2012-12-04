@@ -187,7 +187,7 @@ class sustr {
 	}
 	
 	function htmlsafe_str_replace($search, $replace, $subject, $limit, &$count, $exclude_tags = false) {
-		$search = sustr::preg_escape($search);
+		$search = sustr::preg_escape($search, '');
 		return sustr::htmlsafe_preg_replace($search, $replace, $subject, $limit, $count, $exclude_tags);
 	}
 	
@@ -195,16 +195,15 @@ class sustr {
 		
 		if (!$exclude_tags || !is_array($exclude_tags)) $exclude_tags = array('a', 'pre', 'code', 'kbd');
 		if (count($exclude_tags) > 1)
-			$exclude_tags = '(?:' . sustr::preg_filter('a-z0-9|', implode('|', $exclude_tags)) . ')';
+			$exclude_tags = sustr::preg_filter('a-z0-9|', implode('|', $exclude_tags));
 		else
 			$exclude_tags = array_shift($exclude_tags);
 		
-		//Special thanks to the GPL-licensed "SEO Smart Links" plugin for the following find/replace regex
-		//http://www.prelovac.com/vladimir/wordpress-plugins/seo-smart-links
-		$reg = '/(?!(?:[^<\[]+[>\]]|[^>\]]+<\/' . $exclude_tags . '>))\b($name)\b/imsU';
-		
 		$search = str_replace('/', '\/', $search);
-		$search_regex = str_replace('$name', $search, $reg);
+		
+		//Based off of regex from
+		//http://stackoverflow.com/questions/3013164/regex-to-replace-a-string-in-html-but-not-within-a-link-or-heading
+		$search_regex = "/\b($search)\b(?!(?:(?!<\/?(?:$exclude_tags).*?>).)*<\/(?:$exclude_tags).*?>)(?![^<>]*>)/imsU";
 		
 		return preg_replace($search_regex, $replace, $subject, $limit, $count);
 	}
@@ -250,6 +249,13 @@ class sustr {
 		$regex = "@^$wcstr$@i";
 		$regex = str_replace(array('@^.*', '.*$@i'), array('@', '@i'), $regex);
 		return $regex;
+	}
+	
+	function tolower($str) {
+		if (function_exists('mb_strtolower'))
+			return mb_strtolower($str);
+		
+		return strtolower($str);
 	}
 }
 

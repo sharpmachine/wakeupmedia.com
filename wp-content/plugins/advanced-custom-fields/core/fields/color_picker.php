@@ -34,75 +34,17 @@ class acf_Color_picker extends acf_Field
 	
 	function admin_print_scripts()
 	{
-		wp_enqueue_script( 'farbtastic' );
+		wp_enqueue_script(array(
+			'farbtastic'
+		));
 	}
 	
 	function admin_print_styles()
 	{
-		wp_enqueue_style( 'farbtastic' );
+		wp_enqueue_style(array(
+			'farbtastic'
+		));
   
-	}
-	
-	
-	/*--------------------------------------------------------------------------------------
-	*
-	*	admin_head
-	*
-	*	@author Elliot Condon
-	*	@since 2.0.6
-	* 
-	*-------------------------------------------------------------------------------------*/
-	
-	function admin_head()
-	{
-		// add datepicker
-		?>
-		<script type="text/javascript">
-		(function($){
-			
-			var farbtastic;
-			
-			$(document).ready(function(){
-			
-				$('body').append('<div id="acf_color_picker" />');
-				farbtastic = $.farbtastic('#acf_color_picker');
-				
-			});
-						
-			$('#poststuff input.acf_color_picker').live('focus', function(){
-				
-				var input = $(this);
-				
-				$('#acf_color_picker').css({
-					left: input.offset().left,
-					top: input.offset().top - $('#acf_color_picker').height(),
-					display: 'block',
-				});
-				
-				farbtastic.linkTo(this);
-				
-			}).live('blur', function(){
-
-				$('#acf_color_picker').css({
-					display: 'none',
-				});
-								
-			});
-			
-		})(jQuery);
-		</script>
-		<style type="text/css">
-		#acf_color_picker {
-			position: absolute;
-			top: 0;
-			left: 0;
-			display: none;
-			background: #fff;
-			border: #AAAAAA solid 1px;
-			border-radius: 4px;
-		}
-		</style>
-		<?php
 	}
 	
 	
@@ -118,12 +60,49 @@ class acf_Color_picker extends acf_Field
 	
 	function create_field($field)
 	{		
-		// defaults
-		if($field['value'] == "") $field['value'] = '#ffffff';
-		
 		// html
-		echo '<input type="text" value="' . $field['value'] . '" class="acf_color_picker" name="' . $field['name'] . '" id="' . $field['name'] . '" />';
+		echo '<input type="text" value="' . $field['value'] . '" class="acf_color_picker" name="' . $field['name'] . '" id="' . $field['id'] . '" />';
 
+	}
+	
+	
+	/*--------------------------------------------------------------------------------------
+	*
+	*	create_options
+	*
+	*	@author Elliot Condon
+	*	@since 2.0.6
+	*	@updated 2.2.0
+	* 
+	*-------------------------------------------------------------------------------------*/
+	
+	function create_options($key, $field)
+	{
+		// vars
+		$defaults = array(
+			'default_value'	=>	'',
+		);
+		
+		$field = array_merge($defaults, $field);
+
+		
+		?>
+		<tr class="field_option field_option_<?php echo $this->name; ?>">
+			<td class="label">
+				<label><?php _e("Default Value",'acf'); ?></label>
+				<p class="description"><?php _e("eg: #ffffff",'acf'); ?></p>
+			</td>
+			<td>
+				<?php 
+				$this->parent->create_field(array(
+					'type'	=>	'text',
+					'name'	=>	'fields['.$key.'][default_value]',
+					'value'	=>	$field['default_value'],
+				));
+				?>
+			</td>
+		</tr>
+		<?php
 	}
 	
 	

@@ -17,6 +17,12 @@ class SU_Permalinks extends SU_Module {
 	function get_parent_module() { return 'misc'; }
 	function get_settings_key() { return 'permalinks'; }
 	
+	function get_default_settings() {
+		return array(
+			  'add_rule_if_conflict' => true
+		);
+	}
+	
 	function init() {
 		if (suwp::permalink_mode()) {
 			$nobase_enabled = false;
@@ -36,6 +42,29 @@ class SU_Permalinks extends SU_Module {
 				add_filter('request', array(&$this, 'nobase_old_base_redirect'));
 			}
 		}
+	}
+	
+	function deactivate() {
+		if (suwp::permalink_mode()) {
+			$nobase_enabled = false;
+			$taxonomies = suwp::get_taxonomy_names();
+			foreach ($taxonomies as $taxonomy) {
+				if ($this->get_setting("nobase_$taxonomy", false)) {
+					remove_action("created_$taxonomy", array(&$this, 'flush_rewrite_rules'));
+					remove_action("edited_$taxonomy", array(&$this, 'flush_rewrite_rules'));
+					remove_action("delete_$taxonomy", array(&$this, 'flush_rewrite_rules'));
+					remove_filter("{$taxonomy}_rewrite_rules", array(&$this, 'nobase_rewrite_rules'));
+					$nobase_enabled = true;
+				}
+			}
+			if ($nobase_enabled) {
+				remove_filter('term_link', array(&$this, 'nobase_term_link'), 1000, 2);
+				remove_filter('query_vars', array(&$this, 'nobase_query_vars'));
+				remove_filter('request', array(&$this, 'nobase_old_base_redirect'));
+			}
+		}
+		
+		$this->flush_rewrite_rules();
 	}
 	
 	function admin_page_contents() {
@@ -58,15 +87,45 @@ class SU_Permalinks extends SU_Module {
 			
 			$after_url = home_url( user_trailingslashit('/example', 'category') );
 			
-			$nobase_checkboxes['nobase_' . $taxonomy->name] = sprintf(
-				  __('%1$s (turn <code>%2$s</code> into <code>%3$s</code>)', 'seo-ultimate')
-				, $taxonomy->labels->name
-				, $before_url
-				, $after_url
+			$nobase_checkboxes[] = array(
+				  'setting_id' => 'nobase_' . $taxonomy->name
+				, 'taxonomy_label' => $taxonomy->labels->name
+				, 'example_before' => $before_url
+				, 'example_after' => $after_url
 			);
 		}
 		
-		$this->checkboxes($nobase_checkboxes, __('Remove the URL bases of...', 'seo-ultimate'));
+		$this->admin_form_group_start(__('Remove the URL bases of...', 'seo-ultimate'));
+		
+		echo "<tr><td>\n";
+		$this->admin_wftable_start(array(
+			  'taxonomy' => ' '
+			, 'before' => __('Before', 'seo-ultimate')
+			, 'arrow' => ' '
+			, 'after' => __('After', 'seo-ultimate')
+		));
+		
+		foreach ($nobase_checkboxes as $nobase_checkbox) {
+			echo "<tr>\n";
+			echo "<td class='su-permalinks-taxonomy'>";
+			$this->checkbox($nobase_checkbox['setting_id'], $nobase_checkbox['taxonomy_label'], false, array('output_tr' => false));
+			echo "</td>\n";
+			echo "<td class='su-permalinks-before'>" . esc_html($nobase_checkbox['example_before']) . "</td>\n";
+			echo "<td class='su-permalinks-arrow'>&rArr;</td>\n";
+			echo "<td class='su-permalinks-after'>" . esc_html($nobase_checkbox['example_after']) . "</td>\n";
+			echo "</tr>\n";
+		}
+		
+		$this->admin_wftable_end();
+		echo "</td></tr>\n";
+		
+		$this->admin_form_group_end();
+		
+		$this->dropdown('add_rule_if_conflict', array(
+			  '1' => __('term archive', 'seo-ultimate')
+			, '0' => __('page', 'seo-ultimate')
+		), __('URL Conflict Resolution', 'seo-ultimate'), __('If a term archive and a Page with the same slug end up having the same URL because of the term&#8217;s base being removed, the URL should be given to the %s.', 'seo-ultimate'));
+		
 		$this->child_admin_form_end();
 		
 		$this->update_rewrite_filters();
@@ -113,9 +172,11 @@ class SU_Permalinks extends SU_Module {
 				else
 					$url_start = "index.php?taxonomy={$tax_name}&term=";
 				
-				$rules['('.$term_slug.')/(?:feed/)?(feed|rdf|rss|rss2|atom)/?$'] = $url_start . '$matches[1]&feed=$matches[2]';
-				$rules['('.$term_slug.')/page/?([0-9]{1,})/?$'] = $url_start . '$matches[1]&paged=$matches[2]';
-				$rules['('.$term_slug.')/?$'] = $url_start . '$matches[1]';
+				if ($this->get_setting('add_rule_if_conflict', true) || get_page_by_path($term_slug) === null) {
+					$rules['('.$term_slug.')/(?:feed/)?(feed|rdf|rss|rss2|atom)/?$'] = $url_start . '$matches[1]&feed=$matches[2]';
+					$rules['('.$term_slug.')/page/?([0-9]{1,})/?$'] = $url_start . '$matches[1]&paged=$matches[2]';
+					$rules['('.$term_slug.')/?$'] = $url_start . '$matches[1]';
+				}
 			}
 		}
 		

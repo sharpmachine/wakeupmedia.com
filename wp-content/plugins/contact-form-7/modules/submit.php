@@ -14,12 +14,9 @@ function wpcf7_submit_shortcode_handler( $tag ) {
 	$options = (array) $tag['options'];
 	$values = (array) $tag['values'];
 
-	$atts = '';
-	$id_att = '';
-	$class_att = '';
-	$tabindex_att = '';
+	$atts = $id_att = $tabindex_att = '';
 
-	$class_att .= ' wpcf7-submit';
+	$class_att = wpcf7_form_controls_class( 'submit' );
 
 	foreach ( $options as $option ) {
 		if ( preg_match( '%^id:([-0-9a-zA-Z_]+)$%', $option, $matches ) ) {
@@ -49,11 +46,6 @@ function wpcf7_submit_shortcode_handler( $tag ) {
 
 	$html = '<input type="submit" value="' . esc_attr( $value ) . '"' . $atts . ' />';
 
-	if ( wpcf7_script_is() ) {
-		$src = apply_filters( 'wpcf7_ajax_loader', wpcf7_plugin_url( 'images/ajax-loader.gif' ) );
-		$html .= '<img class="ajax-loader" style="visibility: hidden;" alt="' . esc_attr( __( 'Sending ...', 'wpcf7' ) ) . '" src="' . esc_url_raw( $src ) . '" />';
-	}
-
 	return $html;
 }
 
@@ -63,6 +55,9 @@ function wpcf7_submit_shortcode_handler( $tag ) {
 add_action( 'admin_init', 'wpcf7_add_tag_generator_submit', 55 );
 
 function wpcf7_add_tag_generator_submit() {
+	if ( ! function_exists( 'wpcf7_add_tag_generator' ) )
+		return;
+
 	wpcf7_add_tag_generator( 'submit', __( 'Submit button', 'wpcf7' ),
 		'wpcf7-tg-pane-submit', 'wpcf7_tg_pane_submit', array( 'nameless' => 1 ) );
 }

@@ -20,12 +20,21 @@ class SU_Modules extends SU_Module {
 			
 			$psdata = (array)get_option('seo_ultimate', array());
 			
-			foreach ($_POST as $key => $value) {
+			foreach ($_POST as $key => $newvalue) {
 				if (substr($key, 0, 3) == 'su-') {
 					$key = str_replace(array('su-', '-module-status'), '', $key);
-					$value = intval($value);
 					
-					$psdata['modules'][$key] = $value;
+					$newvalue = intval($newvalue);
+					$oldvalue = $psdata['modules'][$key];
+					
+					if ($oldvalue != $newvalue) {
+						if ($oldvalue == SU_MODULE_DISABLED)
+							$this->plugin->call_module_func($key, 'activate');
+						if ($newvalue == SU_MODULE_DISABLED)
+							$this->plugin->call_module_func($key, 'deactivate');
+					}
+					
+					$psdata['modules'][$key] = $newvalue;
 				}
 			}
 			
@@ -38,7 +47,7 @@ class SU_Modules extends SU_Module {
 	
 	function admin_page_contents() {
 		echo "<p>";
-		_e('SEO Ultimate&#8217;s features are located in groups called &#8220;modules.&#8221; By default, most of these modules are listed in the &#8220;SEO&#8221; menu on the left. Whenever you&#8217;re working with a module, you can view documentation by clicking the tabs in the upper-right-hand corner of your administration screen.', 'seo-ultimate');
+		_e('SEO Ultimate&#8217;s features are located in groups called &#8220;modules.&#8221; By default, most of these modules are listed in the &#8220;SEO&#8221; menu on the left. Whenever you&#8217;re working with a module, you can view documentation by clicking the &#8220;Help&#8221; tab in the upper-right-hand corner of your administration screen.', 'seo-ultimate');
 		echo "</p><p>";
 		_e('The Module Manager lets you  disable or hide modules you don&#8217;t use. You can also silence modules from displaying bubble alerts on the menu.', 'seo-ultimate');
 		echo "</p>";
@@ -75,7 +84,7 @@ STR;
 			$module =& $this->plugin->modules[$key];
 			
 			//On some setups, get_parent_class() returns the class name in lowercase
-			if (strcasecmp(get_parent_class($module), 'SU_Module') == 0 && !in_array($key, array('modules')) && $module->is_independent_module())
+			if (strcasecmp(get_parent_class($module), 'SU_Module') == 0 && !in_array($key, $this->plugin->get_invincible_modules()) && $module->is_independent_module())
 				$modules[$key] = $module->get_module_title();
 		}
 		
@@ -105,6 +114,11 @@ STR;
 			echo "\t\t<tr>\n\t\t\t<td class='module-status' id='module-status-$key'>\n";
 			echo "\t\t\t\t<input type='hidden' name='su-$key-module-status' id='su-$key-module-status' value='$currentstatus' />\n";
 			
+			$hidden_is_hidden = ($this->plugin->call_module_func($key, 'get_menu_title', $module_menu_title) && $module_menu_title === false)
+								|| ($this->plugin->call_module_func($key, 'is_independent_module', $is_independent_module) && $is_independent_module &&
+									$this->plugin->call_module_func($key, 'get_parent_module', $parent_module) && $parent_module &&
+									$this->plugin->module_exists($parent_module));
+			
 			foreach ($statuses as $statuscode => $statuslabel) {
 				
 				$hmc = ($this->plugin->call_module_func($key, 'has_menu_count', $_hmc) && $_hmc);
@@ -113,14 +127,16 @@ STR;
 				$style = '';
 				switch ($statuscode) {
 					case SU_MODULE_ENABLED:
-						if ($currentstatus == SU_MODULE_SILENCED && !$hmc) $is_current = true;
+						if (($currentstatus == SU_MODULE_SILENCED && !$hmc) ||
+							($currentstatus == SU_MODULE_HIDDEN && $hidden_is_hidden))
+							$is_current = true;
 						break;
 					case SU_MODULE_SILENCED:
 						if (!$any_hmc) continue 2; //break out of switch and foreach
 						if (!$hmc) $style = " style='visibility: hidden;'";
 						break;
 					case SU_MODULE_HIDDEN:
-						if ($this->plugin->call_module_func($key, 'get_menu_title', $module_menu_title) && $module_menu_title === false)
+						if ($hidden_is_hidden)
 							$style = " style='visibility: hidden;'";
 						break;
 				}
@@ -152,6 +168,33 @@ STR;
 		echo "\t</tbody>\n</table>\n";
 		
 		$this->admin_form_end(null, false);
+	}
+	
+	function add_help_tabs($screen) {
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-modules-options'
+			, 'title' => __('Options Help', 'seo-ultimate')
+			, 'content' => __("
+<p>The Module Manager lets you customize the visibility and accessibility of each module; here are the options available:</p>
+<ul>
+	<li><strong>Enabled</strong> &mdash; The default option. The module will be fully enabled and accessible.</li>
+	<li><strong>Silenced</strong> &mdash; The module will be enabled and accessible, but it won't be allowed to display numeric bubble alerts on the menu.</li>
+	<li><strong>Hidden</strong> &mdash; The module's functionality will be enabled, but the module won't be visible on the SEO menu. You will still be able to access the module's admin page by clicking on its title in the Module Manager table.</li>
+	<li><strong>Disabled</strong> &mdash; The module will be completely disabled and inaccessible.</li>
+</ul>
+", 'seo-ultimate')));
+		
+		$screen->add_help_tab(array(
+			  'id' => 'su-modules-faq'
+			, 'title' => __('FAQ', 'seo-ultimate')
+			, 'content' => __("
+<ul>
+	<li><strong>What are modules?</strong><br />SEO Ultimate&#8217;s features are divided into groups called &#8220;modules.&#8221; SEO Ultimate&#8217;s &#8220;Module Manager&#8221; lets you enable or disable each of these groups of features. This way, you can pick-and-choose which SEO Ultimate features you want.</li>
+	<li><strong>Can I access a module again after I&#8217;ve hidden it?</strong><br />Yes. Just go to the Module Manager and click the module&#8217;s title to open its admin page. If you&#8217;d like to put the module back in the &#8220;SEO&#8221; menu, just re-enable the module in the Module Manager and click &#8220;Save Changes.&#8221;</li>
+	<li><strong>How do I disable the number bubbles on the &#8220;SEO&#8221; menu?</strong><br />Just go to the Module Manager and select the &#8220;Silenced&#8221; option for any modules generating number bubbles. Then click &#8220;Save Changes.&#8221;</li>
+</ul>
+", 'seo-ultimate')));
 	}
 }
 

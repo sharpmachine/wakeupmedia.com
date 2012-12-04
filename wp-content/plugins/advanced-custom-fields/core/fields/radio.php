@@ -47,9 +47,19 @@ class acf_Radio extends acf_Field
 		}
 				
 		echo '<ul class="radio_list ' . $field['class'] . ' ' . $field['layout'] . '">';
-			
+		
+		$i = 0;
 		foreach($field['choices'] as $key => $value)
 		{
+			$i++;
+			
+			// if there is no value and this is the first of the choices and there is no "0" choice, select this on by default
+			// the 0 choice would normally match a no value. This needs to remain possible for the create new field to work.
+			if(!$field['value'] && $i == 1 && !isset($field['choices']['0']))
+			{
+				$field['value'] = $key;
+			}
+			
 			$selected = '';
 			
 			if($key == $field['value'])
@@ -57,7 +67,7 @@ class acf_Radio extends acf_Field
 				$selected = 'checked="checked" data-checked="checked"';
 			}
 			
-			echo '<li><label><input type="radio" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
+			echo '<li><label><input id="' . $field['id'] . '-' . $key . '" type="radio" name="' . $field['name'] . '" value="' . $key . '" ' . $selected . ' />' . $value . '</label></li>';
 		}
 		
 		echo '</ul>';
@@ -102,18 +112,17 @@ class acf_Radio extends acf_Field
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
 			<td class="label">
 				<label for=""><?php _e("Choices",'acf'); ?></label>
-				<p class="description"><?php _e("Enter your choices one per line<br />
+				<p class="description"><?php _e("Enter your choices one per line",'acf'); ?><br />
 				<br />
-				Red<br />
-				Blue<br />
+				<?php _e("Red",'acf'); ?><br />
+				<?php _e("Blue",'acf'); ?><br />
 				<br />
-				or<br />
-				<br />
-				red : Red<br />
-				blue : Blue",'acf'); ?></p>
+				<?php _e("red : Red",'acf'); ?><br />
+				<?php _e("blue : Blue",'acf'); ?><br />
+				</p>
 			</td>
 			<td>
-				<textarea rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
+				<textarea class="texarea field_option-choices" rows="5" name="fields[<?php echo $key; ?>][choices]" id=""><?php echo $field['choices']; ?></textarea>
 			</td>
 		</tr>
 		<tr class="field_option field_option_<?php echo $this->name; ?>">
@@ -142,8 +151,8 @@ class acf_Radio extends acf_Field
 					'value'	=>	$field['layout'],
 					'layout' => 'horizontal', 
 					'choices' => array(
-						'vertical' => 'Vertical', 
-						'horizontal' => 'Horizontal'
+						'vertical' => __("Vertical",'acf'), 
+						'horizontal' => __("Horizontal",'acf')
 					)
 				));
 				?>

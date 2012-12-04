@@ -46,6 +46,8 @@ define('BLC_FOR_EDITING', 'edit');
 define('BLC_FOR_PARSING', 'parse');
 define('BLC_FOR_DISPLAY', 'display');
 
+define('BLC_DATABASE_VERSION', 6);
+
 /***********************************************
 				Configuration
 ************************************************/
@@ -77,9 +79,10 @@ $blc_config_manager = new blcConfigurationManager(
         
         'exclusion_list' => array(), 	//Links that contain a substring listed in this array won't be checked.
 		
-		'send_email_notifications' => true, //Whether to send email notifications about broken links
+		'send_email_notifications' => true, //Whether to send the admin email notifications about broken links
+		'send_authors_email_notifications' => false, //Whether to send post authors notifications about broken links in their posts.
 		'notification_schedule' => 'daily', //How often (at most) notifications will be sent. Possible values : 'daily', 'weekly'
-		'last_notification_sent' => 0,		//When the last email notification was send (Unix timestamp)
+		'last_notification_sent' => 0,		//When the last email notification was sent (Unix timestamp)
 		
 		'server_load_limit' => 4,		//Stop parsing stuff & checking links if the 1-minute load average
 										//goes over this value. Only works on Linux servers. 0 = no limit.
@@ -107,6 +110,8 @@ $blc_config_manager = new blcConfigurationManager(
 												//recovered after this many days.
 												
 		'installation_complete' => false,
+		'user_has_donated' => false,   //Whether the user has donated to the plugin.
+		'donation_flag_fixed' => false,
    )
 );
 
@@ -166,7 +171,7 @@ function blc_got_unsynched_items(){
  * @return void
  */
 function blc_resynch( $forced = false ){
-	global $wpdb, $blclog;
+	global $wpdb, $blclog; /* @var wpdb $wpdb */
 	
 	if ( $forced ){
 		$blclog->info('... Forced resynchronization initiated');
@@ -249,7 +254,7 @@ add_filter('cron_schedules', 'blc_cron_schedules');
 function blc_activation_hook(){
 	require BLC_DIRECTORY . '/includes/activation.php';
 }
-register_activation_hook(plugin_basename(BLC_PLUGIN_FILE), 'blc_activation_hook');
+register_activation_hook(BLC_PLUGIN_FILE, 'blc_activation_hook');
 
 //Load the plugin if installed successfully
 if ( $blc_config_manager->options['installation_complete'] ){
@@ -261,6 +266,12 @@ if ( $blc_config_manager->options['installation_complete'] ){
 			return;
 		}
 		$init_done = true;
+		
+		//Ensure the database is up to date
+		if ($blc_config_manager->options['current_db_version'] != BLC_DATABASE_VERSION) {
+			require_once BLC_DIRECTORY . '/includes/admin/db-upgrade.php';
+			blcDatabaseUpgrader::upgrade_database(); //Also updates the DB ver. in options['current_db_version'].
+		}
 		
 		//Load the base classes and utilities
 		require_once BLC_DIRECTORY . '/includes/links.php';
@@ -297,6 +308,7 @@ if ( $blc_config_manager->options['installation_complete'] ){
 } else {
 	//Display installation errors (if any) on the Dashboard.
 	function blc_print_installation_errors(){
+		global $blc_config_manager;
         if ( $blc_config_manager->options['installation_complete'] ) {
             return;
         }

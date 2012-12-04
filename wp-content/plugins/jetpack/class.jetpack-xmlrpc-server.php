@@ -5,39 +5,41 @@
  */
 class Jetpack_XMLRPC_Server {
 	/**
-	 * A reference to $GLOBALS['wp_xmlrpc_server'];
-	 */
-	var $wp_xmlrpc_server = null;
-
-	/**
 	 * The current error object
 	 */
 	var $error = null;
-
-	/**
-	 * Since we're not extending wp_xmlrpc_server via wp_xmlrpc_server_class, store it as a reference.
-	 */
-	function Jetpack_XMLRPC_Server( &$wp_xmlrpc_server ) {
-		$this->wp_xmlrpc_server =& $wp_xmlrpc_server;
-	}
 
 	/**
 	 * Whitelist of the XML-RPC methods available to the Jetpack Server. If the 
 	 * user is not authenticated (->login()) then the methods are never added,
 	 * so they will get a "does not exist" error.
 	 */
-	function xmlrpc_methods() {
-		if ( !$user = $this->login() ) {
-			return array();
+	function xmlrpc_methods( $core_methods ) {
+		$jetpack_methods = array(
+			'jetpack.jsonAPI' => array( $this, 'json_api' ),
+		);
+
+		$user = $this->login();
+
+		if ( $user ) {
+			$jetpack_methods = array_merge( $jetpack_methods, array(
+				'jetpack.testConnection'    => array( $this, 'test_connection' ),
+				'jetpack.testAPIUserCode'   => array( $this, 'test_api_user_code' ),
+				'jetpack.featuresAvailable' => array( $this, 'features_available' ),
+				'jetpack.featuresEnabled'   => array( $this, 'features_enabled' ),
+				'jetpack.getPost'           => array( $this, 'get_post' ),
+				'jetpack.getPosts'          => array( $this, 'get_posts' ),
+				'jetpack.getComment'        => array( $this, 'get_comment' ),  
+				'jetpack.getComments'       => array( $this, 'get_comments' ),
+			) );
+
+			if ( isset( $core_methods['metaWeblog.editPost'] ) ) {
+				$jetpack_methods['metaWeblog.newMediaObject'] = $core_methods['metaWeblog.newMediaObject'];
+				$jetpack_methods['jetpack.updateAttachmentParent'] = array( $this, 'update_attachment_parent' );
+			}
 		}
 
-		return apply_filters( 'jetpack_xmlrpc_methods', array(
-			'jetpack.testConnection'    => array( &$this, 'test_connection' ),
-			'jetpack.featuresAvailable' => array( &$this, 'features_available' ),
-			'jetpack.featuresEnabled'   => array( &$this, 'features_enabled' ),
-			'jetpack.getPost'           => array( &$this, 'get_post' ),
-			'jetpack.getComment'        => array( &$this, 'get_comment' ),  
-		) );
+		return apply_filters( 'jetpack_xmlrpc_methods', $jetpack_methods, $core_methods, $user );
 	}
 
 	/**
@@ -45,7 +47,7 @@ class Jetpack_XMLRPC_Server {
 	 */
 	function bootstrap_xmlrpc_methods() {
 		return array(
-			'jetpack.verifyRegistration' => array( &$this, 'verify_registration' ),
+			'jetpack.verifyRegistration' => array( $this, 'verify_registration' ),
 		);
 	}
 
@@ -99,13 +101,13 @@ class Jetpack_XMLRPC_Server {
 		$user = wp_authenticate( 'username', 'password' );
 		if ( is_wp_error( $user ) ) {
 			if ( 'authentication_failed' == $user->get_error_code() ) { // Generic error could mean most anything.
-				$this->error =& new Jetpack_Error( 'invalid_request', 'Invalid Request', 403 );
+				$this->error = new Jetpack_Error( 'invalid_request', 'Invalid Request', 403 );
 			} else {
 				$this->error = $user;
 			}
 			return false;
 		} else if ( !$user ) { // Shouldn't happen.
-			$this->error =& new Jetpack_Error( 'invalid_request', 'Invalid Request', 403 );
+			$this->error = new Jetpack_Error( 'invalid_request', 'Invalid Request', 403 );
 			return false;
 		}
 
@@ -144,7 +146,50 @@ class Jetpack_XMLRPC_Server {
 	 * @return bool|IXR_Error
 	 */
 	function test_connection() {
-		return true;
+		return JETPACK__VERSION;
+	}
+	
+	function test_api_user_code( $args ) {
+		$client_id = (int) $args[0];
+		$user_id   = (int) $args[1];
+		$nonce     = (string) $args[2];
+		$verify    = (string) $args[3];
+
+		if ( !$client_id || !$user_id || !strlen( $nonce ) || 32 !== strlen( $verify ) ) {
+			return false;
+		}
+
+		$user = get_user_by( 'id', $user_id );
+		if ( !$user || is_wp_error( $user ) ) {
+			return false;
+		}
+
+		/* debugging
+		error_log( "CLIENT: $client_id" );
+		error_log( "USER:   $user_id" );
+		error_log( "NONCE:  $nonce" );
+		error_log( "VERIFY: $verify" );
+		*/
+
+		$jetpack_token = Jetpack_Data::get_access_token( 1 );
+
+		$api_user_code = get_user_meta( $user_id, "jetpack_json_api_$client_id", true );
+		if ( !$api_user_code ) {
+			return false;
+		}
+
+		$hmac = hash_hmac( 'md5', json_encode( (object) array(
+			'client_id' => (int) $client_id,
+			'user_id'   => (int) $user_id,
+			'nonce'     => (string) $nonce,
+			'code'      => (string) $api_user_code,
+		) ), $jetpack_token->secret );
+
+		if ( $hmac !== $verify ) {
+			return false;
+		}
+
+		return $user_id;
 	}
 
 	/**
@@ -183,37 +228,130 @@ class Jetpack_XMLRPC_Server {
 		}
 
 		$jetpack = Jetpack::init();
-		$post = $jetpack->get_post( $id );
 
-		if (
-			is_array( $post )
-		&&
-			empty( $post['post_password'] )
-		&&
-			in_array( $post['post_type'], get_post_types( array( 'public' => true ) ) )
-		&&
-			in_array( $post['post_status'], get_post_stati( array( 'public' => true ) ) )
-		) {
-			return $post;
-		}
-
-		return false;
+		$post = $jetpack->sync->get_post( $id );
+		return $post;
 	}
 	
+	function get_posts( $args ) {
+		list( $post_ids ) = $args;
+		$post_ids = array_map( 'intval', (array) $post_ids );
+		$jp = Jetpack::init();
+		$sync_data = $jp->sync->get_content( array( 'posts' => $post_ids ) );
+
+		return $sync_data;
+	}
+
 	function get_comment( $id ) {
 		if ( !$id = (int) $id ) {
 			return false;
 		}
 
 		$jetpack = Jetpack::init();
-		$comment = $jetpack->get_comment( $id );
 
+		$comment = $jetpack->sync->get_comment( $id );
 		if ( !is_array( $comment ) )
 			return false;
 
-		if ( !$this->get_post( $comment['comment_post_ID'] ) )
+		$post = $jetpack->sync->get_post( $comment['comment_post_ID'] );
+		if ( !$post ) {
 			return false;
+		}
 
 		return $comment;
+	}
+
+	function get_comments( $args ) {
+		list( $comment_ids ) = $args;
+		$comment_ids = array_map( 'intval', (array) $comment_ids );
+		$jp = Jetpack::init();
+		$sync_data = $jp->sync->get_content( array( 'comments' => $comment_ids ) );
+
+		return $sync_data;
+	}
+	
+	function update_attachment_parent( $args ) {
+		$attachment_id = (int) $args[0];
+		$parent_id     = (int) $args[1];
+
+		return wp_update_post( array(
+			'ID'          => $attachment_id,
+			'post_parent' => $parent_id,
+		) );
+	}
+
+	function json_api( $args = array() ) {
+		$json_api_args = $args[0];
+		$verify_api_user_args = $args[1];
+
+		$method       = (string) $json_api_args[0];
+		$url          = (string) $json_api_args[1];
+		$post_body    = is_null( $json_api_args[2] ) ? null : (string) $json_api_args[2];
+		$my_id        = (int) $json_api_args[3];
+		$user_details = (array) $json_api_args[4];
+
+		if ( !$verify_api_user_args ) {
+			$user_id = 0;
+		} elseif ( 'internal' === $verify_api_user_args[0] ) {
+			$user_id = (int) $verify_api_user_args[1];
+			if ( $user_id ) {
+				$user = get_user_by( 'id', $user_id );
+				if ( !$user || is_wp_error( $user ) ) {
+					return false;
+				}
+			}
+		} else {
+			$user_id = call_user_func( array( $this, 'test_api_user_code' ), $verify_api_user_args );
+			if ( !$user_id ) {
+				return false;
+			}
+		}
+
+		/* debugging
+		error_log( "-- begin json api via jetpack debugging -- " );
+		error_log( "METHOD: $method" );
+		error_log( "URL: $url" );
+		error_log( "POST BODY: $post_body" );
+		error_log( "MY JETPACK ID: $my_id" );
+		error_log( "VERIFY_ARGS: " . print_r( $verify_api_user_args, 1 ) );
+		error_log( "VERIFIED USER_ID: " . (int) $user_id );
+		error_log( "-- end json api via jetpack debugging -- " );
+		*/
+
+		$old_user = wp_get_current_user();
+		wp_set_current_user( $user_id );
+
+		$token = Jetpack_Data::get_access_token( get_current_user_id() );
+		if ( !$token || is_wp_error( $token ) ) {
+			return false;
+		}
+
+		define( 'REST_API_REQUEST', true );
+		define( 'WPCOM_JSON_API__BASE', 'public-api.wordpress.com/rest/v1' );
+
+		// needed?
+		require_once ABSPATH . 'wp-admin/includes/admin.php';
+
+		require_once dirname( __FILE__ ) . '/class.json-api.php';
+		$api = WPCOM_JSON_API::init( $method, $url, $post_body );
+		$api->token_details['user'] = $user_details;
+		require_once dirname( __FILE__ ) . '/class.json-api-endpoints.php';
+
+		$display_errors = ini_set( 'display_errors', 0 );
+		ob_start();
+		$content_type = $api->serve( false );
+		$output = ob_get_clean();
+		ini_set( 'display_errors', $display_errors );
+
+		$nonce = wp_generate_password( 10, false );
+		$hmac  = hash_hmac( 'md5', $nonce . $output, $token->secret );
+
+		wp_set_current_user( isset( $old_user->ID ) ? $old_user->ID : 0 );
+
+		return array(
+			(string) $output,
+			(string) $nonce,
+			(string) $hmac,
+		);
 	}
 }

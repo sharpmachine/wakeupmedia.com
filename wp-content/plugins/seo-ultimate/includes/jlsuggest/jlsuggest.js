@@ -1,5 +1,5 @@
 jQuery(document).ready( function($) {
-	$('input.jlsuggest', '.su-module').each(function() {
+	$('input.jlsuggest', '.su-module,#su-postmeta-box').each(function() {
 		var params = $(this).attr('su:params') ? '&' + $(this).attr('su:params') : '';
 		$(this).jlsuggest(ajaxurl + '?action=su-jlsuggest-autocomplete' + params,
 			{ delay: 500, minchars: 2, multiple: false, textDest: true, noUrls: true } );
@@ -53,7 +53,7 @@ jQuery(document).ready( function($) {
 			$input.keydown(processKey);		// onkeydown repeats arrow keys in IE/Safari
 		
 		$('.' + options.textDestCloseClass).click(function() {
-			$(this).parent().siblings('.' + options.textDestTextClass + ':first').text('').parent().hide().siblings('input:first').val('').show().focus()
+			$(this).parent().siblings('.' + options.textDestTextClass + ':first').text('').parent().hide().removeClass(options.textDestDisabledClass).siblings('input:first').val('').show().focus()
 		});
 		
 		
@@ -252,9 +252,9 @@ jQuery(document).ready( function($) {
 							function(q) { return '<span class="' + options.matchClass + '">' + q + '</span>' }
 						);
 						html = '<li'
-							+ ' class="' + document.createTextNode(options.itemClass).data + '"'
-							+ ' su:value="' + document.createTextNode(item.value || '').data + '"'
-							+ ' su:selectedtext="' + document.createTextNode(item.selectedtext || '').data.replace(/"/g, "&quot;") + '"'
+							+ ' class="' + Encoder.htmlEncode(options.itemClass, true) + '"'
+							+ ' su:value="' + Encoder.htmlEncode(item.value || '', true) + '"'
+							+ ' su:selectedtext="' + Encoder.htmlEncode(item.selectedtext || '', true) + '"'
 							+ '>' + html + '</li>';
 					}
 					lis[lis.length] = html;
@@ -368,6 +368,7 @@ jQuery(document).ready( function($) {
 		options.noUrls = options.noUrls || false;
 		options.textDest = options.textDest || false;
 		options.textDestClass = options.textDestClass || 'jls_text_dest';
+		options.textDestDisabledClass = options.textDestDisabledClass || 'jlsuggest-disabled';
 		options.textDestTextClass = options.textDestTextClass || 'jls_text_dest_text';
 		options.textDestCloseClass = options.textDestCloseClass || 'jls_text_dest_close';
 		options.timeoutClass = options.timeoutClass || 'jls_loading';

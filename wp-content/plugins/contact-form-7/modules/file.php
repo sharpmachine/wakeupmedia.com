@@ -20,16 +20,14 @@ function wpcf7_file_shortcode_handler( $tag ) {
 	if ( empty( $name ) )
 		return '';
 
-	$atts = '';
-	$id_att = '';
-	$class_att = '';
-	$size_att = '';
-	$tabindex_att = '';
+	$validation_error = wpcf7_get_validation_error( $name );
 
-	$class_att .= ' wpcf7-file';
+	$atts = $id_att = $size_att = $tabindex_att = '';
 
-	if ( 'file*' == $type )
-		$class_att .= ' wpcf7-validates-as-required';
+	$class_att = wpcf7_form_controls_class( $type );
+
+	if ( $validation_error )
+		$class_att .= ' wpcf7-not-valid';
 
 	foreach ( $options as $option ) {
 		if ( preg_match( '%^id:([-0-9a-zA-Z_]+)$%', $option, $matches ) ) {
@@ -63,8 +61,6 @@ function wpcf7_file_shortcode_handler( $tag ) {
 
 	$html = '<input type="file" name="' . $name . '"' . $atts . ' value="1" />';
 
-	$validation_error = wpcf7_get_validation_error( $name );
-
 	$html = '<span class="wpcf7-form-control-wrap ' . $name . '">' . $html . $validation_error . '</span>';
 
 	return $html;
@@ -95,7 +91,7 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	$name = $tag['name'];
 	$options = (array) $tag['options'];
 
-	$file = $_FILES[$name];
+	$file = isset( $_FILES[$name] ) ? $_FILES[$name] : null;
 
 	if ( $file['error'] && UPLOAD_ERR_NO_FILE != $file['error'] ) {
 		$result['valid'] = false;
@@ -184,11 +180,12 @@ function wpcf7_file_validation_filter( $result, $tag ) {
 	// Make sure the uploaded file is only readable for the owner process
 	@chmod( $new_file, 0400 );
 
-	if ( $contact_form = wpcf7_get_current_contact_form() )
+	if ( $contact_form = wpcf7_get_current_contact_form() ) {
 		$contact_form->uploaded_files[$name] = $new_file;
 
-	if ( ! isset( $_POST[$name] ) )
-		$_POST[$name] = $filename;
+		if ( empty( $contact_form->posted_data[$name] ) )
+			$contact_form->posted_data[$name] = $filename;
+	}
 
 	return $result;
 }
@@ -228,6 +225,9 @@ function wpcf7_file_messages( $messages ) {
 add_action( 'admin_init', 'wpcf7_add_tag_generator_file', 50 );
 
 function wpcf7_add_tag_generator_file() {
+	if ( ! function_exists( 'wpcf7_add_tag_generator' ) )
+		return;
+
 	wpcf7_add_tag_generator( 'file', __( 'File upload', 'wpcf7' ),
 		'wpcf7-tg-pane-file', 'wpcf7_tg_pane_file' );
 }
@@ -270,10 +270,10 @@ function wpcf7_tg_pane_file( &$contact_form ) {
 
 /* Warning message */
 
-add_action( 'wpcf7_admin_before_subsubsub', 'wpcf7_file_display_warning_message' );
+add_action( 'wpcf7_admin_notices', 'wpcf7_file_display_warning_message' );
 
-function wpcf7_file_display_warning_message( &$contact_form ) {
-	if ( ! $contact_form )
+function wpcf7_file_display_warning_message() {
+	if ( empty( $_GET['post'] ) || ! $contact_form = wpcf7_contact_form( $_GET['post'] ) )
 		return;
 
 	$has_tags = (bool) $contact_form->form_scan_shortcode(

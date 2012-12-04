@@ -1,9 +1,9 @@
 === Jetpack by WordPress.com ===
-Contributors: automattic, apeatling, beaulebens, hugobaeta, joen, mdawaffe, andy, designsimply, hew, westi, eoigal, tmoorewp
-Tags: WordPress.com, statistics, stats, views, tweets, twitter, widget, gravatar, hovercards, profile, equations, latex, math, maths, youtube, shortcode, archives, audio, blip, bliptv, dailymotion, digg, flickr, googlevideo, google, googlemaps, kyte, kytetv, livevideo, redlasso, rockyou, rss, scribd, slide, slideshare, soundcloud, vimeo, shortlinks, wp.me, subscriptions
-Requires at least: 3.1
-Tested up to: 3.3
-Stable tag: 1.2.1
+Contributors: automattic, apeatling, beaulebens, hugobaeta, Joen, mdawaffe, andy, designsimply, hew, westi, eoigal, tmoorewp, matt, pento, cfinke, daniloercoli, chellycat, gibrown, jblz, jshreve, barry, alternatekev, azaozz, ethitter, johnjamesjacoby, lancewillett, martinremy, nickmomrik, stephdau, yoavf
+Tags: WordPress.com, statistics, stats, views, tweets, twitter, widget, gravatar, hovercards, profile, equations, latex, math, maths, youtube, shortcode, archives, audio, blip, bliptv, dailymotion, digg, flickr, googlevideo, google, googlemaps, kyte, kytetv, livevideo, redlasso, rockyou, rss, scribd, slide, slideshare, soundcloud, vimeo, shortlinks, wp.me, subscriptions, notifications, notes, json, api, rest
+Requires at least: 3.2
+Tested up to: 3.4.2
+Stable tag: 1.9.2
 
 Supercharge your WordPress site with powerful features previously only available to WordPress.com users.
 
@@ -17,6 +17,9 @@ Features include:
 
 * Simple, concise stats with no additional load on your server.  Previously provided by [WordPress.com Stats](http://wordpress.org/extend/plugins/stats/).
 * Email subscriptions for your blog's posts and your post's comments.
+* Social networking enabled comment system.
+* Monitor and manage your site's activity with Notifications in your Toolbar and on WordPress.com.
+* Simple, Akismet-backed contact forms.
 * The [WP.me URL shortener](http://wp.me/sf2B5-shorten).
 * Hovercard popups for your commenters via [Gravatar](http://gravatar.com/).
 * Easily embedded media from popular sites like YouTube, Digg, and Vimeo.
@@ -24,6 +27,11 @@ Features include:
 * A widget for displaying recent tweets.  Previously provided by [Wickett Twitter Widget](http://wordpress.org/extend/plugins/wickett-twitter-widget/)
 * Your readers can easily share your posts via email or their favorite social networks.  Previously provided by the [Sharedaddy](http://wordpress.org/extend/plugins/sharedaddy/) WordPress plugin.
 * Your writing will improve thanks to After the Deadline, an artificial intelligence based spell, style, and grammar checker.  Previously provided by the [After the Deadline](http://wordpress.org/extend/plugins/after-the-deadline/) WordPress plugin.
+* With Carousel active, any standard WordPress galleries you have embedded in posts or pages will launch a gorgeous full-screen photo browsing experience with comments and EXIF metadata.
+* A CSS editor that lets you customize your site design without modifying your theme.
+* A mobile theme that automatically streamlines your site for visitors on mobile devices.
+* Mobile push notifications for new comments via WordPress mobile apps.
+* The ability to allow applications to securely authenticate and access your site with your permission. 
 * and *many* more to come!
 
 Note: The stats portion of Jetpack uses Quantcast to enhance its data.
@@ -56,15 +64,15 @@ Use [shortcodes](http://support.wordpress.com/shortcodes/) to embed your media. 
 * [[dailymotion]](http://support.wordpress.com/videos/dailymotion/)
 * [[digg]](http://support.wordpress.com/digg/)
 * [[flickr]](http://support.wordpress.com/videos/flickr-video/)
+* [[googlemaps]](http://en.support.wordpress.com/google-maps/)
 * [[googlevideo]](http://support.wordpress.com/videos/google-video/)
 * [[polldaddy]](http://support.polldaddy.com/wordpress-shortcodes/)
 * [[scribd]](http://support.wordpress.com/scribd/)
-* [[slide]](http://support.wordpress.com/slideshows/slide/)
 * [[slideshare]](http://support.wordpress.com/slideshows/slideshare/)
 * [[soundcloud]](http://support.wordpress.com/audio/soundcloud-audio-player/)
+* [[videopress]](http://support.wordpress.com/videopress/)
 * [[vimeo]](http://support.wordpress.com/videos/vimeo/)
 * [[youtube]](http://support.wordpress.com/videos/youtube/)
-* [[googlemaps]](http://en.support.wordpress.com/google-maps/)
 
 == Screenshots ==
 
@@ -73,8 +81,201 @@ Use [shortcodes](http://support.wordpress.com/shortcodes/) to embed your media. 
 3. Subscriptions widget.
 4. Gravatar Hovercards settings.
 5. Spelling and Grammar demo.
+6. Gallery Carousel.
+7. CSS Editor
+8. Mobile Theme
 
 == Changelog ==
+
+= 1.9.2 =
+* Bug Fix: Only sync options on upgrade once.
+
+= 1.9.1 =
+* Enhancement: Notifications feature is enabled for logged-out users when the module is active & the toolbar is shown by another plugin.
+* Bug Fix: Use proper CDN addresses to avoid SSL cert issues.
+* Bug Fix: Prioritize syncing comments over deleting comments on WordPress.com. Fixes comment notifications marked as spam appearing to be trashed.
+
+= 1.9 =
+* Enhancement: Notifications: Display Notifications in the toolbar and support reply/moderation of comment notifications.
+* Enhancement: Mobile Push Notifications: Added support for mobile push notifications of new comments for users that linked their accounts to WordPress.com accounts.
+* Enhancement: JSON API: Allows applications to send API requests via WordPress.com (see [the docs](http://developer.wordpress.com/docs/api/) )
+* Enhancement: Sync: Modules (that require the data) sync full Post/Comment to ensure consistent data on WP.com (eg Stats)
+* Enhancement: Sync: Improve syncing of site options to WP.com
+* Enhancement: Sync: Sync attachment parents to WP.com
+* Enhancement: Sync: Add signing of WP.com user ids for Jetpack Comments
+* Enhancement: Sync: Mark and obfuscate private posts.
+* Enhancement: Privacy: Default disable enhanced-distribution and json-api modules if site appears to be private.
+* Enhancement: Custom CSS: allow applying Custom CSS to mobile theme.
+* Enhancement: Sharing: On HTTPS pageloads, load as much of the sharing embeds as possible from HTTPS URLs.
+* Enhancement: Contact Form: Overhaul of the contact form code to fix incompatibilites with other plugins.
+* Bug Fix: Only allow users with manage_options permission to enable/disable modules
+* Bug Fix: Custom CSS: allow '/' in media query units; e.g. (-o-min-device-pixel-ratio: 3/2)
+* Bug Fix: Custom CSS: leave comments alone in CSS when editing but minify on the frontend
+* Bug Fix: Sharing: Keep "more" pane open so Google+ Button isn't obscured
+* Bug Fix: Carousel: Make sure the original size is used, even when it is exceedingly large.
+* Bug Fix: Exclude iPad from Twitter on iPhone mobile browsing
+* Bug Fix: Sync: On .org user role changes synchronize the change to .com
+* Bug Fix: Contact Form: Fix a bug where some web hosts would reject mail from the contact form due to email address spoofing.
+
+= 1.8.3 =
+* Bug Fix: Subscriptions: Fix a bug where subscriptions were not being sent from the blog.
+* Bug Fix: Twitter: Fix a bug where the Twitter username was being saved as blank.
+* Bug Fix: Fix a bug where Contact Form notification emails were not being sent.
+
+= 1.8.2 =
+* Bug Fix: Subscriptions: Fix a bug where subscriptions were not sent for posts and comments written by some authors.
+* Bug Fix: Widgets: Fix CSS that was uglifying some themes (like P2).
+* Bug Fix: Widgets: Improve Top Posts and Pages styling.
+* Bug Fix: Custom CSS: Make the default "Welcome" message translatable.
+* Bug Fix: Fix Lithuanian translation.
+
+= 1.8.1 =
+* Bug Fix: Stats: Fixed a bug preventing some users from viewing stats.
+* Bug Fix: Mobile Theme: Fixed some disabled toolbar buttons.
+* Bug Fix: Top Posts widget: Fixed a bug preventing the usage of the Top Posts widget.
+* Bug Fix: Mobile Theme: Fixed a bug that broke some sites when the Subscriptions module was not enabled and the Mobile Theme module was enabled.
+* Bug Fix: Mobile Theme: Made mobile app promos in the Mobile Theme footer opt-in.
+* Bug Fix: Twitter Widget: A fix to prevent malware warnings.
+* Bug Fix: Mobile Theme: Fixed a bug that caused errors for some users with custom header images.
+
+= 1.8 =
+* Enhancement: Mobile Theme: Automatically serve a slimmed down version of your site to users on mobile devices.
+* Enhancement: Multiuser: Allow multiple users to link their accounts to WordPress.com accounts.
+* Enhancement: Custom CSS: Added support for object-fit, object-position, transition, and filter properties.
+* Enhancement: Twitter Widget: Added Follow button
+* Enhancement: Widgets: Added Top Posts and Pages widget
+* Enhancement: Mobile Push Notifications: Added support for mobile push notifications on new comments.
+* Enhancement: VideoPress: Shortcodes now support the HD option, for default HD playback.
+* Bug Fix: Twitter Widget: Fixed tweet permalinks in the Twitter widget
+* Bug Fix: Custom CSS: @import rules and external images are no longer stripped out of custom CSS
+* Bug Fix: Custom CSS: Fixed warnings and notices displayed in debug mode
+* Bug Fix: Sharing: Fixed double-encoding of image URLs
+* Bug Fix: Sharing: Fix Google +1 button HTML validation issues (again :))
+* Bug Fix: Gravatar Profile Widget: Reduce size of header margins
+
+= 1.7 =
+* Enhancement: CSS Editor: Customize your site's design without modifying your theme.
+* Enhancement: Comments: Submit the comment within the iframe.  No more full page load to jetpack.wordpress.com.
+* Enhancement: Sharing: Share counts for Twitter, Facebook, LinkedIn
+* Enhancement: Sharing: Improve styling
+* Enhancement: Sharing: Add support for ReCaptcha
+* Enhancement: Sharing: Better extensability through filters
+* Enhancement: Widgets: Twitter: Attempt to reduce errors by storing a long lasting copy of the data. Thanks, kareldonk :)
+* Regression Fix: Sharing: Properly store and display the sharing label option's default value.
+* Bug Fix: Contact Form: remove worse-than-useless nonce.
+* Bug Fix: Subscriptions: remove worse-than-useless nonce.
+* Bug Fix: Sharing: Don't show sharing buttons twice on attachment pages.
+* Bug Fix: Sharing: Increase width of Spanish Like button for Facebook.
+* Bug Fix: Sharing: Use the correct URL to the throbber.
+* Bug Fix: Stats: Fix notice about undefined variable $alt
+* Bug Fix: Subscriptions: Make Subscriptions module obey the settings of the Settngs -> Discussion checkboxes for Follow Blog/Comments
+* Bug Fix: Shortcodes: VideoPress: Compatibility with the latest version of VideoPress
+* Bug Fix: Shortcodes: Audio: Include JS File for HTML5 audio player
+* Bug Fix: Hovercards: Improve cache handling.
+* Bug Fix: Widgets: Gravatar Profle: Correctly display service icons in edge cases.
+* Bug Fix: Widgets: Gravatar Profle: Prevent ugly "flash" of too-large image when page first loads on some sites
+* Bug Fix: Carousel: CSS Compatibility with more themes.
+
+= 1.6.1 =
+* Bug Fix: Prevent Fatal error under certain conditions in sharing module
+* Bug Fix: Add cachebuster to sharing.css
+* Bug Fix: Disable via for Twitter until more robust code is in place
+
+= 1.6 =
+* Enhancement: Carousel: Better image resolution selection based on available width/height.
+* Enhancement: Carousel: Load image caption, metadata, comments, et alii when a slide is clicked to switch to instead of waiting.
+* Enhancement: Carousel: Added a "Comment" button and handling to scroll to and focus on comment textarea.
+* Enhancement: Widgets: Facebook Likebox now supports a height parameter and a better width parameter.
+* Enhancement: Widgets: Better feedback when widgets are not set up properly.
+* Enhancement: Shortcodes: Google Maps shortcode now supports percentages in the width.
+* Enhancement: Shortcodes: Update Polldaddy shortcode for more efficient Javascript libraries.
+* Enhancement: Shortcodes: Youtube shortcode now has playlist support.
+* Enhancement: Add Gravatar Profile widget.
+* Enhancement: Update Sharedaddy to latest version, including Pinterest support.
+* Enhancement: Retinize Jetpack and much of WordPress.
+* Bug Fix: Shortcodes: Fix Audio shortcode color parameter and rename encoding function.
+* Bug Fix: Shortcodes: Don't output HTML 5 version of the Audio shortcode because of a bug with Google Reader.
+* Bug Fix: Jetpack Comments: Don't overlead the addComments object if it doesn't exist. Fixes spacing issue with comment form.
+* Bug Fix: Contact Form: If send_to_editor() exists, use it. Fixes an IE9 text area issue.
+
+= 1.5 =
+* Enhancement: Add Gallery Carousel feature
+* Note: the Carousel module bundles http://fgnass.github.com/spin.js/ (MIT license)
+
+= 1.4.2 =
+* Bug Fix: Jetpack Comments: Add alternative Javascript event listener for Internet 8 users.
+* Enhancement: Remove more PHP 4 backwards-compatible code (WordPress andJetpack only support PHP 5).
+* Enhancement: Remove more WordPress 3.1 and under backwards-compatible code.
+
+= 1.4.1 =
+* Bug Fix: Jetpack Comments / Subscriptions: Add checkboxes and logic control for the Subscription checkboxes.
+
+= 1.4 =
+* Enhancement: Add Jetpack Comments feature.
+* Bug Fix: Sharing: Make the sharing_label translatable.
+* Bug Fix: Sharing: Fixed the file type on the LinkedIn graphic.
+* Bug Fix: Sharing: Fixes for the Faceboox Like button language locales.
+* Bug Fix: Sharing: Updates for the "more" button when used with touch screen devices.
+* Bug Fix: Sharing: Properly scope the More button so that multiple More buttons on a page behave properly.
+* Bug Fix: Shortcodes: Update the YouTube and Audio shortcodes to better handle spaces in the URLs.
+* Bug Fix: Shortcodes: Make the YouTube shortcode respect embed settings in Settings -> Media when appropriate.
+* Bug Fix: Shortcodes: Removed the Slide.com shortcode; Slide.com no longer exists.
+* Bug Fix: Shortcodes: Match both http and https links in the [googlemaps] shortcode.
+* Bug Fix: After the Deadline: Code clean up and removal of inconsistencies.
+
+= 1.3.4 =
+* Bug Fix: Revert changes to the top level menu that are causing problems.
+
+= 1.3.3 =
+* Bug Fix: Fix notices caused by last update
+
+= 1.3.2 =
+* Bug Fix: Fix Jetpack menu so that Akismet and VaultPress submenus show up.
+
+= 1.3.1 = 
+* Enhancement: Add a new widget, the Facebook Likebox
+* Bug Fix: Sharing: Sharing buttons can now be used on custom post types.
+* Bug Fix: Contact Forms: Make Contact Forms widget shortcode less aggressive about the shortcodes it converts.
+* Bug Fix: Ensure contact forms are parsed correctly in text widgets.
+* Bug Fix: Connection notices now only appear on the Dashboard and plugin page.
+* Bug Fix: Connection notices are now dismissable if Jetpack is not network activated.
+* Bug Fix: Subscriptions: Fix an issue that was causing errors with new BuddyPress forum posts.
+
+= 1.3 =
+* Enhancement: Add Contact Forms feature.  Formerly Grunion Contact Forms.
+* Bug Fix: Tweak YouTube autoembedder to catch more YouTube URLs.
+* Bug Fix: Correctly load the Sharing CSS files.
+
+= 1.2.4 =
+* Bug Fix: Fix rare bug with static front pages
+
+= 1.2.3 =
+* Enhancement: Twitter Widget: Expand t.co URLs
+* Bug Fix: Various PHP Notices.
+* Bug Fix: WordPress Deprecated `add_contextual_help()` notices
+* Bug Fix: Don't display unimportant DB errors when processing Jetpack nonces
+* Bug Fix: Correctly sync data during certain MultiSite cases.
+* Bug Fix: Stats: Allow sparkline img to load even when there is a DB upgrade.
+* Bug Fix: Stats: Replace "loading title" with post title regardless of type and status.
+* Bug Fix: Stats: Avoid edge case infinite redirect for `show_on_front=page` sites where the `home_url()` conatins uppercase letters.
+* Bug Fix: Subscriptions: Don't send subscriptions if the feature is turned off in Jetpack.
+* Bug Fix: Subscriptions: Fix pagination of subscribers.
+* Bug Fix: Subscriptions: Sync data about categories/tags as well to improve subscription emails.
+* Bug Fix: Subscriptions: Better styling for the subscription success message.
+* Bug Fix: Shortcodes: Support for multiple Google Maps in one post.  Support for all Google Maps URLs.
+* Bug Fix: Shortcodes: Improved support for youtu.be URLs
+* Bug Fix: Shortcodes: Improved Vimeo embeds.
+* Bug Fix: Sharing: Switch to the 20px version of Google's +1 button for consistency.
+* Bug Fix: Sharing: Fix Google +1 button HTML validation issues.
+* Bug Fix: Sharing: Disable sharing buttons during preview.
+* Bug Fix: Spelling and Grammar: Properly handle proofreading settings.
+* Bug Fix: Spelling and Grammar: Don't prevent post save when proofreading service is unavailable.
+
+= 1.2.2 =
+* Bug Fix: Ensure expected modules get reactivated correctly during upgrade.
+* Bug Fix: Don't send subscription request during spam comment submission.
+* Bug Fix: Increased theme compatibility for subscriptions.
+* Bug Fix: Remove reference to unused background image.
 
 = 1.2.1 =
 * Bug Fix: Ensure Site Stats menu item is accessible.
